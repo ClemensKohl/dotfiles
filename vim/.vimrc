@@ -2,13 +2,18 @@
 
 " ADDED by CLEMENS
 
+" Basic settings
 syntax on
 set background=dark
-"color desert
 
-" set number
+set number
+set showmatch " Shows matching brackets
+set ruler " Always shows location in file (line#)
+set smarttab " Autotabs for certain code
+set ts=4 sw=4 " Sets the tabs to 4 spaces.
 set backspace=indent,eol,start
 
+set clipboard=unnamedplus " Supposed to help copy/paste between vim and dekstop, but doesnt.
 
 " Install vim-plug if not found
 
@@ -37,10 +42,10 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'gaalcaras/ncm-R'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'AlexvZyl/nordic.nvim', { 'branch': 'main' }
+Plug 'arcticicestudio/nord-vim'
 "Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
-
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Initialize plugin system
 call plug#end()
@@ -50,22 +55,25 @@ call plug#end()
 "airline (bottom line)
 "let g:airline_solarized_bg='dark'
 "let g:airline_theme = 'material'
-let g:airline_theme = 'gruvbox'
 
 "let g:material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
 "let g:material_theme_style = 'default'
 "colorscheme material
+
+" Settings for gruvbox theme
+let g:airline_theme = 'gruvbox'
 colorscheme gruvbox
+
+" Settings for Nord theme
+"colorscheme nord
+
 
 " Vim 8 only
 "if !has('nvim')
 "    Plug 'roxma/vim-hug-neovim-rpc'
 "endif
 
-" Nvim-R extra settings
-"" Change assignment operator
-let R_assign_map = "@"
-
+let R_assign_map = "£"
 
 
 
