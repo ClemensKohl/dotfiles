@@ -1,0 +1,47 @@
+# created by Clemens
+
+Host tunnel 
+	HostName geniux.molgen.mpg.de
+	User kohl
+	
+Host devil_tunnel
+        HostName sympathyforthedevil
+        User kohl
+        ProxyJump tunnel 
+
+Host devil_jupyter
+        HostName sympathyforthedevil
+        User kohl
+        ProxyJump tunnel 
+	LocalForward 8888 sympathyforthedevil:35813
+
+Host el_tunnel
+        HostName elcattivo 
+        User kohl
+        ProxyJump tunnel 
+
+
+Host god_tunnel
+        HostName godsavethequeen
+        User kohl
+        ProxyJump tunnel
+
+Host god_jupyter
+        HostName godsavethequeen
+        User kohl
+        ProxyJump tunnel
+	LocalForward 8888 godsavethequeen:58585
+
+Host sublime_geniux
+	HostName geniux.molgen.mpg.de
+	User kohl
+	RemoteForward 52698 localhost:52698
+
+Host sublime_devil
+	HostName sympathyforthedevil
+	User kohl
+	ProxyJump tunnel
+	RemoteForward 52698 localhost:52698
+
+Host *
+	User clemens
