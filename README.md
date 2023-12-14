@@ -26,6 +26,10 @@ The --restow parameter tells stow to unstow the packages first before stowing th
 
 > ⚠️  Currently the R directory is not usable and there is the .bak folder which should be removed!
 
+# Bash configuration
+Some things, e.g. conda initializaton and computer specific aliases are difficult to manage with one script.
+For now, I store them in `~/.bash_aliases`. There they get still called and I can still sync .bashrc.
+
 See also this guide for help with GNU stow:
 https://venthur.de/2021-12-19-managing-dotfiles-with-stow.html
 
