@@ -24,7 +24,7 @@ stow --target=$HOME --restow */
 But make sure there aren't any weird folders in your dot_files repository! (Backups, incorrect folder structure ...)
 The --restow parameter tells stow to unstow the packages first before stowing them again.
 
-> ⚠️  Currently the R directory is not usable and there is the .bak folder which should be removed!
+> ⚠️  Currently there is the bak folder which should be removed!
 
 # Bash configuration
 Some things, e.g. conda initializaton and computer specific aliases are difficult to manage with one script.
