@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+
+PS1='\u@\h:\w \$'; PROMPT_DIRTRIM=2
+
+# if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -66,7 +71,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1='\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1'
     ;;
 *)
     ;;
@@ -88,9 +93,10 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -lF'
-alias la='ls -AlF'
-alias l='ls -CF'
+alias ll='ls -hlF'
+alias la='ls -ahlF'
+alias lesss='less -S'
+alias lt='ls -ht'
 alias tmux='tmux -u'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -118,9 +124,3 @@ if ! shopt -oq posix; then
 fi
 
 
-
-#############
-## Clemens ##
-#############
-
-alias lesss='less -s'
