@@ -29,6 +29,10 @@ PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux"
 
 export PATH
 
+# Determine .Rprofile file:
+#export R_PROFILE="/home/kohl/R/Rprofile.site"
+export R_PROFILE="/home/kohl/.Rprofile"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth

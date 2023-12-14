@@ -27,6 +27,7 @@ lvim.plugins = {
 
 vim.opt.background="dark"
 lvim.colorscheme = "gruvbox"
+vim.o.termguicolors = true
 
 if vim.env.TMUX then
     vim.g.clipboard = {

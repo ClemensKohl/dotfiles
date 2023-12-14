@@ -40,6 +40,7 @@ assign(".First", function(){
 
 #assign(".Last", function() cat("\n   Goodbye!\n\n"), envir = globalenv())
 
+require("colorout")
 #############
 
 #.First <- function(){
