@@ -13,6 +13,7 @@ stow --target=$HOME vim
 stow --target=$HOME tmux
 stow --target=$HOME ssh
 stow --target=$HOME bash
+stow --target=$HOME R
 
 ```
 
