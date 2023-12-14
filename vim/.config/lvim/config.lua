@@ -22,6 +22,7 @@ lvim.plugins = {
   end,
   },
  {"folke/zen-mode.nvim"},
+ {"jalvesaq/Nvim-R"},
 }
 
 vim.opt.background="dark"
