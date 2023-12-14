@@ -21,7 +21,7 @@
 
 
 assign(".First", function(){
-	 os_name <- system('bash ~/PhD/scripts/R-version.sh', intern = TRUE)
+	 os_name <- system('bash ~/bin/R-version.sh', intern = TRUE)
 
 	if (R.Version()$status != "Under development (unstable)"){
 	 maj <- R.Version()$major
