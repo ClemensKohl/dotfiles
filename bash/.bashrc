@@ -8,9 +8,26 @@ case $- in
       *) return;;
 esac
 
+# Vim mode 
+set -o vi
+set editing-mode vi
+set show-mode-in-prompt on
+
 # set shorter prompt and make sure that we get a nice color terminal
 PS1='\u@\h:\w \$'; PROMPT_DIRTRIM=2
 if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
+export PS1
+
+# add to path
+# Commented out stuff is here in case something unexpectedly breaks.
+# Paths should be defined in .profile
+
+# PATH="$PATH:/bin:/usr/bin:/usr/sbin:/usr/local/package/bin:/usr/local/bin:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
+# PATH="$PATH:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
+
+PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux"
+
+export PATH
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
