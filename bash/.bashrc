@@ -25,7 +25,7 @@ export PS1
 # PATH="$PATH:/bin:/usr/bin:/usr/sbin:/usr/local/package/bin:/usr/local/bin:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
 # PATH="$PATH:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
 
-
+export SSH_DEFAULT_USER=$USER
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
