@@ -25,13 +25,26 @@ export PS1
 # PATH="$PATH:/bin:/usr/bin:/usr/sbin:/usr/local/package/bin:/usr/local/bin:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
 # PATH="$PATH:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
 
-PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux"
+
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
 
 export PATH
 
+
 # Determine .Rprofile file:
-#export R_PROFILE="/home/kohl/R/Rprofile.site"
-export R_PROFILE="/home/kohl/.Rprofile"
+#export R_PROFILE="$HOME/R/Rprofile.site"
+export R_PROFILE="$HOME/.Rprofile"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
