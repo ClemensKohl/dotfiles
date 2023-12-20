@@ -33,7 +33,6 @@ vim.o.termguicolors = true
 
 --- Remapped keys
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
--- nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 --- tmux like zoom
 vim.api.nvim_exec([[
