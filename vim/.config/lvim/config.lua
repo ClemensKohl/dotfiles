@@ -22,13 +22,33 @@ lvim.plugins = {
   end,
   },
  {"folke/zen-mode.nvim"},
- {"jalvesaq/Nvim-R"},
+ {"jalvesaq/Nvim-R"},   --- Allows integration of R terminal, object browser, ...
+ {"goerz/jupytext.vim"}, --- Opens jupyter notebooks as textfiles
 }
 
+--- basic aesthetics
 vim.opt.background="dark"
 lvim.colorscheme = "gruvbox"
 vim.o.termguicolors = true
 
+--- Remapped keys
+lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
+-- nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+--- tmux like zoom
+vim.api.nvim_exec([[
+    function ZoomWindow()
+        let cpos = getpos(".")
+        tabnew %
+        redraw
+        call cursor(cpos[1], cpos[2])
+        normal! zz
+    endfunction
+    nmap gz :call ZoomWindow()<CR>
+]], false)
+
+
+--- TMUX clipboard
 if vim.env.TMUX then
     vim.g.clipboard = {
         name = 'tmux',
@@ -44,8 +64,42 @@ if vim.env.TMUX then
     }
 end
 
+--- Nvim-R
+vim.g.R_assign_map = "--"
+
+--- R output is highlighted with current colorscheme
+vim.g.rout_follow_colorscheme = 1 --- R commands in R output are highlighted
+vim.g.Rout_more_colors = 1
+
+--- LSP diagnostic messages config
+
 -- lvim.lsp.diagnostics.virtual_text = false
 vim.diagnostic.config({virtual_text = false})
+--- toggle diagnostics on/off
+
+vim.g.diagnostics_active = true
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_active then
+    vim.g.diagnostics_active = false
+    vim.lsp.diagnostic.clear(0)
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+  else
+    vim.g.diagnostics_active = true
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    )
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>DD', ':call v:lua.toggle_diagnostics()<CR>',  {noremap = true, silent = true})
+
+--
+--
 
 --
 -- ToggleTerm
@@ -130,62 +184,6 @@ iron.setup {
   },
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 }
-
-
--- One can always use the default commands from vim directly
--- repl_open_cmd = "vertical botright 80 split"
-
--- But iron provides some utility functions to allow you to declare that dynamically,
--- based on editor size or custom logic, for example.
-
--- Vertical 50 columns split
--- Split has a metatable that allows you to set up the arguments in a "fluent" API
--- you can write as you would write a vim command.
--- It accepts:
---   - vertical
---   - leftabove/aboveleft
---   - rightbelow/belowright
---   - topleft
---   - botright
--- They'll return a metatable that allows you to set up the next argument
--- or call it with a size parameter
--- repl_open_cmd = view.split.vertical.botright(50)
--- repl_open_cmd = view.split.rightbelow("40%")
-
--- If the supplied number is a fraction between 1 and 0,
--- it will be used as a proportion
--- repl_open_cmd = view.split.vertical.botright(0.61903398875)
-
--- The size parameter can be a number, a string or a function.
--- When it's a *number*, it will be the size in rows/columns
--- If it's a *string*, it requires a "%" sign at the end and is calculated
--- as a percentage of the editor size
--- If it's a *function*, it should return a number for the size of rows/columns
-
--- repl_open_cmd = view.split("40%")
-
--- You can supply custom logic
--- to determine the size of your
--- repl's window
--- repl_open_cmd = view.split.topleft(function()
---   if some_check then
---     return vim.o.lines * 0.4
---   end
---   return 20
--- end)
-
--- An optional set of options can be given to the split function if one
--- wants to configure the window behavior.
--- Note that, by default `winfixwidth` and `winfixheight` are set
--- to `true`. If you want to overwrite those values,
--- you need to specify the keys in the option map as the example below
-
--- repl_open_cmd = view.split("40%", {
---   winfixwidth = false,
---   winfixheight = false,
---   -- any window-local configuration can be used here
---   number = true
--- })
 
 
 -- iron also has a list of commands, see :h iron-commands for all available commands
