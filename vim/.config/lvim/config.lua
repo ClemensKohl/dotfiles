@@ -32,7 +32,11 @@ lvim.colorscheme = "gruvbox"
 vim.o.termguicolors = true
 
 --- Remapped keys
+
+-- remove trailing white space
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
+--- find buffers
+lvim.keys.normal_mode["<leader-fu>"] = ":Telescope buffers" 
 
 --- tmux like zoom
 vim.api.nvim_exec([[
