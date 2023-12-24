@@ -10,7 +10,7 @@ vim.opt.tabstop = 4 -- insert 2 spaces for a tab
 
 lvim.plugins = {
   {"Vigemus/iron.nvim" },
-  {"ellisonleao/gruvbox.nvim"},
+  -- {"ellisonleao/gruvbox.nvim"}, -- old gruvbox
   {"jpalardy/vim-slime"},
   {"casonadams/simple-diagnostics.nvim",
   config = function()
@@ -22,36 +22,39 @@ lvim.plugins = {
   end,
   },
  {"folke/zen-mode.nvim"},
- {"jalvesaq/Nvim-R"},   --- Allows integration of R terminal, object browser, ...
- {"goerz/jupytext.vim"}, --- Opens jupyter notebooks as textfiles
+ {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
+ {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
+ {"sainnhe/gruvbox-material"}, -- gruvbox material (softer contrast)
 }
 
---- basic aesthetics
+-- basic aesthetics
 vim.opt.background="dark"
-lvim.colorscheme = "gruvbox"
+vim.g.gruvbox_material_background = 'medium'
+vim.g.gruvbox_material_better_performance = 1
+lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
 vim.o.termguicolors = true
 
---- Remapped keys
+-- Remapped keys
 
 -- remove trailing white space
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
---- find buffers
+-- find buffers
 lvim.keys.normal_mode["<leader-fu>"] = ":Telescope buffers" 
 
---- tmux like zoom
+-- tmux like zoom
 vim.api.nvim_exec([[
-    function ZoomWindow()
+    function TmuxZoom()
         let cpos = getpos(".")
         tabnew %
         redraw
         call cursor(cpos[1], cpos[2])
         normal! zz
     endfunction
-    nmap gz :call ZoomWindow()<CR>
+    nmap gz :call TmuxZoom()<CR>
 ]], false)
 
 
---- TMUX clipboard
+-- TMUX clipboard
 if vim.env.TMUX then
     vim.g.clipboard = {
         name = 'tmux',
@@ -67,18 +70,18 @@ if vim.env.TMUX then
     }
 end
 
---- Nvim-R
+-- Nvim-R
 vim.g.R_assign_map = "--"
 
---- R output is highlighted with current colorscheme
-vim.g.rout_follow_colorscheme = 1 --- R commands in R output are highlighted
+-- R output is highlighted with current colorscheme
+vim.g.rout_follow_colorscheme = 1 -- R commands in R output are highlighted
 vim.g.Rout_more_colors = 1
 
---- LSP diagnostic messages config
+-- LSP diagnostic messages config
 
 -- lvim.lsp.diagnostics.virtual_text = false
 vim.diagnostic.config({virtual_text = false})
---- toggle diagnostics on/off
+-- toggle diagnostics on/off
 
 vim.g.diagnostics_active = true
 function _G.toggle_diagnostics()
