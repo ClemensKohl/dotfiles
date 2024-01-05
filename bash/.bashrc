@@ -8,10 +8,6 @@ case $- in
       *) return;;
 esac
 
-# Vim mode 
-set -o vi
-set editing-mode vi
-set show-mode-in-prompt on
 
 # set shorter prompt and make sure that we get a nice color terminal
 PS1='\u@\h:\w \$'; PROMPT_DIRTRIM=2
@@ -158,3 +154,5 @@ if ! shopt -oq posix; then
 fi
 
 
+# Vim mode 
+set -o vi

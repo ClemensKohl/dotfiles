@@ -25,11 +25,12 @@ lvim.plugins = {
  {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
  {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
  {"sainnhe/gruvbox-material"}, -- gruvbox material (softer contrast)
+ {"rebelot/kanagawa.nvim"}, -- kanagawa color scheme
 }
 
 -- basic aesthetics
 vim.opt.background="dark"
-vim.g.gruvbox_material_background = 'medium'
+vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
 vim.g.gruvbox_material_better_performance = 1
 lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
 vim.o.termguicolors = true
@@ -39,18 +40,18 @@ vim.o.termguicolors = true
 -- remove trailing white space
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
 -- find buffers
-lvim.keys.normal_mode["<leader-fu>"] = ":Telescope buffers" 
+lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers<CR>" 
 
 -- tmux like zoom
 vim.api.nvim_exec([[
-    function TmuxZoom()
+    function ZoomLikeTmux()
         let cpos = getpos(".")
         tabnew %
         redraw
         call cursor(cpos[1], cpos[2])
         normal! zz
     endfunction
-    nmap gz :call TmuxZoom()<CR>
+    nmap gz :call ZoomLikeTmux()<CR>
 ]], false)
 
 
@@ -76,6 +77,27 @@ vim.g.R_assign_map = "--"
 -- R output is highlighted with current colorscheme
 vim.g.rout_follow_colorscheme = 1 -- R commands in R output are highlighted
 vim.g.Rout_more_colors = 1
+
+-- -- make Nvim-R keybinds like Iron-nvim
+-- vim.api.nvim_exec([[
+
+--     function! s:customNvimRMappings()
+--        nmap <buffer> <Leader>sr <Plug>RStart
+--        imap <buffer> <Leader>sr <Plug>RStart
+--        vmap <buffer> <Leader>sr <Plug>RStart
+
+--        vmap <buffer> <Leader>ss <Plug>RSendSelection
+--        vmap <buffer> <Leader>sr <Plug>RSendLine
+--        nmap <buffer> <Leader>sr <Plug>RSendLine
+--     endfunction
+--     augroup myNvimR
+--        au!
+--        autocmd filetype r call s:customNvimRMappings()
+--     augroup end
+
+-- ]], false)
+
+
 
 -- LSP diagnostic messages config
 
@@ -164,14 +186,15 @@ iron.setup {
     -- How the repl window will be displayed
     -- See below for more information
     -- repl_open_cmd = require('iron.view').bottom(40),
-    repl_open_cmd = require('iron.view').right("40%"),
+    repl_open_cmd = view.split.vertical.botright(50)
+    -- repl_open_cmd = require('iron.view').right("40%"),
   },
   -- Iron doesn't set keymaps by default anymore.
   -- You can set them here or manually add keymaps to the functions in iron.core
   keymaps = {
     send_motion = "<space>sc",
     visual_send = "<space>sc",
-    send_file = "<space>sf",
+    -- send_file = "<space>sf",
     send_line = "<space>sl",
     send_until_cursor = "<space>su",
     send_mark = "<space>sm",
@@ -191,6 +214,7 @@ iron.setup {
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 }
 
+-- repl_open_cmd = view.split.vertical(0.3)
 
 -- iron also has a list of commands, see :h iron-commands for all available commands
 vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
