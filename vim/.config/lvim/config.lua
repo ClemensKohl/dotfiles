@@ -8,6 +8,25 @@ vim.opt.wrap = true -- wrap lines
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 4 -- insert 2 spaces for a tab
 
+-- basic aesthetics
+vim.opt.background="dark"
+vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
+vim.g.gruvbox_material_better_performance = 1
+lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
+vim.o.termguicolors = true
+
+-- Remapped keys
+-- remove trailing white space
+lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
+-- find buffers
+lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>" 
+
+-- always forward search
+-- vim.keymap.set('n', '<expr> n', '(v:searchforward ? 'n' : 'N')' )
+
+-------------
+-- Plugins --
+-------------
 lvim.plugins = {
   {"Vigemus/iron.nvim" },
   -- {"ellisonleao/gruvbox.nvim"}, -- old gruvbox
@@ -20,31 +39,17 @@ lvim.plugins = {
       signs = true,
     })
   end,
-  },
- {"folke/zen-mode.nvim"},
+  }, {"folke/zen-mode.nvim"},
  {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
  {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
  {"sainnhe/gruvbox-material"}, -- gruvbox material (softer contrast)
  {"rebelot/kanagawa.nvim"}, -- kanagawa color scheme
 }
 
--- basic aesthetics
-vim.opt.background="dark"
-vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
-vim.g.gruvbox_material_better_performance = 1
-lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
-vim.o.termguicolors = true
 
--- Remapped keys
-
--- remove trailing white space
-lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
--- find buffers
-lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers<CR>" 
-
--- tmux like zoom
+-- -- tmux like zoom
 vim.api.nvim_exec([[
-    function ZoomLikeTmux()
+    function! ZoomLikeTmux()
         let cpos = getpos(".")
         tabnew %
         redraw
@@ -71,12 +76,20 @@ if vim.env.TMUX then
     }
 end
 
--- Nvim-R
+
+------------
+-- Nvim-R --
+------------
+
 vim.g.R_assign_map = "--"
 
 -- R output is highlighted with current colorscheme
 vim.g.rout_follow_colorscheme = 1 -- R commands in R output are highlighted
 vim.g.Rout_more_colors = 1
+
+-- vim.keymap.set('n', '<Leader>ss', '<Plug>RSendSelection')
+vim.keymap.set('n', '<Leader><Leader>l', '<Plug>RSendLine')
+
 
 -- -- make Nvim-R keybinds like Iron-nvim
 -- vim.api.nvim_exec([[
@@ -103,16 +116,20 @@ vim.g.Rout_more_colors = 1
 
 -- lvim.lsp.diagnostics.virtual_text = false
 vim.diagnostic.config({virtual_text = false})
+
 -- toggle diagnostics on/off
 
-vim.g.diagnostics_active = true
+-- vim.g.diagnostics_visible = true
+
 function _G.toggle_diagnostics()
-  if vim.g.diagnostics_active then
-    vim.g.diagnostics_active = false
-    vim.lsp.diagnostic.clear(0)
+  if vim.g.diagnostics_visible then
+    vim.g.diagnostics_visible = false
+    vim.diagnostic.hide()
     vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+    print('Diagnostics are hidden')
   else
-    vim.g.diagnostics_active = true
+    vim.g.diagnostics_visible = true
+    vim.diagnostic.show()
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = true,
@@ -121,13 +138,11 @@ function _G.toggle_diagnostics()
         update_in_insert = false,
       }
     )
+    print('Diagnostics are visible')
   end
 end
 
-vim.api.nvim_set_keymap('n', '<leader>DD', ':call v:lua.toggle_diagnostics()<CR>',  {noremap = true, silent = true})
-
---
---
+vim.api.nvim_buf_set_keymap(0, 'n', '<Space>D', ':call v:lua.toggle_diagnostics()<CR>', {silent=true, noremap=true})
 
 --
 -- ToggleTerm
@@ -137,7 +152,7 @@ vim.keymap.set("v", "<space>s", function()
     require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
 end)
     -- Replace with these for the other two options
-    -- require("toggleterm").send_lines_to_terminal("visual_line", trim_spaces, { args = vim.v.count })
+    -- require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
     -- require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
 
 -- For use as an operator map:
@@ -148,6 +163,7 @@ vim.keymap.set("n", [[<leader><c-\>]], function()
   end)
   vim.api.nvim_feedkeys("g@", "n", false)
 end)
+
 -- Double the command to send line to terminal
 vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
   set_opfunc(function(motion_type)
@@ -155,6 +171,7 @@ vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
   end)
   vim.api.nvim_feedkeys("g@_", "n", false)
 end)
+
 -- Send whole file
 vim.keymap.set("n", [[<leader><leader><c-\>]], function()
   set_opfunc(function(motion_type)
@@ -169,32 +186,31 @@ end)
 local iron = require("iron.core")
 local view = require("iron.view")
 
--- iron.setup {...
-
 iron.setup {
   config = {
     -- Whether a repl should be discarded or not
     scratch_repl = true,
     -- Your repl definitions come here
     repl_definition = {
-      sh = {
-        -- Can be a table or a function that
-        -- returns a table (see below)
-        command = {"bash"}
-      }
+        python = {
+            command = { "ipython" }
+        },
+        sh = {
+            -- Can be a table or a function that
+            -- returns a table (see below)
+            command = {"bash"}
+        }
     },
     -- How the repl window will be displayed
     -- See below for more information
-    -- repl_open_cmd = require('iron.view').bottom(40),
-    repl_open_cmd = view.split.vertical.botright(50)
-    -- repl_open_cmd = require('iron.view').right("40%"),
+    repl_open_cmd = view.split.vertical.botright("30%")
   },
   -- Iron doesn't set keymaps by default anymore.
   -- You can set them here or manually add keymaps to the functions in iron.core
   keymaps = {
     send_motion = "<space>sc",
     visual_send = "<space>sc",
-    -- send_file = "<space>sf",
+    send_file = "<space>sf",
     send_line = "<space>sl",
     send_until_cursor = "<space>su",
     send_mark = "<space>sm",
@@ -213,9 +229,6 @@ iron.setup {
   },
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 }
-
--- repl_open_cmd = view.split.vertical(0.3)
-
 -- iron also has a list of commands, see :h iron-commands for all available commands
 vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
 vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
