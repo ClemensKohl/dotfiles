@@ -88,7 +88,7 @@ vim.g.rout_follow_colorscheme = 1 -- R commands in R output are highlighted
 vim.g.Rout_more_colors = 1
 
 -- vim.keymap.set('n', '<Leader>ss', '<Plug>RSendSelection')
-vim.keymap.set('n', '<Leader><Leader>l', '<Plug>RSendLine')
+-- vim.keymap.set('n', '<Leader><Leader>l', '<Plug>RSendLine')
 
 
 -- -- make Nvim-R keybinds like Iron-nvim
