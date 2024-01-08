@@ -1,4 +1,4 @@
--- Read the docs: https://www.lunarvim.org/docs/configuration
+--falsfalsee Read the docs: https://www.lunarvim.org/docs/configuration
 -- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
@@ -28,22 +28,61 @@ lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<
 -- Plugins --
 -------------
 lvim.plugins = {
-  {"Vigemus/iron.nvim" },
-  -- {"ellisonleao/gruvbox.nvim"}, -- old gruvbox
-  {"jpalardy/vim-slime"},
-  {"casonadams/simple-diagnostics.nvim",
-  config = function()
-    require("simple-diagnostics").setup({
-      virtual_text = true,
-      message_area = true,
-      signs = true,
-    })
-  end,
-  }, {"folke/zen-mode.nvim"},
- {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
- {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
- {"sainnhe/gruvbox-material"}, -- gruvbox material (softer contrast)
- {"rebelot/kanagawa.nvim"}, -- kanagawa color scheme
+    {"Vigemus/iron.nvim" },
+    -- {"ellisonleao/gruvbox.nvim"}, -- old gruvbox
+    -- {"jpalardy/vim-slime"},
+    {"casonadams/simple-diagnostics.nvim",
+        config = function()
+            require("simple-diagnostics").setup({
+                virtual_text = true,
+                message_area = true,
+                signs = true,
+            })
+        end,
+    },
+    {"folke/zen-mode.nvim"},
+    {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
+    {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
+    {"sainnhe/gruvbox-material"}, -- gruvbox material (softer contrast)
+    {"rebelot/kanagawa.nvim"}, -- kanagawa color scheme
+    { -- Hints while typing
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        config = function() require"lsp_signature".on_attach() end,
+    },
+    { -- Github Copilot
+        "zbirenbaum/copilot-cmp",
+        event = "InsertEnter",
+        dependencies = { "zbirenbaum/copilot.lua" },
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+                require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+            end, 100)
+        end,
+    },
+    { -- Better navigation with diagnostics
+        "folke/trouble.nvim",
+        cmd = "TroubleToggle",
+    },
+    { -- popup for goto definition etc previews.
+        "rmagatti/goto-preview",
+        config = function()
+            require('goto-preview').setup {
+                width = 120; -- Width of the floating window
+                height = 25; -- Height of the floating window
+                default_mappings = true; -- Bind default mappings
+                debug = false; -- Print debug information
+                opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+                post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+                -- You can use "default_mappings = true" setup option
+                -- Or explicitly set keybindings
+                -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+                -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+                -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+            }
+        end
+    },
 }
 
 
@@ -234,3 +273,19 @@ vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
 vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
 vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
 vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+
+
+---------------------
+-- Trouble Toggle ---
+---------------------
+
+lvim.builtin.which_key.mappings["t"] = {
+  name = "Diagnostics",
+  t = { "<cmd>TroubleToggle<cr>", "trouble" },
+  w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+  q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+  l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+  r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+}
+
