@@ -1,7 +1,4 @@
 
-
-" ADDED by CLEMENS
-
 syntax on
 set background=dark
 set mouse=  " disables the mouse
@@ -13,8 +10,6 @@ set smarttab " Autotabs for certain code
 set ts=4 sw=4 " Sets the tabs to 4 spaces.
 set backspace=indent,eol,start
 set encoding=utf8
-
-"set clipboard^=unnamedplus " Supposed to help copy/paste between vim and dekstop, but doesnt.
 
 " Python indentation
 au BufNewFile,BufRead *.py
@@ -73,13 +68,10 @@ call plug#begin('~/.vim/plugged')
 " aesthetics
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
-
 
 " Misc
 Plug 'tmux-plugins/vim-tmux-focus-events'
-
 
 " Initialize plugin system
 call plug#end()
@@ -90,13 +82,6 @@ call plug#end()
 " Settings for gruvbox theme
 let g:airline_theme = 'gruvbox'
 colorscheme gruvbox
-
-" Settings for Nord theme
-"colorscheme nord
-
-" DISABLE THE VIRUS KITE
-"KiteDisableAutoStart
-
 
 " Python setting
 let g:python_highlight_space_errors = 0
