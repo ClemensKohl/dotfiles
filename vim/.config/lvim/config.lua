@@ -50,17 +50,17 @@ lvim.plugins = {
         event = "BufRead",
         config = function() require"lsp_signature".on_attach() end,
     },
-    { -- Github Copilot
-        "zbirenbaum/copilot-cmp",
-        event = "InsertEnter",
-        dependencies = { "zbirenbaum/copilot.lua" },
-        config = function()
-            vim.defer_fn(function()
-                require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-                require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-            end, 100)
-        end,
-    },
+    -- { -- Github Copilot
+    --     "zbirenbaum/copilot-cmp",
+    --     event = "InsertEnter",
+    --     dependencies = { "zbirenbaum/copilot.lua" },
+    --     config = function()
+    --         vim.defer_fn(function()
+    --             require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+    --             require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+    --         end, 100)
+    --     end,
+    -- },
     { -- Better navigation with diagnostics
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
