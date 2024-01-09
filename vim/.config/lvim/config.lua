@@ -10,19 +10,20 @@ vim.opt.tabstop = 4 -- insert 2 spaces for a tab
 
 -- basic aesthetics
 vim.opt.background="dark"
+
+-- gruvbox-material
+lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
 vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
 vim.g.gruvbox_material_better_performance = 1
-lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
+vim.g.gruvbox_material_float_style = 'bright' -- sets the color of floating windows. 'dim' or 'bright'
 vim.o.termguicolors = true
 
 -- Remapped keys
 -- remove trailing white space
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
 -- find buffers
-lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>" 
+lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>"
 
--- always forward search
--- vim.keymap.set('n', '<expr> n', '(v:searchforward ? 'n' : 'N')' )
 
 -------------
 -- Plugins --
@@ -30,16 +31,15 @@ lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<
 lvim.plugins = {
     {"Vigemus/iron.nvim" },
     -- {"ellisonleao/gruvbox.nvim"}, -- old gruvbox
-    -- {"jpalardy/vim-slime"},
-    {"casonadams/simple-diagnostics.nvim",
-        config = function()
-            require("simple-diagnostics").setup({
-                virtual_text = true,
-                message_area = true,
-                signs = true,
-            })
-        end,
-    },
+    -- {"casonadams/simple-diagnostics.nvim",
+    --     config = function()
+    --         require("simple-diagnostics").setup({
+    --             virtual_text = true,
+    --             message_area = true,
+    --             signs = true,
+    --         })
+    --     end,
+    -- },
     {"folke/zen-mode.nvim"},
     {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
     {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
@@ -153,35 +153,71 @@ vim.g.Rout_more_colors = 1
 
 -- LSP diagnostic messages config
 
--- lvim.lsp.diagnostics.virtual_text = false
-vim.diagnostic.config({virtual_text = false})
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = false,
+    float = {
+        show_header = true,
+        source = 'if_many',
+        border = 'rounded',
+        focusable = false,
+    }
+})
 
--- toggle diagnostics on/off
-
--- vim.g.diagnostics_visible = true
-
-function _G.toggle_diagnostics()
-  if vim.g.diagnostics_visible then
-    vim.g.diagnostics_visible = false
-    vim.diagnostic.hide()
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
-    print('Diagnostics are hidden')
-  else
-    vim.g.diagnostics_visible = true
+-- function to toggle diagnostics on/off
+local diagnostics_active = true
+local hide_diagnostics = function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
     vim.diagnostic.show()
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-      }
-    )
-    print('Diagnostics are visible')
+  else
+    vim.diagnostic.hide()
   end
 end
 
-vim.api.nvim_buf_set_keymap(0, 'n', '<Space>D', ':call v:lua.toggle_diagnostics()<CR>', {silent=true, noremap=true})
+vim.keymap.set('n', '<leader>qx', hide_diagnostics)
+
+
+local diagnostics_on = true
+local toggle_diagnostics = function()
+  diagnostics_on = not diagnostics_on
+  if diagnostics_on then
+        vim.diagnostic.config({
+            virtual_text = true,
+            signs = true,
+            underline = true,
+            float = {
+                show_header = true,
+                source = 'if_many',
+                border = 'rounded',
+                focusable = false,
+            }
+        })
+  else
+        vim.diagnostic.config({
+            virtual_text = false,
+            signs = false,
+            underline = false
+        })
+  end
+end
+
+
+vim.keymap.set('n', '<leader>qq', toggle_diagnostics)
+---------------------
+-- Trouble Toggle ---
+---------------------
+
+lvim.builtin.which_key.mappings["t"] = {
+  name = "Diagnostics",
+  t = { "<cmd>TroubleToggle<cr>", "trouble" },
+  w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+  q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+  l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+  r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+}
 
 --
 -- ToggleTerm
@@ -275,17 +311,12 @@ vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
 vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 
 
----------------------
--- Trouble Toggle ---
----------------------
 
-lvim.builtin.which_key.mappings["t"] = {
-  name = "Diagnostics",
-  t = { "<cmd>TroubleToggle<cr>", "trouble" },
-  w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-  q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-  l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-  r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
-}
+-- fix wrong colors of floating window
+-- https://github.com/rmagatti/goto-preview/issues/64
+-- post_open_hook = function(_, win)
+--   vim.api.nvim_win_set_option(win, "winhighlight", "Normal:")
+-- end
+--
+
 
