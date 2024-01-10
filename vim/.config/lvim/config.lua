@@ -1,7 +1,10 @@
---falsfalsee Read the docs: https://www.lunarvim.org/docs/configuration
+-- Read the docs: https://www.lunarvim.org/docs/configuration
 -- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
+
+vim.opt.cindent = true
+vim.opt.cinoptions = {':0','l1','t0','g0','(0'}
 
 -- vim.opt.relativenumber = true -- relative line numbers
 vim.opt.wrap = true -- wrap lines
@@ -158,53 +161,73 @@ vim.diagnostic.config({
     signs = true,
     underline = false,
     float = {
-        show_header = true,
+        show_header = false,
         source = 'if_many',
         border = 'rounded',
         focusable = false,
-    }
+    },
+    update_in_insert = false
 })
 
+
 -- function to toggle diagnostics on/off
+
 local diagnostics_active = true
-local hide_diagnostics = function()
+local toggle_diagnostics = function()
   diagnostics_active = not diagnostics_active
   if diagnostics_active then
-    vim.diagnostic.show()
-  else
-    vim.diagnostic.hide()
-  end
-end
-
-vim.keymap.set('n', '<leader>qx', hide_diagnostics)
-
-
-local diagnostics_on = true
-local toggle_diagnostics = function()
-  diagnostics_on = not diagnostics_on
-  if diagnostics_on then
         vim.diagnostic.config({
             virtual_text = true,
             signs = true,
             underline = true,
             float = {
-                show_header = true,
+                show_header = false,
                 source = 'if_many',
                 border = 'rounded',
                 focusable = false,
-            }
+            },
+            update_in_insert = false
+        })
+  else
+        vim.diagnostic.config({
+            virtual_text = false,
+            signs = true,
+            underline = false,
+            update_in_insert = false
+        })
+  end
+end
+
+local turnoff_diagnostics = function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+        vim.diagnostic.config({
+            virtual_text = false,
+            signs = true,
+            underline = true,
+            float = {
+                show_header = false,
+                source = 'if_many',
+                border = 'rounded',
+                focusable = false,
+            },
+            update_in_insert = false
         })
   else
         vim.diagnostic.config({
             virtual_text = false,
             signs = false,
-            underline = false
+            underline = false,
+            update_in_insert = false
         })
   end
 end
 
-
-vim.keymap.set('n', '<leader>qq', toggle_diagnostics)
+lvim.keys.normal_mode["<leader-q>"] = false
+vim.keymap.set('n', '<leader>q', toggle_diagnostics)
+vim.keymap.set('n', '<leader>qq', turnoff_diagnostics)
+vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
+-- vim.keymap.set('n', '<leader>Q', '<cmd>lua vim.lsp.buf.hover()<CR>')
 ---------------------
 -- Trouble Toggle ---
 ---------------------
