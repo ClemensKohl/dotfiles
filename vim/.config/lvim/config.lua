@@ -3,6 +3,11 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
+-- align function parameters
+vim.cmd([[
+    :set cino+=(0
+]])
+
 vim.opt.cindent = true
 vim.opt.cinoptions = {':0','l1','t0','g0','(0'}
 
@@ -10,6 +15,8 @@ vim.opt.cinoptions = {':0','l1','t0','g0','(0'}
 vim.opt.wrap = true -- wrap lines
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 4 -- insert 2 spaces for a tab
+vim.opt.smartindent = true -- Insert indents automatically
+vim.opt.expandtab = true -- Use spaces instead of tabs
 
 -- basic aesthetics
 vim.opt.background="dark"
@@ -19,7 +26,11 @@ lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme
 vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_float_style = 'bright' -- sets the color of floating windows. 'dim' or 'bright'
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
+
+-- Markdown
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+
 
 -- Remapped keys
 -- remove trailing white space
@@ -123,6 +134,12 @@ end
 -- Nvim-R --
 ------------
 
+-- allow correct continuation for R/Roxygen comments
+vim.cmd([[
+    autocmd FileType r setlocal formatoptions+=r
+]])
+
+
 vim.g.R_assign_map = "--"
 
 -- R output is highlighted with current colorscheme
@@ -158,7 +175,7 @@ vim.g.Rout_more_colors = 1
 
 vim.diagnostic.config({
     virtual_text = false,
-    signs = true,
+    -- signs = true,
     underline = false,
     float = {
         show_header = false,
@@ -223,15 +240,29 @@ local turnoff_diagnostics = function()
   end
 end
 
+lvim.builtin.which_key.mappings['q'] = {}
+-- local utils = require "lvim.utils"
+
+-- local user_config_dir = get_config_dir()
+-- local user_config_file = utils.join_paths(user_config_dir, "config.lua")
+
+-- lvim.builtin.which_key.mappings["q"] = {
+--   name = "ToggleDiagnostics",
+--   q = { "<cmd>lua require(user_config_file).toggle_diagnostics<cr>", "toggle" },
+--   -- Q = { "turnoff_diagnostics", "turnoff" },
+-- }
+
 lvim.keys.normal_mode["<leader-q>"] = false
+-- lvim.keys.normal_mode["<leader-q>"] = 'toggle_diagnostics'
 vim.keymap.set('n', '<leader>q', toggle_diagnostics)
 vim.keymap.set('n', '<leader>qq', turnoff_diagnostics)
 vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
 -- vim.keymap.set('n', '<leader>Q', '<cmd>lua vim.lsp.buf.hover()<CR>')
+
 ---------------------
 -- Trouble Toggle ---
 ---------------------
-
+--
 lvim.builtin.which_key.mappings["t"] = {
   name = "Diagnostics",
   t = { "<cmd>TroubleToggle<cr>", "trouble" },
@@ -341,5 +372,3 @@ vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 --   vim.api.nvim_win_set_option(win, "winhighlight", "Normal:")
 -- end
 --
-
-
