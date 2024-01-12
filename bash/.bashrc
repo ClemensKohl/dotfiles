@@ -8,11 +8,13 @@ case $- in
 *) return ;;
 esac
 
+
 # set shorter prompt and make sure that we get a nice color terminal
 PS1='\u@\h:\w \$'
 PROMPT_DIRTRIM=2
 if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 export PS1
+
 
 # add to path
 # Commented out stuff is here in case something unexpectedly breaks.
@@ -71,7 +73,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm-color | *-256color) color_prompt=yes ;;
+xterm-color | *-256color | xterm-kitty) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
