@@ -4,7 +4,8 @@
 
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 -- doesnt work!
--- vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+-- vim.keymap.set("n", "Q", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
 -- configure Nvim-R keymaps
 vim.keymap.set("n", "<leader>rf", "<Plug>RStart", { desc = "Start R" })

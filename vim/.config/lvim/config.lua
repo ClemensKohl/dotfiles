@@ -43,43 +43,56 @@ lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<
 -- Plugins --
 -------------
 lvim.plugins = {
-    {"Vigemus/iron.nvim" },
-    -- {"ellisonleao/gruvbox.nvim"}, -- old gruvbox
-    -- {"casonadams/simple-diagnostics.nvim",
-    --     config = function()
-    --         require("simple-diagnostics").setup({
-    --             virtual_text = true,
-    --             message_area = true,
-    --             signs = true,
-    --         })
-    --     end,
-    -- },
+   
+    -- classical gruvbox
+    {"ellisonleao/gruvbox.nvim"},
+    
+    -- gruvbox material (softer contrast)
+    {"sainnhe/gruvbox-material"},
+
+    -- kanagawa color scheme
+    {"rebelot/kanagawa.nvim"},
+
+    -- Centers Code window 
     {"folke/zen-mode.nvim"},
-    {"jalvesaq/Nvim-R"},   -- Allows integration of R terminal, object browser, ..., -- gruvbox material (softer contrast)
-    {"goerz/jupytext.vim"}, -- Opens jupyter notebooks as textfiles, -- gruvbox material (softer contrast)
-    {"sainnhe/gruvbox-material"}, -- gruvbox material (softer contrast)
-    {"rebelot/kanagawa.nvim"}, -- kanagawa color scheme
-    { -- Hints while typing
+
+    -- Allows integration of R terminal, object browser, ... 
+    {"jalvesaq/Nvim-R"},
+
+    -- General purpose REPL Iron
+    {"Vigemus/iron.nvim" },
+
+    -- Opens jupyter notebooks as textfiles
+    {"goerz/jupytext.vim"},
+
+    -- Hints while typing
+    {
         "ray-x/lsp_signature.nvim",
         event = "BufRead",
         config = function() require"lsp_signature".on_attach() end,
     },
-    -- { -- Github Copilot
-    --     "zbirenbaum/copilot-cmp",
-    --     event = "InsertEnter",
-    --     dependencies = { "zbirenbaum/copilot.lua" },
-    --     config = function()
-    --         vim.defer_fn(function()
-    --             require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
-    --             require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
-    --         end, 100)
-    --     end,
-    -- },
-    { -- Better navigation with diagnostics
+
+    -- Github Copilot
+    {
+        "zbirenbaum/copilot-cmp",
+        event = "InsertEnter",
+        dependencies = { "zbirenbaum/copilot.lua" },
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+                require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+            end, 100)
+        end,
+    },
+
+    -- Better navigation with diagnostics
+    {
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
     },
-    { -- popup for goto definition etc previews.
+
+    -- popup for goto definition etc previews.
+    {
         "rmagatti/goto-preview",
         config = function()
             require('goto-preview').setup {
@@ -89,11 +102,6 @@ lvim.plugins = {
                 debug = false; -- Print debug information
                 opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
                 post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
-                -- You can use "default_mappings = true" setup option
-                -- Or explicitly set keybindings
-                -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
-                -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
-                -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
             }
         end
     },
@@ -103,15 +111,18 @@ lvim.plugins = {
 require'nvim-treesitter.configs'.setup {
     ensure_installed = { "c",
         "lua",
+        "bash",
         "vim",
         "vimdoc",
         "query",
         "r",
+        "markdown",
+        "markdown_inline",
         "python",
     },
     indent = {
-    enable = true,
-    disable = {"r"},
+        enable = true,
+        disable = { "r" },
   },
 }
 
@@ -242,7 +253,9 @@ local turnoff_diagnostics = function()
   end
 end
 
-lvim.builtin.which_key.mappings['q'] = {}
+lvim.builtin.which_key.mappings['q'] = {
+    name = "ToggleDiagnostics"
+}
 -- local utils = require "lvim.utils"
 
 -- local user_config_dir = get_config_dir()
