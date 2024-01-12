@@ -76,6 +76,7 @@ return {
     opts = {
       -- options for vim.diagnostic.config()
       diagnostics = {
+        -- signs = true,
         underline = false,
         update_in_insert = false,
         virtual_text = false,
@@ -87,6 +88,12 @@ return {
         --   -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
         --   -- prefix = "icons",
         -- },
+        float = {
+          show_header = true,
+          source = "if_many",
+          border = "rounded",
+          focusable = false,
+        },
         severity_sort = true,
       },
     },

@@ -11,18 +11,18 @@ vim.opt.tabstop = 2 -- insert x spaces for a tab
 
 -- set diagnostic options
 
-vim.diagnostic.config({
-  virtual_text = false,
-  -- signs = true,
-  underline = false,
-  float = {
-    show_header = false,
-    source = "if_many",
-    border = "rounded",
-    focusable = false,
-  },
-  update_in_insert = false,
-})
+-- vim.diagnostic.config({
+--   virtual_text = false,
+--   -- signs = true,
+--   underline = false,
+--   float = {
+--     show_header = false,
+--     source = "if_many",
+--     border = "rounded",
+--     focusable = false,
+--   },
+--   update_in_insert = false,
+-- })
 
 -- Options for Nvim-R
 
