@@ -99,19 +99,21 @@ lvim.plugins = {
     },
 }
 
-
--- -- tmux like zoom
-vim.api.nvim_exec([[
-    function! ZoomLikeTmux()
-        let cpos = getpos(".")
-        tabnew %
-        redraw
-        call cursor(cpos[1], cpos[2])
-        normal! zz
-    endfunction
-    nmap gz :call ZoomLikeTmux()<CR>
-]], false)
-
+-- Tree-sitter config
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "c",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "r",
+        "python",
+    },
+    indent = {
+    enable = true,
+    disable = {"r"},
+  },
+}
 
 -- TMUX clipboard
 if vim.env.TMUX then
