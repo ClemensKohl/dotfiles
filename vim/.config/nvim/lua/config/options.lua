@@ -35,3 +35,6 @@ vim.g.Rout_more_colors = 1
 -- vim.cmd([[
 --     autocmd FileType r setlocal formatoptions+=r
 -- ]])
+
+-- add German spellchecking
+vim.opt.spelllang = { "en", "de" }
