@@ -34,4 +34,7 @@ For now, I store them in `~/.bash_aliases`. There they get still called and I ca
 See also this guide for help with GNU stow:
 https://venthur.de/2021-12-19-managing-dotfiles-with-stow.html
 
+# Nerd Fonts
+Fonts such as JetBrains Mono and Nerd Font Symbols are required for kitty and nvim. They can be obtained from here: https://github.com/ronniedroid/getnf
+
 
