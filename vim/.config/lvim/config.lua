@@ -53,6 +53,56 @@ lvim.plugins = {
     -- kanagawa color scheme
     {"rebelot/kanagawa.nvim"},
 
+    -- Catpuccino Theme - Miau!
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+            flavour = "frappe", -- latte, frappe, macchiato, mocha
+            background = { -- :h background
+                light = "latte",
+                dark = "mocha",
+            },
+            transparent_background = false, -- disables setting the background color.
+            integrations = {
+                aerial = true,
+                alpha = true,
+                cmp = true,
+                dashboard = true,
+                flash = true,
+                gitsigns = true,
+                headlines = true,
+                illuminate = true,
+                indent_blankline = { enabled = true },
+                leap = true,
+                lsp_trouble = true,
+                mason = true,
+                markdown = true,
+                mini = true,
+                native_lsp = {
+                    enabled = true,
+                    underlines = {
+                        errors = { "undercurl" },
+                        hints = { "undercurl" },
+                        warnings = { "undercurl" },
+                        information = { "undercurl" },
+                    },
+                },
+                navic = { enabled = true, custom_bg = "lualine" },
+                neotest = true,
+                neotree = true,
+                noice = true,
+                notify = true,
+                semantic_tokens = true,
+                telescope = true,
+                treesitter = true,
+                treesitter_context = true,
+                which_key = true,
+            },
+        },
+    },
+
     -- Centers Code window 
     {"folke/zen-mode.nvim"},
 
@@ -105,26 +155,47 @@ lvim.plugins = {
             }
         end
     },
-}
-
--- Tree-sitter config
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c",
-        "lua",
+  
+    -- Configure treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
         "bash",
-        "vim",
-        "vimdoc",
-        "query",
-        "r",
+        "lua",
         "markdown",
         "markdown_inline",
         "python",
-    },
-    indent = {
+        "regex",
+        "vim",
+        "r",
+      },
+      indent = {
         enable = true,
         disable = { "r" },
+      },
+    },
   },
 }
+
+-- -- Tree-sitter config
+-- require'nvim-treesitter.configs'.setup {
+--     ensure_installed = { "c",
+--         "lua",
+--         "bash",
+--         "vim",
+--         "vimdoc",
+--         "query",
+--         "r",
+--         "markdown",
+--         "markdown_inline",
+--         "python",
+--     },
+--     indent = {
+--         enable = true,
+--         disable = { "r" },
+--   },
+-- }
 
 -- TMUX clipboard
 if vim.env.TMUX then
