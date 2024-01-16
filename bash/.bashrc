@@ -132,17 +132,17 @@ alias tmux='tmux -u'
 alias ssh='ssh -X'
 
 # Aliases for my Neovim configs
-alias dv='NVIM_APPNAME=nvim nvim'             # default neovim
-alias dvim='NVIM_APPNAME=nvim nvim'           # default neovim
+alias nv='NVIM_APPNAME=nvim nvim'             # default neovim
+alias nvim='NVIM_APPNAME=nvim nvim'           # default neovim
 
 alias lv='lvim'                               # Lunar Vim
 alias lvim='lvim'                             # Lunar Vim
 
+alias vv='NVIM_APPNAME=nvim-lazyvim nvim'     # lazy vim
+alias vvim='NVIM_APPNAME=nvim-lazyvim nvim'   # lazy vim
+
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim' # kickstart
-
-alias zv='NVIM_APPNAME=nvim-lazyvim nvim'     # lazy vim
-alias zvim='NVIM_APPNAME=nvim-lazyvim nvim'   # lazy vim
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
