@@ -178,25 +178,6 @@ lvim.plugins = {
   },
 }
 
--- -- Tree-sitter config
--- require'nvim-treesitter.configs'.setup {
---     ensure_installed = { "c",
---         "lua",
---         "bash",
---         "vim",
---         "vimdoc",
---         "query",
---         "r",
---         "markdown",
---         "markdown_inline",
---         "python",
---     },
---     indent = {
---         enable = true,
---         disable = { "r" },
---   },
--- }
-
 -- TMUX clipboard
 if vim.env.TMUX then
     vim.g.clipboard = {
