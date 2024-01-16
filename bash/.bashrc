@@ -131,6 +131,19 @@ alias lt='ls -ht'
 alias tmux='tmux -u'
 alias ssh='ssh -X'
 
+# Aliases for my Neovim configs
+alias dv='NVIM_APPNAME=nvim nvim'             # default neovim
+alias dvim='NVIM_APPNAME=nvim nvim'           # default neovim
+
+alias lv='lvim'                               # Lunar Vim
+alias lvim='lvim'                             # Lunar Vim
+
+alias kv='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
+alias kvim='NVIM_APPNAME=nvim-kickstart nvim' # kickstart
+
+alias zv='NVIM_APPNAME=nvim-lazyvim nvim'     # lazy vim
+alias zvim='NVIM_APPNAME=nvim-lazyvim nvim'   # lazy vim
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
