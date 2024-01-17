@@ -1,2 +1,19 @@
 
-alias analyse="cd /project/kohl_analysis/analysis/"
+# Path to dot files on personal computers.
+if [ -d ~/gits/ClemensKohl/dot_files ];
+then
+  alias dfiles="cd ~/gits/ClemensKohl/dot_files"
+
+# Path to dot files on work computer
+elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
+then
+  alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
+fi
+
+
+ work aliases
+if [ -d /project/kohl_analysis/analysis/ ];
+then
+  alias analyse="cd /project/kohl_analysis/analysis/"
+fi
+
