@@ -22,7 +22,7 @@ vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.background="dark"
 
 -- gruvbox-material
-lvim.colorscheme = "gruvbox-material" -- set "gruvbox for original gruvbox theme "
+lvim.colorscheme = "catppuccin-frappe" -- set "gruvbox", "gruvbox-material", "catppuccin-frappe"
 vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_float_style = 'bright' -- sets the color of floating windows. 'dim' or 'bright'
@@ -211,29 +211,29 @@ vim.g.R_assign_map = "--"
 vim.g.rout_follow_colorscheme = 1 -- R commands in R output are highlighted
 vim.g.Rout_more_colors = 1
 
--- vim.keymap.set('n', '<Leader>ss', '<Plug>RSendSelection')
--- vim.keymap.set('n', '<Leader><Leader>l', '<Plug>RSendLine')
+-- configure Nvim-R keymaps
+lvim.builtin.which_key.mappings["r"] = {
+    name = "Nvim-R",
+    f = { "<Plug>RStart", "Start R" },
+    q = { "<Plug>RClose", "Close R" },
+    l = { "<Plug>RSendLine", "Send Line to R" },
+    s = { "<Plug>RSendSelection", "Send Selection to R" },
+    h = { "<Plug>RHelp", "Open R help" },
+    o = { "<Plug>RUpdateObjBrowser", "Open Object Browser" },
+    a = { "<Plug>RSendFile", "Send File to R" },
+}
 
-
--- -- make Nvim-R keybinds like Iron-nvim
--- vim.api.nvim_exec([[
-
---     function! s:customNvimRMappings()
---        nmap <buffer> <Leader>sr <Plug>RStart
---        imap <buffer> <Leader>sr <Plug>RStart
---        vmap <buffer> <Leader>sr <Plug>RStart
-
---        vmap <buffer> <Leader>ss <Plug>RSendSelection
---        vmap <buffer> <Leader>sr <Plug>RSendLine
---        nmap <buffer> <Leader>sr <Plug>RSendLine
---     endfunction
---     augroup myNvimR
---        au!
---        autocmd filetype r call s:customNvimRMappings()
---     augroup end
-
--- ]], false)
-
+lvim.builtin.which_key.vmappings["r"] = {
+    name = "Nvim-R",
+    l = { "<Plug>RSendLine", "Send Line to R" },
+    s = { "<Plug>RSendSelection", "Send Selection to R" },
+}
+-- vim.keymap.set("n", "<leader>rf", "<Plug>RStart", { desc = "Start R" })
+-- vim.keymap.set("n", "<leader>rq", "<Plug>RClose", { desc = "Close R" })
+-- vim.keymap.set({ "n", "v" }, "<leader>rl", "<Plug>RSendLine", { desc = "Send Line to R" })
+-- vim.keymap.set("v", "<leader>rs", "<Plug>RSendSelection", { desc = "Send Selection to R" })
+-- vim.keymap.set("n", "<leader>rh", "<Plug>RHelp", { desc = "Open R help" })
+-- vim.keymap.set("n", "<leader>ro", "<Plug>RUpdateObjBrowser", { desc = "Open Object Browser" })
 
 
 -- LSP diagnostic messages config
@@ -254,10 +254,10 @@ vim.diagnostic.config({
 
 -- function to toggle diagnostics on/off
 
-local diagnostics_active = true
-local toggle_diagnostics = function()
-  diagnostics_active = not diagnostics_active
-  if diagnostics_active then
+Diagnostics_active = true
+Toggle_diagnostics = function()
+  Diagnostics_active = not Diagnostics_active
+  if Diagnostics_active then
         vim.diagnostic.config({
             virtual_text = true,
             signs = true,
@@ -280,9 +280,9 @@ local toggle_diagnostics = function()
   end
 end
 
-local turnoff_diagnostics = function()
-  diagnostics_active = not diagnostics_active
-  if diagnostics_active then
+Turnoff_diagnostics = function()
+  Diagnostics_active = not Diagnostics_active
+  if Diagnostics_active then
         vim.diagnostic.config({
             virtual_text = false,
             signs = true,
@@ -305,24 +305,19 @@ local turnoff_diagnostics = function()
   end
 end
 
-lvim.builtin.which_key.mappings['q'] = {
-    name = "ToggleDiagnostics"
-}
--- local utils = require "lvim.utils"
-
--- local user_config_dir = get_config_dir()
--- local user_config_file = utils.join_paths(user_config_dir, "config.lua")
-
--- lvim.builtin.which_key.mappings["q"] = {
---   name = "ToggleDiagnostics",
---   q = { "<cmd>lua require(user_config_file).toggle_diagnostics<cr>", "toggle" },
---   -- Q = { "turnoff_diagnostics", "turnoff" },
+-- lvim.builtin.which_key.mappings['q'] = {
+--     name = "ToggleDiagnostics"
 -- }
 
-lvim.keys.normal_mode["<leader-q>"] = false
--- lvim.keys.normal_mode["<leader-q>"] = 'toggle_diagnostics'
-vim.keymap.set('n', '<leader>q', toggle_diagnostics)
-vim.keymap.set('n', '<leader>qq', turnoff_diagnostics)
+-- lvim.keys.normal_mode["<leader-q>"] = false
+
+lvim.builtin.which_key.mappings['q'] = {
+    name = "ToggleDiagnostics",
+    q = { "<cmd>lua Toggle_diagnostics()<cr>", "toggle" },
+    Q = { "<cmd>lua Turnoff_diagnostics()<cr>", "turnoff" },
+    H = { '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover"},
+}
+
 vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
 -- vim.keymap.set('n', '<leader>Q', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
@@ -404,19 +399,19 @@ iron.setup {
   -- Iron doesn't set keymaps by default anymore.
   -- You can set them here or manually add keymaps to the functions in iron.core
   keymaps = {
-    send_motion = "<space>sc",
-    visual_send = "<space>sc",
-    send_file = "<space>sf",
-    send_line = "<space>sl",
-    send_until_cursor = "<space>su",
-    send_mark = "<space>sm",
-    mark_motion = "<space>mc",
-    mark_visual = "<space>mc",
-    remove_mark = "<space>md",
-    cr = "<space>s<cr>",
-    interrupt = "<space>s<space>",
-    exit = "<space>sq",
-    clear = "<space>cl",
+    send_motion = "<space>ic",
+    visual_send = "<space>ic",
+    send_file = "<space>if",
+    send_line = "<space>il",
+    send_until_cursor = "<space>iu",
+    send_mark = "<space>imm",
+    mark_motion = "<space>imc",
+    mark_visual = "<space>imc",
+    remove_mark = "<space>imd",
+    cr = "<space>i<cr>",
+    interrupt = "<space>i<space>",
+    exit = "<space>iq",
+    clear = "<space>iC",
   },
   -- If the highlight is on, you can change how it looks
   -- For the available options, check nvim_set_hl
@@ -426,16 +421,11 @@ iron.setup {
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 }
 -- iron also has a list of commands, see :h iron-commands for all available commands
-vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+lvim.builtin.which_key.mappings["i"] = {
+  name = "IronRepl",
+}
+vim.keymap.set('n', '<space>is', '<cmd>IronRepl<cr>', { desc = "Start IronRepl" })
+vim.keymap.set('n', '<space>ir', '<cmd>IronRestart<cr>', { desc = "Restart IronRepl" })
+vim.keymap.set('n', '<space>iF', '<cmd>IronFocus<cr>', { desc = "IronFocus" })
+vim.keymap.set('n', '<space>ih', '<cmd>IronHide<cr>', { desc = "Hide IronRepl" })
 
-
-
--- fix wrong colors of floating window
--- https://github.com/rmagatti/goto-preview/issues/64
--- post_open_hook = function(_, win)
---   vim.api.nvim_win_set_option(win, "winhighlight", "Normal:")
--- end
---
