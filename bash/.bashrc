@@ -145,6 +145,18 @@ alias vvim='NVIM_APPNAME=nvim nvim'             # lazy vim
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
+# Path to dot files on personal computers.
+if [ -d ~/gits/ClemensKohl/dot_files ];
+then
+  alias dfiles="cd ~/gits/ClemensKohl/dot_files"
+
+# Path to dot files on work computer
+elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
+then
+  alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
+fi
+
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
