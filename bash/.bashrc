@@ -8,6 +8,8 @@ case $- in
 *) return ;;
 esac
 
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # set shorter prompt and make sure that we get a nice color terminal
 PS1='\u@\h:\w \$'

@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Set to vim keybindings.
 bindkey -v
@@ -135,6 +137,10 @@ fi
 alias lesss='less -S'
 alias tmux='tmux -u'
 alias ssh='ssh -X'
+
+# use the configs set in ~/.config/kitty/ssh.conf
+# for a ssh sesison.
+alias kkh='kitten ssh'
 
 # Aliases for my Neovim configs
 alias dv='NVIM_APPNAME=nvim.bak nvim'           # default neovim
