@@ -11,7 +11,7 @@ then
 fi
 
 
- work aliases
+# work aliases
 if [ -d /project/kohl_analysis/analysis/ ];
 then
   alias analyse="cd /project/kohl_analysis/analysis/"
