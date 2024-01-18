@@ -157,25 +157,32 @@ lvim.plugins = {
     },
   
     -- Configure treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "regex",
-        "vim",
-        "r",
-      },
-      indent = {
-        enable = true,
-        disable = { "r" },
-      },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+            ensure_installed = {
+                "bash",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "regex",
+                "vim",
+                "r",
+            },
+            indent = {
+                enable = true,
+                disable = { "r" },
+            },
+        },
     },
-  },
+    {
+        "folke/todo-comments.nvim",
+        event = "BufRead",
+        config = function()
+            require("todo-comments").setup()
+        end,
+    },
 }
 
 -- TMUX clipboard
@@ -312,10 +319,10 @@ end
 -- lvim.keys.normal_mode["<leader-q>"] = false
 
 lvim.builtin.which_key.mappings['q'] = {
-    name = "ToggleDiagnostics",
-    q = { "<cmd>lua Toggle_diagnostics()<cr>", "toggle" },
-    Q = { "<cmd>lua Turnoff_diagnostics()<cr>", "turnoff" },
-    H = { '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover"},
+    name = "Toggle Functions",
+    q = { "<cmd>lua Toggle_diagnostics()<cr>", "toggle diagnostics" },
+    Q = { "<cmd>lua Turnoff_diagnostics()<cr>", "turn off diagnostics" },
+    H = { '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover diagnostics"},
 }
 
 vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
@@ -429,3 +436,32 @@ vim.keymap.set('n', '<space>ir', '<cmd>IronRestart<cr>', { desc = "Restart IronR
 vim.keymap.set('n', '<space>iF', '<cmd>IronFocus<cr>', { desc = "IronFocus" })
 vim.keymap.set('n', '<space>ih', '<cmd>IronHide<cr>', { desc = "Hide IronRepl" })
 
+
+-- function to toggle line wrap
+WrapActive = vim.opt.wrap
+ToggleWrap = function()
+    WrapActive = not WrapActive
+    if WrapActive then
+        vim.opt.wrap = true
+    else
+        vim.opt.wrap = false
+    end
+end
+
+
+lvim.builtin.which_key.mappings['qw'] = {
+    "<cmd>lua ToggleWrap()<cr>", "toggle line wrap"
+}
+
+
+
+-- Set keymaps for todo-comments
+-- vim.keymap.set('n', '<leader>to', '<cmd>TodoTelescope<cr>', { desc = "Find TODOs" })
+-- vim.keymap.set('n', '<leader>tp', '<cmd>TodoQuickFix<cr>', { desc = "TODOs QuickFix" })
+
+lvim.builtin.which_key.mappings['to'] = {
+    "<cmd>TodoTelescope<cr>", "TODOs find"
+}
+lvim.builtin.which_key.mappings['tp'] = {
+    "<cmd>TodoQuickFix<cr>", "TODOs QuickFix"
+}
