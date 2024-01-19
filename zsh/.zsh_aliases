@@ -1,8 +1,28 @@
 
+############
+## Privat ##
+############
+
 # Path to dot files on personal computers.
 if [ -d ~/gits/ClemensKohl/dot_files ];
 then
   alias dfiles="cd ~/gits/ClemensKohl/dot_files"
+
+# aliases for git repos.
+if [ -d ~/gits/ClemensKohl/ ];
+then
+  alias cgit="cd ~/gits/ClemensKohl/"
+fi
+
+if [ -d ~/gits/VingronLab/ ];
+then
+  alias vgit="cd ~/gits/VingronLab/"
+fi
+
+
+##########
+## Work ##
+##########
 
 # Path to dot files on work computer
 elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
@@ -10,10 +30,19 @@ then
   alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
 fi
 
-
-# work aliases
+# Shortcut for analysis folder
 if [ -d /project/kohl_analysis/analysis/ ];
 then
   alias analyse="cd /project/kohl_analysis/analysis/"
 fi
 
+# quick aliases for git repos
+if [ -d ~/PhD/gits/ClemensKohl/ ];
+then
+  alias cgit="cd ~/PhD/gits/ClemensKohl/"
+fi
+
+if [ -d ~/PhD/gits/VingronLab/ ];
+then
+  alias vgit="cd ~/PhD/gits/VingronLab/"
+fi
