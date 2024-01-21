@@ -154,8 +154,7 @@ alias lv='lvim'                                 # Lunar Vim
 alias lvim='lvim'                               # Lunar Vim
 
 # nvim by default also opens neovim with lazyvim.
-alias vv='NVIM_APPNAME=nvim nvim'               # lazy vim
-alias vvim='NVIM_APPNAME=nvim nvim'             # lazy vim
+alias nv='NVIM_APPNAME=nvim nvim'               # lazy vim
 
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
