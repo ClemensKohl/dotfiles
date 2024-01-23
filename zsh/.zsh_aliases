@@ -24,8 +24,24 @@ fi
 ## Work ##
 ##########
 
-export LD_LIBRARY_PATH=/home/kohl/.local/lib:/home/kohl/.local/bin:/home/kohl/.local/include:$LD_LIBRARY_PATH
-export GDAL_DATA=/home/kohl/.local/share/gdal:$GDAL_DATA
+if [ "$(whoami)" == "kohl" ]; then
+
+    export LD_LIBRARY_PATH=/home/kohl/.local/lib:/home/kohl/.local/bin:/home/kohl/.local/include:$LD_LIBRARY_PATH
+    export GDAL_DATA=/home/kohl/.local/share/gdal:$GDAL_DATA
+
+
+    alias windows='rdesktop -u kohl -d wis-net -g 1920x1280 winter'
+    alias rstudio4='prun R-4.0.5-0 rstudio'
+    alias Rscript4.0.5='prun R-4.0.5-0 Rscript'
+    alias rstudio41='prun R-4.1.0-0 rstudio'
+    alias rstudio42='prun R-4.2.1-0 rstudio'
+    alias Rscript41='prun R-4.1.0-0 Rscript'
+    alias radian41='radian --r-binary=/usr/local/package/bin/R-4.1.0'
+    alias radian42='radian --r-binary=/usr/local/package/bin/R-4.2.1'
+    alias mxq-killall='$HOME/bin/mxqkillall.sh'
+    alias mxqinfo="$HOME/bin/mxqtab.sh | column -t -s $'\t' | less -S"
+
+fi
 
 # Path to dot files on work computer
 elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
