@@ -7,6 +7,7 @@
 if [ -d ~/gits/ClemensKohl/dot_files ];
 then
   alias dfiles="cd ~/gits/ClemensKohl/dot_files"
+fi
 
 # aliases for git repos.
 if [ -d ~/gits/ClemensKohl/ ];
@@ -24,11 +25,10 @@ fi
 ## Work ##
 ##########
 
-if [ "$(whoami)" == "kohl" ]; then
+if [[ "$(whoami)" == "kohl" ]]; then
 
     export LD_LIBRARY_PATH=/home/kohl/.local/lib:/home/kohl/.local/bin:/home/kohl/.local/include:$LD_LIBRARY_PATH
     export GDAL_DATA=/home/kohl/.local/share/gdal:$GDAL_DATA
-
 
     alias windows='rdesktop -u kohl -d wis-net -g 1920x1280 winter'
     alias rstudio4='prun R-4.0.5-0 rstudio'
@@ -44,7 +44,7 @@ if [ "$(whoami)" == "kohl" ]; then
 fi
 
 # Path to dot files on work computer
-elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
+if [ -d ~/PhD/gits/ClemensKohl/dot_files ];
 then
   alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
 fi
