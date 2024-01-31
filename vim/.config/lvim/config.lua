@@ -3,41 +3,6 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
--- align function parameters
-vim.cmd([[
-    :set cino+=(0
-]])
-
-vim.opt.cindent = true
-vim.opt.cinoptions = {':0','l1','t0','g0','(0'}
-
--- vim.opt.relativenumber = true -- relative line numbers
-vim.opt.wrap = true -- wrap lines
-vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 4 -- insert 2 spaces for a tab
-vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.expandtab = true -- Use spaces instead of tabs
-
--- basic aesthetics
-vim.opt.background="dark"
-
--- gruvbox-material
-lvim.colorscheme = "catppuccin-frappe" -- set "gruvbox", "gruvbox-material", "catppuccin-frappe"
-vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
-vim.g.gruvbox_material_better_performance = 1
-vim.g.gruvbox_material_float_style = 'bright' -- sets the color of floating windows. 'dim' or 'bright'
-vim.opt.termguicolors = true
-
--- Markdown
-vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
-
-
--- Remapped keys
--- remove trailing white space
-lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
--- find buffers
-lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>"
-
 
 -------------
 -- Plugins --
@@ -100,6 +65,78 @@ lvim.plugins = {
                 treesitter_context = true,
                 which_key = true,
             },
+        },
+    },
+    
+    -- Rose pine theme
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        opts = {
+            variant = "auto", -- auto, main, moon, or dawn
+            dark_variant = "main", -- main, moon, or dawn
+            dim_inactive_windows = false,
+            extend_background_behind_borders = true,
+
+            enable = {
+                terminal = true,
+                legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+                migrations = true, -- Handle deprecated options automatically
+            },
+
+            styles = {
+                bold = true,
+                italic = false, -- default true
+                transparency = false,
+            },
+
+            groups = {
+                border = "muted",
+                link = "iris",
+                panel = "surface",
+
+                error = "love",
+                hint = "iris",
+                info = "foam",
+                note = "pine",
+                todo = "rose",
+                warn = "gold",
+
+                git_add = "foam",
+                git_change = "rose",
+                git_delete = "love",
+                git_dirty = "rose",
+                git_ignore = "muted",
+                git_merge = "iris",
+                git_rename = "pine",
+                git_stage = "iris",
+                git_text = "rose",
+                git_untracked = "subtle",
+
+                h1 = "iris",
+                h2 = "foam",
+                h3 = "rose",
+                h4 = "gold",
+                h5 = "pine",
+                h6 = "foam",
+            },
+
+            highlight_groups = {
+                -- Comment = { fg = "foam" },
+                -- VertSplit = { fg = "muted", bg = "muted" },
+            },
+
+            before_highlight = function(group, highlight, palette)
+                -- Disable all undercurls
+                -- if highlight.undercurl then
+                --     highlight.undercurl = false
+                -- end
+                --
+                -- Change palette colour
+                -- if highlight.fg == palette.pine then
+                --     highlight.fg = palette.foam
+-- end
+            end,
         },
     },
 
@@ -184,6 +221,42 @@ lvim.plugins = {
         end,
     },
 }
+
+-- align function parameters
+vim.cmd([[
+    :set cino+=(0
+]])
+
+vim.opt.cindent = true
+vim.opt.cinoptions = {':0','l1','t0','g0','(0'}
+
+-- vim.opt.relativenumber = true -- relative line numbers
+vim.opt.wrap = true -- wrap lines
+vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 4 -- insert 2 spaces for a tab
+vim.opt.smartindent = true -- Insert indents automatically
+vim.opt.expandtab = true -- Use spaces instead of tabs
+
+-- basic aesthetics
+vim.opt.background="dark"
+
+-- set "gruvbox", "gruvbox-material", "catppuccin-frappe"
+-- "rose-pine-main/moon/dawn"
+lvim.colorscheme = "rose-pine-moon"
+vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
+vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_float_style = 'bright' -- sets the color of floating windows. 'dim' or 'bright'
+vim.opt.termguicolors = true
+
+-- Markdown
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+
+
+-- Remapped keys
+-- remove trailing white space
+lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
+-- find buffers
+lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>"
 
 -- TMUX clipboard
 if vim.env.TMUX then
