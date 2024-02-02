@@ -27,6 +27,8 @@ fi
 
 if [[ "$(whoami)" == "kohl" ]]; then
 
+    #xmodmap $HOME/.xmodmap
+
     export LD_LIBRARY_PATH=/home/kohl/.local/lib:/home/kohl/.local/bin:/home/kohl/.local/include:$LD_LIBRARY_PATH
     export GDAL_DATA=/home/kohl/.local/share/gdal:$GDAL_DATA
 

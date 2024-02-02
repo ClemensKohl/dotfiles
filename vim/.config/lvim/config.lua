@@ -242,7 +242,7 @@ vim.opt.background="dark"
 
 -- set "gruvbox", "gruvbox-material", "catppuccin-frappe"
 -- "rose-pine-main/moon/dawn"
-lvim.colorscheme = "rose-pine-moon"
+lvim.colorscheme = "catppuccin-frappe"
 vim.g.gruvbox_material_background = 'medium' -- alternatives: 'soft', 'medium', 'hard'
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_float_style = 'bright' -- sets the color of floating windows. 'dim' or 'bright'
