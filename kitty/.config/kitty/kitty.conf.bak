@@ -1,10 +1,27 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
+shell zsh
 #: Fonts {{{
 
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
+
+font_family      JetBrainsMono NFM Regular
+bold_font        JetBrainsMono NFM Bold
+italic_font      JetBrainsMono NFM Italic
+bold_italic_font JetBrainsMono NFM Bold Italic
+
+# font_family      JetBrainsMono NFM Regular
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
+
+font_size 12.0
+
+#https://sw.kovidgoyal.net/kitty/faq/#kitty-is-not-able-to-use-my-favorite-font
+# Nerd Fonts v2.3.3
+symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
 
 # font_family      monospace
 # bold_font        auto
@@ -417,12 +434,12 @@
 #: specified using backslash escapes, to specify a backslash use a
 #: double backslash.
 
-# show_hyperlink_targets no
+show_hyperlink_targets no
 
 #: When the mouse hovers over a terminal hyperlink, show the actual
 #: URL that will be activated when the hyperlink is clicked.
 
-# underline_hyperlinks hover
+underline_hyperlinks hover
 
 #: Control how hyperlinks are underlined. They can either be
 #: underlined on mouse hover, always (i.e. permanently underlined) or
@@ -432,7 +449,7 @@
 #: value to/from always will only affect text subsequently received by
 #: kitty.
 
-# copy_on_select no
+copy_on_select no
 
 #: Copy to clipboard or a private buffer on select. With this set to
 #: clipboard, selecting text with the mouse will cause the text to be
@@ -1111,6 +1128,11 @@
 #: of the neighboring tab.
 
 #: }}}
+tab_bar_min_tabs            1
+tab_bar_edge                bottom
+tab_bar_style               powerline
+tab_powerline_style         slanted
+tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}
 
 #: Color scheme {{{
 
@@ -1983,11 +2005,29 @@
 
 #: Next window
 
-# map kitty_mod+] next_window
+map kitty_mod+] next_window
 
 #: Previous window
 
-# map kitty_mod+[ previous_window
+map kitty_mod+[ previous_window
+
+#: Vim-like movement (added by Cle)
+
+map alt+h neighboring_window left
+map alt+j neighboring_window bottom
+map alt+k neighboring_window top
+map alt+l neighboring_window right
+
+map alt+shift+h move_window left
+map alt+shift+j move_window bottom
+map alt+shift+k move_window top
+map alt+shift+l move_window right
+
+# Tmux like zoom.
+map alt+f kitten zoom_toggle.py
+
+# Opens new window in same ssh session.
+map f1 new_window_with_cwd
 
 #: Move window forward
 
@@ -2451,3 +2491,9 @@
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_THEME
+# Rosé Pine Moon
+include current-theme.conf
+# END_KITTY_THEME

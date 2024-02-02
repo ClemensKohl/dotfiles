@@ -18,6 +18,9 @@ if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 export PS1
 
 
+# Set the shell tmux should use.
+export TMUX_SHELL=$(which bash)
+
 # add to path
 # Commented out stuff is here in case something unexpectedly breaks.
 # Paths should be defined in .profile

@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Set the shell tmux should use.
+export TMUX_SHELL=$(which zsh)
+
 # Download and install .zsh if not present.
 # [[ -x $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -154,8 +157,7 @@ alias lv='lvim'                                 # Lunar Vim
 alias lvim='lvim'                               # Lunar Vim
 
 # nvim by default also opens neovim with lazyvim.
-alias vv='NVIM_APPNAME=nvim nvim'               # lazy vim
-alias vvim='NVIM_APPNAME=nvim nvim'             # lazy vim
+alias nv='NVIM_APPNAME=nvim nvim'               # lazy vim
 
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart

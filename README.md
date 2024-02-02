@@ -16,6 +16,8 @@ stow --target=$HOME bash
 stow --target=$HOME zsh
 stow --target=$HOME R
 stow --target=$HOME kitty
+stow --target=$HOME kitty
+stow --target=$HOME keyboard
 
 ```
 
