@@ -82,16 +82,16 @@ colorout::setOutputColors(
 # _ `str` ----------------------------------------
 
 # Class
-colorout::addPattern(' num ',        '\x1b[38;2;143;188;187m')
-colorout::addPattern(' int ',        '\x1b[38;2;143;188;187m')
-colorout::addPattern(' chr ',        '\x1b[38;2;143;188;187m')
-colorout::addPattern(' Factor ',     '\x1b[38;2;143;188;187m')
-colorout::addPattern(' Ord.factor ', '\x1b[38;2;143;188;187m')
-colorout::addPattern(' logi ',       '\x1b[38;2;143;188;187m')
-colorout::addPattern('function ',    '\x1b[38;2;143;188;187m')
-colorout::addPattern(' dbl ',        '\x1b[38;2;143;188;187m')
-colorout::addPattern(' lgcl ',       '\x1b[38;2;143;188;187m')
-colorout::addPattern(' cplx ',       '\x1b[38;2;143;188;187m')
+colorout::addPattern(' num ',        "\x1b[38;2;129;200;190m")
+colorout::addPattern(' int ',        "\x1b[38;2;129;200;190m")
+colorout::addPattern(' chr ',        "\x1b[38;2;129;200;190m")
+colorout::addPattern(' Factor ',     "\x1b[38;2;129;200;190m")
+colorout::addPattern(' Ord.factor ', "\x1b[38;2;129;200;190m")
+colorout::addPattern(' logi ',       "\x1b[38;2;129;200;190m")
+colorout::addPattern('function ',    "\x1b[38;2;129;200;190m")
+colorout::addPattern(' dbl ',        "\x1b[38;2;129;200;190m")
+colorout::addPattern(' lgcl ',       "\x1b[38;2;129;200;190m")
+colorout::addPattern(' cplx ',       "\x1b[38;2;129;200;190m")
 # Misc
 colorout::addPattern('$ ',           "\x1b[38;2;129;200;190m")
 

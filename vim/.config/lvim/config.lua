@@ -224,9 +224,9 @@ lvim.plugins = {
     },
 
     -- better surround of quotes etc.
-    { 
+    {
         'echasnovski/mini.surround',
-        version = '*',
+        version = false,
         opts = {
             mappings = {
                 add = "sa", -- Add surrounding in Normal and Visual modes
@@ -238,6 +238,9 @@ lvim.plugins = {
                 update_n_lines = "sn", -- Update `n_lines`
             },
         },
+        config = function(_, opts)
+            require("mini.surround").setup(opts)
+        end,
     },
 }
 
@@ -272,7 +275,7 @@ vim.opt.termguicolors = true
 vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 
 -- Call mini.surround
-require('mini.surround').setup()
+-- require('mini.surround').setup()
 
 -- Remapped keys
 -- remove trailing white space
@@ -407,6 +410,15 @@ Turnoff_diagnostics = function()
   end
 end
 
+Colorcolumn_active = false
+Toggle_colorcolumn = function()
+  Colorcolumn_active = not Colorcolumn_active
+  if Colorcolumn_active then
+    vim.opt.colorcolumn = "80"
+  else
+    vim.opt.colorcolumn = ""
+  end
+end
 -- lvim.builtin.which_key.mappings['q'] = {
 --     name = "ToggleDiagnostics"
 -- }
@@ -418,11 +430,27 @@ lvim.builtin.which_key.mappings['q'] = {
     q = { "<cmd>lua Toggle_diagnostics()<cr>", "toggle diagnostics" },
     Q = { "<cmd>lua Turnoff_diagnostics()<cr>", "turn off diagnostics" },
     H = { '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover diagnostics"},
+    c = { '<cmd>lua Toggle_colorcolumn()<CR>', "Toggle colorcolumn"},
 }
 
 vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
 -- vim.keymap.set('n', '<leader>Q', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
+-- function to toggle line wrap
+WrapActive = vim.opt.wrap
+ToggleWrap = function()
+    WrapActive = not WrapActive
+    if WrapActive then
+        vim.opt.wrap = true
+    else
+        vim.opt.wrap = false
+    end
+end
+
+
+lvim.builtin.which_key.mappings['qw'] = {
+    "<cmd>lua ToggleWrap()<cr>", "toggle line wrap"
+}
 ---------------------
 -- Trouble Toggle ---
 ---------------------
@@ -532,21 +560,6 @@ vim.keymap.set('n', '<space>iF', '<cmd>IronFocus<cr>', { desc = "IronFocus" })
 vim.keymap.set('n', '<space>ih', '<cmd>IronHide<cr>', { desc = "Hide IronRepl" })
 
 
--- function to toggle line wrap
-WrapActive = vim.opt.wrap
-ToggleWrap = function()
-    WrapActive = not WrapActive
-    if WrapActive then
-        vim.opt.wrap = true
-    else
-        vim.opt.wrap = false
-    end
-end
-
-
-lvim.builtin.which_key.mappings['qw'] = {
-    "<cmd>lua ToggleWrap()<cr>", "toggle line wrap"
-}
 
 
 
