@@ -147,7 +147,7 @@ alias ssh='ssh -X'
 
 # use the configs set in ~/.config/kitty/ssh.conf
 # for a ssh sesison.
-alias kkh='kitten ssh'
+alias kkh='kitten ssh -X'
 
 # Aliases for my Neovim configs
 alias dv='NVIM_APPNAME=nvim.bak nvim'           # default neovim
