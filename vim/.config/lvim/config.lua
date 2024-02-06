@@ -213,6 +213,8 @@ lvim.plugins = {
             },
         },
     },
+
+    -- Highlights todo comments 
     {
         "folke/todo-comments.nvim",
         event = "BufRead",
@@ -220,7 +222,25 @@ lvim.plugins = {
             require("todo-comments").setup()
         end,
     },
+
+    -- better surround of quotes etc.
+    { 
+        'echasnovski/mini.surround',
+        version = '*',
+        opts = {
+            mappings = {
+                add = "sa", -- Add surrounding in Normal and Visual modes
+                delete = "sd", -- Delete surrounding
+                find = "sf", -- Find surrounding (to the right)
+                find_left = "sF", -- Find surrounding (to the left)
+                highlight = "sh", -- Highlight surrounding
+                replace = "sr", -- Replace surrounding
+                update_n_lines = "sn", -- Update `n_lines`
+            },
+        },
+    },
 }
+
 
 -- align function parameters
 vim.cmd([[
@@ -251,6 +271,8 @@ vim.opt.termguicolors = true
 -- Markdown
 vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 
+-- Call mini.surround
+require('mini.surround').setup()
 
 -- Remapped keys
 -- remove trailing white space
