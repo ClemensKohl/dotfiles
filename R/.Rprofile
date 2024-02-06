@@ -42,6 +42,45 @@ assign(".First", function(){
 
 # Colorout setup 
 require("colorout")
+
+#' Helper for generating ansi color codes with hex color codes.
+#'
+#' After generating ansi color codes, feed input to `colorout::setOutputColors`.
+#'
+#' @param fg Foreground color in hex format (ie '#000000'). Leave blank for default.
+#' @param bg Background color in hex format (ie '#000000'). Leave blank for default.
+#' @param fo Formatting (see details)
+#' 
+#' @details
+#' Value	Formating
+#' 0	No formating
+#' 1	Bold or bright
+#' 2	Faint
+#' 3	Italic or inverse
+#' 4	Underline
+#' 5	Blink slowly
+#' 6	Blink quickly
+#' 7	Invert
+
+# to_ansi <- function(col, fg = '', bg = '', fo = '') {
+#
+#   escape <- '\\x1b['
+#
+#   if (fg != '') fg <- {
+#     rgb_fg <- col2rgb(fg)
+#     paste0("38;2;", rgb_fg[1], ";", rgb_fg[2], ";", rgb_fg[3])
+#   }
+#   if (bg != '') bg <- {
+#     rgb_bg <- col2rgb(bg)
+#     paste0(";48;2;", rgb_bg[1], ";", rgb_bg[2], ";", rgb_bg[3])
+#   }
+#   fo <- if (fo != '') paste0(';', fo)
+#
+#   # Use `cat`, not `paste0`, for correctly printing escape char '\x1b['
+#   cat(col, ': ', escape, fg, bg, fo, 'm', '\n', sep = '')
+# }
+
+
 # General ---------------------------------------- 
 
 colorout::setOutputColors(
