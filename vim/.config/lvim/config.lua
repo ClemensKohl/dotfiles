@@ -229,18 +229,33 @@ lvim.plugins = {
         version = false,
         opts = {
             mappings = {
-                add = "sa", -- Add surrounding in Normal and Visual modes
-                delete = "sd", -- Delete surrounding
-                find = "sf", -- Find surrounding (to the right)
-                find_left = "sF", -- Find surrounding (to the left)
-                highlight = "sh", -- Highlight surrounding
-                replace = "sr", -- Replace surrounding
-                update_n_lines = "sn", -- Update `n_lines`
+                add = "ma", -- Add surrounding in Normal and Visual modes
+                delete = "md", -- Delete surrounding
+                find = "mf", -- Find surrounding (to the right)
+                find_left = "mF", -- Find surrounding (to the left)
+                highlight = "mh", -- Highlight surrounding
+                replace = "mr", -- Replace surrounding
+                update_n_lines = "mn", -- Update `n_lines`
             },
         },
         config = function(_, opts)
             require("mini.surround").setup(opts)
         end,
+    },
+    -- Flash. Faster search.
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
     },
 }
 
@@ -310,7 +325,7 @@ vim.cmd([[
 ]])
 
 
-vim.g.R_assign_map = "--"
+vim.g.R_assign_map = "<<"
 
 -- R output is highlighted with current colorscheme
 vim.g.rout_follow_colorscheme = 1 -- R commands in R output are highlighted
