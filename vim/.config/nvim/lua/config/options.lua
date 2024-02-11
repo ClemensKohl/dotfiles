@@ -26,6 +26,11 @@ vim.opt.tabstop = 4 -- insert x spaces for a tab
 
 -- Options for Nvim-R
 
+StartRdevel = function()
+  vim.g.R_path = "~/bin"
+  vim.fn.StartR("Rdev")
+end
+
 vim.g.R_assign_map = "--"
 
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme

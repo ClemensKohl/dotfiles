@@ -257,6 +257,17 @@ lvim.plugins = {
             { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
     },
+    -- Use telescope to switch tabs
+    {
+        'LukasPietzschmann/telescope-tabs',
+        config = function()
+            require('telescope').load_extension 'telescope-tabs'
+            require('telescope-tabs').setup {
+                -- Your custom config :^)
+            }
+        end,
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+    },
 }
 
 
@@ -289,6 +300,23 @@ vim.opt.termguicolors = true
 -- Markdown
 vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 
+
+----------------------------------
+-- filte type specific settings --
+----------------------------------
+
+local generalSettingsGroup = vim.api.nvim_create_augroup('General settings', { clear = true })
+
+-- R
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { '*.R' },
+    callback = function()
+        vim.opt.shiftwidth = 4
+        vim.opt.tabstop = 4
+    end,
+    group = generalSettingsGroup,
+})
+
 -- Call mini.surround
 -- require('mini.surround').setup()
 
@@ -297,6 +325,7 @@ vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
 -- find buffers
 lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>"
+lvim.keys.normal_mode["<leader>bt"] = ":Telescope telescope-tabs list_tabs<CR>"
 
 -- TMUX clipboard
 if vim.env.TMUX then
@@ -324,6 +353,16 @@ vim.cmd([[
     autocmd FileType r setlocal formatoptions+=r
 ]])
 
+vim.cmd([[
+function StartRdevel()
+    let R_path = '/home/kohl/R-devel/bin/:$PATH'
+    call StartR("R")
+endfunction
+]])
+-- StartRdevel = function()
+--     vim.g.R_path = '~/R-devel/bin/'
+--     vim.fn.StartR("R")
+-- end
 
 vim.g.R_assign_map = "<<"
 
