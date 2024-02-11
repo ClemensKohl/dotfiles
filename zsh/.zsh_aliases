@@ -20,7 +20,7 @@ then
   alias vgit="cd ~/gits/VingronLab/"
 fi
 
-
+alias rdevim="R_LIBS=/home/clemens/R-devel/library  PATH='/home/clemens/R-devel/bin/:$PATH' lvim"
 ##########
 ## Work ##
 ##########

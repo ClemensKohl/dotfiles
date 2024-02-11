@@ -355,7 +355,7 @@ vim.cmd([[
 
 vim.cmd([[
 function StartRdevel()
-    let R_path = '/home/kohl/R-devel/bin/:$PATH'
+    let R_path = '~/R-devel/bin/:$PATH'
     call StartR("R")
 endfunction
 ]])
