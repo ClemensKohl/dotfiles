@@ -268,6 +268,50 @@ lvim.plugins = {
         end,
         dependencies = { 'nvim-telescope/telescope.nvim' },
     },
+
+    -- Shows function on top if it doesnt fit screen.
+    -- { "nvim-treesitter/nvim-treesitter-context",
+    --     event = "LazyFile",
+    --     enabled = true,
+    --     opts = { mode = "cursor", max_lines = 3 },
+    --     keys = {
+    --         {
+    --             "<leader>ut",
+    --             function()
+    --                 local Util = require("lazyvim.util")
+    --                 local tsc = require("treesitter-context")
+    --                 tsc.toggle()
+    --                 if Util.inject.get_upvalue(tsc.toggle, "enabled") then
+    --                     Util.info("Enabled Treesitter Context", { title = "Option" })
+    --                 else
+    --                     Util.warn("Disabled Treesitter Context", { title = "Option" })
+    --                 end
+    --             end,
+    --             desc = "Toggle Treesitter Context",
+    --         },
+    --     },
+    -- },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+            require("treesitter-context").setup{
+                enable = true, -- enable this plugin (can be enabled/disabled later via commands)
+                throttle = true, -- throttles plugin updates (may improve performance)
+                max_lines = 0, -- how many lines the window should span. values <= 0 mean no limit.
+                patterns = { -- match patterns for ts nodes. these get wrapped to match at word boundaries.
+                    -- for all filetypes
+                    -- note that setting an entry here replaces all other patterns for this entry.
+                    -- by setting the 'default' entry below, you can control which nodes you want to
+                    -- appear in the context window.
+                    default = {
+                        'class',
+                        'function',
+                        'method',
+                    },
+                },
+            }
+        end
+    },
 }
 
 
@@ -279,7 +323,7 @@ vim.cmd([[
 vim.opt.cindent = true
 vim.opt.cinoptions = {':0','l1','t0','g0','(0'}
 
--- vim.opt.relativenumber = true -- relative line numbers
+vim.opt.relativenumber = true -- relative line numbers
 vim.opt.wrap = true -- wrap lines
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 4 -- insert 2 spaces for a tab
@@ -353,12 +397,6 @@ vim.cmd([[
     autocmd FileType r setlocal formatoptions+=r
 ]])
 
-vim.cmd([[
-function StartRdevel()
-    let R_path = '~/R-devel/bin/:$PATH'
-    call StartR("R")
-endfunction
-]])
 -- StartRdevel = function()
 --     vim.g.R_path = '~/R-devel/bin/'
 --     vim.fn.StartR("R")
@@ -377,6 +415,8 @@ lvim.builtin.which_key.mappings["r"] = {
     q = { "<Plug>RClose", "Close R" },
     l = { "<Plug>RSendLine", "Send Line to R" },
     s = { "<Plug>RSendSelection", "Send Selection to R" },
+    c = { "<Plug>RSendChunk", "Send RMD Chunk" },
+    d = { "<Plug>RDSendChunk", "Send RMD Chunk (DOWN)" },
     h = { "<Plug>RHelp", "Open R help" },
     o = { "<Plug>RUpdateObjBrowser", "Open Object Browser" },
     a = { "<Plug>RSendFile", "Send File to R" },
@@ -387,13 +427,6 @@ lvim.builtin.which_key.vmappings["r"] = {
     l = { "<Plug>RSendLine", "Send Line to R" },
     s = { "<Plug>RSendSelection", "Send Selection to R" },
 }
--- vim.keymap.set("n", "<leader>rf", "<Plug>RStart", { desc = "Start R" })
--- vim.keymap.set("n", "<leader>rq", "<Plug>RClose", { desc = "Close R" })
--- vim.keymap.set({ "n", "v" }, "<leader>rl", "<Plug>RSendLine", { desc = "Send Line to R" })
--- vim.keymap.set("v", "<leader>rs", "<Plug>RSendSelection", { desc = "Send Selection to R" })
--- vim.keymap.set("n", "<leader>rh", "<Plug>RHelp", { desc = "Open R help" })
--- vim.keymap.set("n", "<leader>ro", "<Plug>RUpdateObjBrowser", { desc = "Open Object Browser" })
-
 
 -- LSP diagnostic messages config
 
@@ -412,7 +445,6 @@ vim.diagnostic.config({
 
 
 -- function to toggle diagnostics on/off
-
 Diagnostics_active = true
 Toggle_diagnostics = function()
   Diagnostics_active = not Diagnostics_active
@@ -439,6 +471,7 @@ Toggle_diagnostics = function()
   end
 end
 
+-- Turn diagnostics on/off. COMPLETELY OFF.
 Turnoff_diagnostics = function()
   Diagnostics_active = not Diagnostics_active
   if Diagnostics_active then
@@ -464,6 +497,7 @@ Turnoff_diagnostics = function()
   end
 end
 
+-- Toggle colorcolumn
 Colorcolumn_active = false
 Toggle_colorcolumn = function()
   Colorcolumn_active = not Colorcolumn_active
@@ -473,22 +507,7 @@ Toggle_colorcolumn = function()
     vim.opt.colorcolumn = ""
   end
 end
--- lvim.builtin.which_key.mappings['q'] = {
---     name = "ToggleDiagnostics"
--- }
 
--- lvim.keys.normal_mode["<leader-q>"] = false
-
-lvim.builtin.which_key.mappings['q'] = {
-    name = "Toggle Functions",
-    q = { "<cmd>lua Toggle_diagnostics()<cr>", "toggle diagnostics" },
-    Q = { "<cmd>lua Turnoff_diagnostics()<cr>", "turn off diagnostics" },
-    H = { '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover diagnostics"},
-    c = { '<cmd>lua Toggle_colorcolumn()<CR>', "Toggle colorcolumn"},
-}
-
-vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
--- vim.keymap.set('n', '<leader>Q', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
 -- function to toggle line wrap
 WrapActive = vim.opt.wrap
@@ -502,13 +521,28 @@ ToggleWrap = function()
 end
 
 
-lvim.builtin.which_key.mappings['qw'] = {
-    "<cmd>lua ToggleWrap()<cr>", "toggle line wrap"
+lvim.builtin.which_key.mappings['q'] = {
+    name = "Toggle Functions",
+    q = { "<cmd>lua Toggle_diagnostics()<cr>", "toggle diagnostics" },
+    Q = { "<cmd>lua Turnoff_diagnostics()<cr>", "turn off diagnostics" },
+    H = { '<cmd>lua vim.lsp.buf.hover()<CR>', "Hover diagnostics"},
+    c = { '<cmd>lua Toggle_colorcolumn()<CR>', "Toggle colorcolumn"},
+    w = { "<cmd>lua ToggleWrap()<CR>", "Toggle line wrap"},
+    t = { "<cmd>lua require('treesitter-context').toggle()<CR>", "Toggle Treesitter Context"},
 }
----------------------
--- Trouble Toggle ---
----------------------
+
+vim.keymap.set('n', 'Q', '<cmd>lua vim.diagnostic.open_float()<CR>')
+
+
+-- lvim.builtin.which_key.mappings['qw'] = {
+--     "<cmd>lua ToggleWrap()<cr>", "toggle line wrap"
+-- }
 --
+
+--------------
+-- Trouble ---
+--------------
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "Diagnostics",
   t = { "<cmd>TroubleToggle<cr>", "trouble" },
@@ -519,9 +553,16 @@ lvim.builtin.which_key.mappings["t"] = {
   r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
 
---
--- ToggleTerm
---
+lvim.builtin.which_key.mappings['to'] = {
+    "<cmd>TodoTelescope<cr>", "TODOs find"
+}
+lvim.builtin.which_key.mappings['tp'] = {
+    "<cmd>TodoQuickFix<cr>", "TODOs QuickFix"
+}
+----------------
+-- ToggleTerm --
+----------------
+
 local trim_spaces = true
 vim.keymap.set("v", "<space>s", function()
     require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
@@ -555,8 +596,9 @@ vim.keymap.set("n", [[<leader><leader><c-\>]], function()
   vim.api.nvim_feedkeys("ggg@G''", "n", false)
 end)
 
-
--- Iron Vim
+--------------
+-- Iron Vim --
+--------------
 
 local iron = require("iron.core")
 local view = require("iron.view")
@@ -617,13 +659,3 @@ vim.keymap.set('n', '<space>ih', '<cmd>IronHide<cr>', { desc = "Hide IronRepl" }
 
 
 
--- Set keymaps for todo-comments
--- vim.keymap.set('n', '<leader>to', '<cmd>TodoTelescope<cr>', { desc = "Find TODOs" })
--- vim.keymap.set('n', '<leader>tp', '<cmd>TodoQuickFix<cr>', { desc = "TODOs QuickFix" })
-
-lvim.builtin.which_key.mappings['to'] = {
-    "<cmd>TodoTelescope<cr>", "TODOs find"
-}
-lvim.builtin.which_key.mappings['tp'] = {
-    "<cmd>TodoQuickFix<cr>", "TODOs QuickFix"
-}
