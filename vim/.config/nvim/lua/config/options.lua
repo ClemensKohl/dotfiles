@@ -26,10 +26,10 @@ vim.opt.tabstop = 4 -- insert x spaces for a tab
 
 -- Options for Nvim-R
 
-StartRdevel = function()
-  vim.g.R_path = "~/bin"
-  vim.fn.StartR("Rdev")
-end
+-- StartRdevel = function()
+--   vim.g.R_path = "~/bin"
+--   vim.fn.StartR("Rdev")
+-- end
 
 vim.g.R_assign_map = "--"
 
