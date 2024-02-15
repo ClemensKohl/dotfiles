@@ -8,10 +8,10 @@
 -- Plugins --
 -------------
 lvim.plugins = {
-   
+
     -- classical gruvbox
     {"ellisonleao/gruvbox.nvim"},
-    
+
     -- gruvbox material (softer contrast)
     {"sainnhe/gruvbox-material"},
 
@@ -152,12 +152,12 @@ lvim.plugins = {
     -- Opens jupyter notebooks as textfiles
     {"goerz/jupytext.vim"},
 
-    -- Hints while typing
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "BufRead",
-        config = function() require"lsp_signature".on_attach() end,
-    },
+    -- Hints while typing -- conflicts with noice.
+    -- {
+    --     "ray-x/lsp_signature.nvim",
+    --     event = "BufRead",
+    --     config = function() require"lsp_signature".on_attach() end,
+    -- },
 
     -- Github Copilot
     {
@@ -312,6 +312,20 @@ lvim.plugins = {
             }
         end
     },
+
+    -- Noice. Nicer ui and messages.
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- add any options here
+        },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    },
+
 }
 
 
@@ -355,16 +369,64 @@ local generalSettingsGroup = vim.api.nvim_create_augroup('General settings', { c
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { '*.R' },
     callback = function()
-        vim.opt.shiftwidth = 4
-        vim.opt.tabstop = 4
+        vim.opt.shiftwidth = 2
+        vim.opt.tabstop = 2
     end,
     group = generalSettingsGroup,
 })
 
--- Call mini.surround
--- require('mini.surround').setup()
+-- DAP configuration
+-- local dap = require('dap')
+-- local dapui = require('dapui')
+-- dap.adapters.r = {
+--     type = 'server',
+--     port = 18722, -- needs to match `debugadapter::run()`'s `port` argument
+-- }
+-- dap.configurations.r = {
+-- {
+--     type = 'r',
+--     requests = 'attach',
+--     name = 'Attach session'
+-- }
 
--- Remapped keys
+
+-- Noice setup
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+})
+
+-- { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+--     { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+--     { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
+--     { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
+--     { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
+--     { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
+--     { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},-- Remapped keys
+
+lvim.builtin.which_key.mappings["n"] = {
+    name = "Noice",
+    l = { "<cmd>lua require('noice').cmd('last')<cr>", "Noice Last Message" },
+    h = { "<cmd>lua require('noice').cmd('history')<cr>", "Noice History" },
+    a = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Noice All" },
+    d = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Dismiss All" },
+    n = { "<cmd>:Telescope notify<cr>", "Notify History"}
+}
+
 -- remove trailing white space
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
 -- find buffers

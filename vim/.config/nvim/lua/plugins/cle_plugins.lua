@@ -258,10 +258,11 @@ return {
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     mappings = {
-      ["S"] = "open_split",
-      ["s"] = "open_vsplit",
-      -- ["S"] = "split_with_window_picker",
-      -- ["s"] = "vsplit_with_window_picker",
+      -- ["S"] = "open_split",
+      -- ["s"] = "open_vsplit",
+      ["S"] = "split_with_window_picker",
+      ["w"] = "open_with_window_picker",
+      ["s"] = "vsplit_with_window_picker",
     },
   },
 
@@ -278,6 +279,7 @@ return {
       return {}
     end,
   },
+
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",

@@ -6,8 +6,8 @@
 vim.opt.termguicolors = true
 
 -- General vim setup
-vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 4 -- insert x spaces for a tab
+vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2 -- insert x spaces for a tab
 
 -- set diagnostic options
 
@@ -31,7 +31,7 @@ vim.opt.tabstop = 4 -- insert x spaces for a tab
 --   vim.fn.StartR("Rdev")
 -- end
 
-vim.g.R_assign_map = "--"
+vim.g.R_assign_map = "<<"
 
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme
 vim.g.Rout_more_colors = 1
@@ -43,3 +43,16 @@ vim.g.Rout_more_colors = 1
 
 -- add German spellchecking
 vim.opt.spelllang = { "en", "de" }
+
+-- Custom functions
+
+-- Toggle colorcolumn
+Colorcolumn_active = false
+Toggle_colorcolumn = function()
+  Colorcolumn_active = not Colorcolumn_active
+  if Colorcolumn_active then
+    vim.opt.colorcolumn = "80"
+  else
+    vim.opt.colorcolumn = ""
+  end
+end
