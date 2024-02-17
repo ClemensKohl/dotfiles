@@ -430,8 +430,11 @@ lvim.builtin.which_key.mappings["n"] = {
 -- remove trailing white space
 lvim.keys.normal_mode["<F5>"] = ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>"
 -- find buffers
-lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>"
-lvim.keys.normal_mode["<leader>bt"] = ":Telescope telescope-tabs list_tabs<CR>"
+-- lvim.keys.normal_mode["<leader>bu"] = ":Telescope buffers show_all_buffers=true<CR>"
+-- lvim.keys.normal_mode["<leader>bt"] = ":Telescope telescope-tabs list_tabs<CR>"
+
+vim.keymap.set('n', '<leader>bv', ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
+vim.keymap.set('n', '<leader>bt', ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
 
 -- TMUX clipboard
 if vim.env.TMUX then

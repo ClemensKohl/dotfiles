@@ -5,6 +5,10 @@
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
+-- Buffers/tabs with telescope
+vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
+vim.keymap.set("n", "<leader>bt", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
+
 -- configure Nvim-R keymaps
 -- vim.keymap.set("n", "<leader>rf", "<Plug>RStart", { desc = "Start R" })
 -- vim.keymap.set("n", "<leader>rq", "<Plug>RClose", { desc = "Close R" })
