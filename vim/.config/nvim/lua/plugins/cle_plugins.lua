@@ -258,6 +258,8 @@ return {
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     mappings = {
+      -- ["<cr>"] = "open",
+      ["<cr>"] = "open_with_window_picker",
       -- ["S"] = "open_split",
       -- ["s"] = "open_vsplit",
       ["S"] = "split_with_window_picker",
