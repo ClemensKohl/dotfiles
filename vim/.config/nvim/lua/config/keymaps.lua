@@ -33,14 +33,40 @@ wk.register({
   },
 }, { prefix = "<leader>" })
 
+wk.register({
+  r = {
+    name = "Nvim-R", -- optional group name
+    s = { "<Plug>RSendSelection", "Send Selection to R" },
+  },
+}, { prefix = "<leader>", mode = "v" })
 ----------------
 -- ToggleTerm --
 ----------------
 
-local trim_spaces = true
-vim.keymap.set("v", "<leader>t", function()
-  require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
-end)
+wk.register({
+  t = {
+    name = "ToggleTerm", -- optional group name
+    f = {
+      "function() set_opfunc(function(motion_type) require('toggleterm').send_lines_to_terminal(motion_type, false, { args = vim.v.count }) end) vim.api.nvim_feedkeys('g@', 'n', false) end)<cr>",
+      "Send Line",
+    },
+  },
+}, { prefix = "<leader>", mode = "n" })
+
+wk.register({
+  t = {
+    name = "ToggleTerm", -- optional group name
+    l = {
+      "<cmd>require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })<cr>",
+      "Send Line",
+    },
+  },
+}, { prefix = "<leader>", mode = "v" })
+
+-- local trim_spaces = true
+-- vim.keymap.set("v", "<leader>t", function()
+--   require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
+-- end)
 -- Replace with these for the other two options
 -- require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
 -- require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
@@ -55,13 +81,13 @@ vim.keymap.set("n", [[<leader><c-\>]], function()
 end)
 
 -- Double the command to send line to terminal
-vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
-  set_opfunc(function(motion_type)
-    require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-  end)
-  vim.api.nvim_feedkeys("g@_", "n", false)
-end)
-
+-- vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
+--   set_opfunc(function(motion_type)
+--     require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+--   end)
+--   vim.api.nvim_feedkeys("g@_", "n", false)
+-- end)
+--
 -- Send whole file
 vim.keymap.set("n", [[<leader><leader><c-\>]], function()
   set_opfunc(function(motion_type)
