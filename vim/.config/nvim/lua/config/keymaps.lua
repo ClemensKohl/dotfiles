@@ -9,15 +9,11 @@ vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" 
 vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
 vim.keymap.set("n", "<leader>bt", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
 
--- configure Nvim-R keymaps
--- vim.keymap.set("n", "<leader>rf", "<Plug>RStart", { desc = "Start R" })
--- vim.keymap.set("n", "<leader>rq", "<Plug>RClose", { desc = "Close R" })
--- vim.keymap.set({ "n", "v" }, "<leader>rl", "<Plug>RSendLine", { desc = "Send Line to R" })
--- vim.keymap.set("v", "<leader>rs", "<Plug>RSendSelection", { desc = "Send Selection to R" })
--- vim.keymap.set("n", "<leader>rh", "<Plug>RHelp", { desc = "Open R help" })
--- vim.keymap.set("n", "<leader>ro", "<Plug>RUpdateObjBrowser", { desc = "Open Object Browser" })
-
 local wk = require("which-key")
+
+------------
+-- Nvim-R --
+------------
 
 wk.register({
   r = {
@@ -39,6 +35,19 @@ wk.register({
     s = { "<Plug>RSendSelection", "Send Selection to R" },
   },
 }, { prefix = "<leader>", mode = "v" })
+
+--------------
+-- Zen Mode --
+--------------
+
+wk.register({
+  z = {
+    name = "ZenMode", -- optional group name
+    z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
+    t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+  },
+}, { prefix = "<leader>" })
+
 ----------------
 -- ToggleTerm --
 ----------------
