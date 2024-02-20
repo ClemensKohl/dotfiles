@@ -42,9 +42,11 @@ wk.register({
 
 wk.register({
   z = {
-    name = "ZenMode", -- optional group name
+    name = "Util", -- optional group name
     z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
     t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+    c = { "<cmd>Copilot enable<cr>", "start Copilot" },
+    d = { "<cmd>Copilot disable<cr>", "stop Copilot" },
   },
 }, { prefix = "<leader>" })
 
