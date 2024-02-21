@@ -58,7 +58,7 @@ wk.register({
   t = {
     name = "ToggleTerm", -- optional group name
     f = {
-      "function() set_opfunc(function(motion_type) require('toggleterm').send_lines_to_terminal(motion_type, false, { args = vim.v.count }) end) vim.api.nvim_feedkeys('g@', 'n', false) end)<cr>",
+      "lua function() set_opfunc(function(motion_type) require('toggleterm').send_lines_to_terminal(motion_type, false, { args = vim.v.count }) end) vim.api.nvim_feedkeys('g@', 'n', false) end)<cr>",
       "Send Line",
     },
   },
@@ -68,7 +68,7 @@ wk.register({
   t = {
     name = "ToggleTerm", -- optional group name
     l = {
-      "<cmd>require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })<cr>",
+      "<cmd>lua require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })<cr>",
       "Send Line",
     },
   },
@@ -84,12 +84,12 @@ wk.register({
 
 -- For use as an operator map:
 -- Send motion to terminal
-vim.keymap.set("n", [[<leader><c-\>]], function()
-  set_opfunc(function(motion_type)
-    require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-  end)
-  vim.api.nvim_feedkeys("g@", "n", false)
-end)
+-- vim.keymap.set("n", [[<leader><c-\>]], function()
+--   set_opfunc(function(motion_type)
+--     require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+--   end)
+--   vim.api.nvim_feedkeys("g@", "n", false)
+-- end)
 
 -- Double the command to send line to terminal
 -- vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
@@ -100,12 +100,12 @@ end)
 -- end)
 --
 -- Send whole file
-vim.keymap.set("n", [[<leader><leader><c-\>]], function()
-  set_opfunc(function(motion_type)
-    require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-  end)
-  vim.api.nvim_feedkeys("ggg@G''", "n", false)
-end)
+-- vim.keymap.set("n", [[<leader><leader><c-\>]], function()
+--   set_opfunc(function(motion_type)
+--     require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+--   end)
+--   vim.api.nvim_feedkeys("ggg@G''", "n", false)
+-- end)
 
 -- custom functions
 vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
