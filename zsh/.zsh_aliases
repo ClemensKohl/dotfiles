@@ -1,4 +1,9 @@
 
+#############
+## General ##
+#############
+alias lg="lazygit"
+
 ############
 ## Privat ##
 ############
@@ -21,6 +26,7 @@ then
 fi
 
 alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' lvim"
+
 ##########
 ## Work ##
 ##########
