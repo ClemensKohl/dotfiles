@@ -17,7 +17,8 @@ stow --target=$HOME zsh
 stow --target=$HOME R
 stow --target=$HOME kitty
 stow --target=$HOME kitty
-stow --target=$HOME keyboard
+stow --target=$HOME keyboard # Not working currently
+stow --target=$HOME kde
 
 ```
 
