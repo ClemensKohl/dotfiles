@@ -3,7 +3,7 @@
 return {
 
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  -- { "ellisonleao/gruvbox.nvim" },
 
   -- gruvbox but with softer contrast.
   { "sainnhe/gruvbox-material" },
