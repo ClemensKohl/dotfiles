@@ -105,6 +105,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 plugins=(
   git
   zsh-autosuggestions # github.com/zsh-users/zsh-autosuggestions
+  zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
   zsh-syntax-highlighting # Must be last! github.com/zsh-users/zsh-syntax-highlighting
 )
 
