@@ -1,6 +1,18 @@
 # dot_files
 all my .dot files
 
+This repository contains submodules. To clone it, do the following:
+```bash
+git clone git@github.com:ClemensKohl/dot_files.git
+cd dot_files
+git submodules init
+git submodules update
+```
+If you want to add a submodule, run the following:
+```bash
+git submodule add <https://git/repo/url> <./path/to/folder>
+```
+
 # Manage dot files with GNU stow
 You can simply use `stow` to manage all your simlinks.
 
