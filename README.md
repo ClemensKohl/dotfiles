@@ -5,8 +5,8 @@ This repository contains submodules. To clone it, do the following:
 ```bash
 git clone git@github.com:ClemensKohl/dot_files.git
 cd dot_files
-git submodules init
-git submodules update
+git submodule init
+git submodule update
 ```
 If you want to add a submodule, run the following:
 ```bash
