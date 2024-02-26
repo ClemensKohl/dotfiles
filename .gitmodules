@@ -10,3 +10,6 @@
 [submodule "zsh/.oh-my-zsh/custom/themes/powerlevel10k"]
 	path = zsh/.oh-my-zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "vim/.config/nvim-kickstart"]
+	path = vim/.config/nvim-kickstart
+	url = https://github.com/nvim-lua/kickstart.nvim.git
