@@ -9,6 +9,11 @@ vim.opt.termguicolors = true
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert x spaces for a tab
 
+-- align function parameters
+vim.cmd([[
+    :set cino+=(0,W2
+]])
+
 -- set diagnostic options
 
 -- vim.diagnostic.config({
