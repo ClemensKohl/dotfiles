@@ -14,8 +14,20 @@ export TMUX_SHELL=$(which zsh)
 # Set to vim keybindings.
 bindkey -v
 
+# Setup dotfiles directory path
+if [ -d ~/gits/ClemensKohl/dotfiles ];
+then
+  DOTFILES=~/gits/ClemensKohl/dotfiles
+elif [ -d ~/PhD/gits/ClemensKohl/dotfiles ]
+then
+  DOTFILES=~/PhD/gits/ClemensKohl/dotfiles
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# set ZSH_CUSTOM to dotfiles folder.
+export ZSH_CUSTOM=$DOTFILES/zsh/.oh-my-zsh/custom
 
 # If you come from bash you might have to change your $PATH.
 # set PATH so it includes user's private bin if it exists

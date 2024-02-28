@@ -9,9 +9,9 @@ alias lg="lazygit"
 ############
 
 # Path to dot files on personal computers.
-if [ -d ~/gits/ClemensKohl/dot_files ];
+if [ -d ~/gits/ClemensKohl/dotfiles ];
 then
-  alias dfiles="cd ~/gits/ClemensKohl/dot_files"
+  alias dfiles="cd ~/gits/ClemensKohl/dotfiles"
 fi
 
 # aliases for git repos.
@@ -52,9 +52,9 @@ if [[ "$(whoami)" == "kohl" ]]; then
 fi
 
 # Path to dot files on work computer
-if [ -d ~/PhD/gits/ClemensKohl/dot_files ];
+if [ -d ~/PhD/gits/ClemensKohl/dotfiles ];
 then
-  alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
+  alias dfiles="cd ~/PhD/gits/ClemensKohl/dotfiles"
 fi
 
 # Shortcut for analysis folder

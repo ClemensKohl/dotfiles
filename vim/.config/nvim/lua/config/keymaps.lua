@@ -16,12 +16,13 @@ local wk = require("which-key")
 ------------
 
 wk.register({
-  u = {
-    M = { "<cmd>lua require('noice').cmd('last')<cr>", "Noice Last Message" },
-    H = { "<cmd>lua require('noice').cmd('history')<cr>", "Noice History" },
-    A = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Noice All" },
-    D = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Dismiss All" },
-    N = { "<cmd>:Telescope notify<cr>", "Notify History" },
+  uN = {
+    name = "Noice",
+    l = { "<cmd>lua require('noice').cmd('last')<cr>", "Noice Last Message" },
+    h = { "<cmd>lua require('noice').cmd('history')<cr>", "Noice History" },
+    a = { "<cmd>lua require('noice').cmd('all')<cr>", "Noice All" },
+    d = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Dismiss All" },
+    H = { "<cmd>:Telescope notify<cr>", "Notify History" },
   },
 }, { prefix = "<leader>" })
 

@@ -1,0 +1,9 @@
+[credential]
+	helper = cache
+[user]
+	name = Clemens Kohl
+	email = kohl.clemens@gmail.com
+[safe]
+	directory = /project/CAclust_scripts/CAclust_paper/Code_submission
+[init]
+	defaultBranch = main

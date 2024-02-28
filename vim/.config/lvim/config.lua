@@ -422,7 +422,7 @@ lvim.builtin.which_key.mappings["n"] = {
     name = "Noice",
     l = { "<cmd>lua require('noice').cmd('last')<cr>", "Noice Last Message" },
     h = { "<cmd>lua require('noice').cmd('history')<cr>", "Noice History" },
-    a = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Noice All" },
+    a = { "<cmd>lua require('noice').cmd('all')<cr>", "Noice All" },
     d = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Dismiss All" },
     n = { "<cmd>:Telescope notify<cr>", "Notify History"}
 }
