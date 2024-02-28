@@ -265,6 +265,10 @@ return {
       ["S"] = "split_with_window_picker",
       ["w"] = "open_with_window_picker",
       ["s"] = "vsplit_with_window_picker",
+      ["Z"] = function(state)
+        local node = state.tree:get_node()
+        require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+      end,
     },
   },
 
