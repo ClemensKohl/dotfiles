@@ -416,4 +416,12 @@ return {
       exclude = {}, -- exclude these filetypes
     },
   },
+
+  -- Transfer files from and to remote servers.
+  {
+    "coffebar/transfer.nvim",
+    lazy = true,
+    cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
+    opts = {},
+  },
 }

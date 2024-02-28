@@ -41,7 +41,6 @@ assign(".First", function(){
 #assign(".Last", function() cat("\n   Goodbye!\n\n"), envir = globalenv())
 
 # Colorout setup 
-require("colorout")
 
 #' Helper for generating ansi color codes with hex color codes.
 #'
@@ -82,7 +81,7 @@ require("colorout")
 
 
 # General ---------------------------------------- 
-if (require("colorout")){
+if (require("colorout", quietly = TRUE)) {
 
     colorout::setOutputColors(
 

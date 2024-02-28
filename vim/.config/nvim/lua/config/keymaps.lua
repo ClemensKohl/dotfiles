@@ -12,6 +12,20 @@ vim.keymap.set("n", "<leader>bt", ":Telescope telescope-tabs list_tabs<CR>", { d
 local wk = require("which-key")
 
 ------------
+-- Notify --
+------------
+
+wk.register({
+  u = {
+    M = { "<cmd>lua require('noice').cmd('last')<cr>", "Noice Last Message" },
+    H = { "<cmd>lua require('noice').cmd('history')<cr>", "Noice History" },
+    A = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Noice All" },
+    D = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Dismiss All" },
+    N = { "<cmd>:Telescope notify<cr>", "Notify History" },
+  },
+}, { prefix = "<leader>" })
+
+------------
 -- Nvim-R --
 ------------
 
@@ -45,8 +59,8 @@ wk.register({
     name = "Util", -- optional group name
     z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
     t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-    c = { "<cmd>Copilot enable<cr>", "start Copilot" },
-    d = { "<cmd>Copilot disable<cr>", "stop Copilot" },
+    E = { "<cmd>Copilot enable<cr>", "start Copilot" },
+    D = { "<cmd>Copilot disable<cr>", "stop Copilot" },
   },
 }, { prefix = "<leader>" })
 
@@ -109,3 +123,20 @@ wk.register({
 
 -- custom functions
 vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
+
+--------------
+-- Transfer --
+--------------
+
+wk.register({
+  ["<leader>"] = {
+    z = {
+      name = "Upload / Download",
+      d = { "<cmd>TransferDownload<cr>", "Download from remote server (scp)" },
+      u = { "<cmd>TransferUpload<cr>", "Upload to remote server (scp)" },
+      f = { "<cmd>DiffRemote<cr>", "Diff file with remote server (scp)" },
+      i = { "<cmd>TransferInit<cr>", "Init/Edit Deployment config" },
+      r = { "<cmd>TransferRepeat<cr>", "Repeat transfer command" },
+    },
+  },
+})
