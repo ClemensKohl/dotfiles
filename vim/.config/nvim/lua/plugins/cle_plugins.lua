@@ -272,10 +272,29 @@ return {
     },
   },
 
-  -- Integration with R.
+  -- --  Integration with R.
+  -- {
+  --   "jalvesaq/Nvim-R",
+  -- },
+
+  -- New Version of Nvim-R
   {
-    "jalvesaq/Nvim-R",
+    "R-nvim/R.nvim",
+    lazy = false,
   },
+
+  -- Needs cmp-r
+  { "R-nvim/cmp-r" },
+
+  -- Below is necessary for cmp-r
+  -- Integrated into general nvim-cmp setup
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   config = function()
+  --     require("cmp").setup({ sources = {{ name = "cmp_r" }}})
+  --     require("cmp_r").setup({ })
+  --   end,
+  -- },
 
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
@@ -292,6 +311,10 @@ return {
     dependencies = {
       "hrsh7th/cmp-emoji",
     },
+    config = function()
+      require("cmp").setup({ sources = { { name = "cmp_r" } } })
+      require("cmp_r").setup({})
+    end,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()

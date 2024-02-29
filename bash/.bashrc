@@ -191,6 +191,8 @@ set -o vi
 
 # Deactivate auto-activation of base environment
 export CONDA_AUTO_ACTIVATE_BASE=false
+
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/clemens/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
