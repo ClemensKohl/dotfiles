@@ -180,6 +180,8 @@ alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
 # Deactive conda auto activation
 export CONDA_AUTO_ACTIVATE_BASE=false
+
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/clemens/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

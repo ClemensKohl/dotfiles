@@ -36,6 +36,8 @@ vim.cmd([[
 --   vim.fn.StartR("Rdev")
 -- end
 
+-- vim.g.R_cmd = "R-4.2.2"
+
 vim.g.R_assign_map = "<<"
 
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme

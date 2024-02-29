@@ -25,7 +25,7 @@ assign(".First", function(){
 
 	if (R.Version()$status != "Under development (unstable)"){
 	 maj <- R.Version()$major
-	 min <- substr(R.Version()$minor, 1,1)
+	 min <- R.Version()$minor
 
 	 home <- system('echo $HOME', intern=TRUE)
 	 lib_dir <- paste0(home,"/R/",os_name,"/R",maj,".",min)
