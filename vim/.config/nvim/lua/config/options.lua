@@ -14,30 +14,9 @@ vim.cmd([[
     :set cino+=(0,W2
 ]])
 
--- set diagnostic options
-
--- vim.diagnostic.config({
---   virtual_text = false,
---   -- signs = true,
---   underline = false,
---   float = {
---     show_header = false,
---     source = "if_many",
---     border = "rounded",
---     focusable = false,
---   },
---   update_in_insert = false,
--- })
-
 -- Options for Nvim-R
 
--- StartRdevel = function()
---   vim.g.R_path = "~/bin"
---   vim.fn.StartR("Rdev")
--- end
-
--- vim.g.R_cmd = "R-4.2.2"
-
+-- doesnt seem to work anymore?
 vim.g.R_assign_map = "<<"
 
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme

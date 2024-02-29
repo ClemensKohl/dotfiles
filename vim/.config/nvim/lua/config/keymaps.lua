@@ -131,7 +131,7 @@ vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = 
 
 wk.register({
   ["<leader>"] = {
-    z = {
+    zd = {
       name = "Upload / Download",
       d = { "<cmd>TransferDownload<cr>", "Download from remote server (scp)" },
       u = { "<cmd>TransferUpload<cr>", "Upload to remote server (scp)" },
