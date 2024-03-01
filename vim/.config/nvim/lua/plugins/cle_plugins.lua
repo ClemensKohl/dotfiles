@@ -6,7 +6,10 @@ return {
   -- { "ellisonleao/gruvbox.nvim" },
 
   -- gruvbox but with softer contrast.
-  { "sainnhe/gruvbox-material" },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false,
+  },
 
   -- Catpuccino Theme - Miau!
   {
@@ -19,6 +22,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
+      compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
       transparent_background = false, -- disables setting the background color.
       integrations = {
         aerial = true,
@@ -62,6 +66,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    lazy = false,
     opts = {
       variant = "auto", -- auto, main, moon, or dawn
       dark_variant = "main", -- main, moon, or dawn
@@ -450,5 +455,15 @@ return {
     lazy = true,
     cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
     opts = {},
+  },
+
+  -- Typing training. Thats all.
+  {
+    "NStefan002/speedtyper.nvim",
+    cmd = "Speedtyper",
+    lazy = true,
+    opts = {
+      -- your config
+    },
   },
 }
