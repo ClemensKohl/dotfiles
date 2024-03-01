@@ -278,18 +278,18 @@ return {
   },
 
   -- --  Integration with R.
-  -- {
-  --   "jalvesaq/Nvim-R",
-  -- },
-
-  -- New Version of Nvim-R
   {
-    "R-nvim/R.nvim",
-    lazy = false,
+    "jalvesaq/Nvim-R",
   },
 
-  -- Needs cmp-r
-  { "R-nvim/cmp-r" },
+  -- New Version of Nvim-R
+  -- {
+  --   "R-nvim/R.nvim",
+  --   lazy = false,
+  -- },
+  --
+  -- -- Needs cmp-r
+  -- { "R-nvim/cmp-r" },
 
   -- Below is necessary for cmp-r
   -- Integrated into general nvim-cmp setup
@@ -316,10 +316,6 @@ return {
     dependencies = {
       "hrsh7th/cmp-emoji",
     },
-    config = function()
-      require("cmp").setup({ sources = { { name = "cmp_r" } } })
-      require("cmp_r").setup({})
-    end,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()
