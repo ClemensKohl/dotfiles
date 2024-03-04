@@ -2,6 +2,12 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Set gui font and size for GUI editors.
+vim.opt.guifont = { "JetBrainsMono NFM:style=Regular:h10" }
+vim.g.neovide_font_hinting = "none"
+vim.g.neovide_font_edging = "antialias"
+-- vim.g.neovide_font_edging = "subpixelantialias"
+
 -- Set the colorscheme
 vim.opt.termguicolors = true
 
