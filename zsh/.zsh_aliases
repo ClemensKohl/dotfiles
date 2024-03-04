@@ -25,7 +25,7 @@ then
   alias vgit="cd ~/gits/VingronLab/"
 fi
 
-alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' lvim"
+alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' nvim"
 alias r42vim="PATH='/opt/R/4.2.2/bin/:$PATH' nvim"
 
 ##########
