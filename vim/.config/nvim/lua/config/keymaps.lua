@@ -141,3 +141,25 @@ wk.register({
     },
   },
 })
+
+-- Molten
+wk.register({
+  ["<leader>"] = {
+    M = {
+      name = "Molten",
+      i = { ":MoltenInit<CR>", "Init Molten" },
+      e = { ":MoltenEvaluateOperator<CR>", "run operator selection" },
+      l = { ":MoltenEvaluateLine<CR>", "evaluate line" },
+      r = { ":MoltenReevaluateCell<CR>", "re-evaluate cell" },
+    },
+  },
+}, { mode = "n" })
+
+wk.register({
+  ["<leader>"] = {
+    M = {
+      name = "Molten",
+      r = { ":<C-u>MoltenEvaluateVisual<CR>gv", "evaluate visual selection" },
+    },
+  },
+}, { mode = "v" })
