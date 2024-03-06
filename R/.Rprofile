@@ -21,12 +21,12 @@
 
 new_lib <- function() {
   os_name <- system("bash ~/bin/R-version.sh", intern = TRUE)
+  home <- system("echo $HOME", intern = TRUE)
 
   if (R.Version()$status != "Under development (unstable)") {
     maj <- R.Version()$major
     min <- R.Version()$minor
 
-    home <- system("echo $HOME", intern = TRUE)
     lib_dir <- paste0(home, "/R/", os_name, "/R", maj, ".", min)
     system(paste0("mkdir -p ", lib_dir))
   } else {

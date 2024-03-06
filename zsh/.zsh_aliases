@@ -3,6 +3,7 @@
 ## General ##
 #############
 alias lg="lazygit"
+alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' nvim"
 
 ############
 ## Privat ##
@@ -25,9 +26,9 @@ then
   alias vgit="cd ~/gits/VingronLab/"
 fi
 
-alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' nvim"
-alias r42vim="PATH='/opt/R/4.2.2/bin/:$PATH' nvim"
-
+if [[ "$(whoami)" == "clemens" ]]; then
+  alias r42vim="PATH='/opt/R/4.2.2/bin/:$PATH' nvim"
+fi
 ##########
 ## Work ##
 ##########
@@ -50,6 +51,8 @@ if [[ "$(whoami)" == "kohl" ]]; then
     alias mxq-killall='$HOME/bin/mxqkillall.sh'
     alias mxqinfo="$HOME/bin/mxqtab.sh | column -t -s $'\t' | less -S"
 
+    alias r422vim="prun R-4.2.2-0 nvim"
+    alias r421vim="prun R-4.2.1-0 nvim"
 fi
 
 # Path to dot files on work computer

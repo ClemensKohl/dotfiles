@@ -200,6 +200,14 @@ return {
         "regex",
         "vim",
         "r",
+        "julia",
+        "vim",
+        "vimdoc",
+        "luadoc",
+        "json",
+        "html",
+        "yaml",
+        "c",
       })
     end,
   },
@@ -282,7 +290,7 @@ return {
     "jalvesaq/Nvim-R",
   },
 
-  -- New Version of Nvim-R
+  -- -- New Version of Nvim-R
   -- {
   --   "R-nvim/R.nvim",
   --   lazy = false,
@@ -290,17 +298,19 @@ return {
   --
   -- -- Needs cmp-r
   -- { "R-nvim/cmp-r" },
-
-  -- Below is necessary for cmp-r
-  -- Integrated into general nvim-cmp setup
+  --
+  -- -- Below is necessary for cmp-r
+  -- -- Integrated into general nvim-cmp setup
   -- {
   --   "hrsh7th/nvim-cmp",
-  --   config = function()
-  --     require("cmp").setup({ sources = {{ name = "cmp_r" }}})
-  --     require("cmp_r").setup({ })
+  --   dependencies = { "R-nvim/cmp-r" },
+  --   opts = function(_, opts)
+  --     ---@param opts cmp.ConfigSchema
+  --     local cmp = require("cmp")
+  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "cmp-r" } }))
   --   end,
   -- },
-
+  --
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
@@ -575,7 +585,107 @@ return {
   ------------------------
   -- Quarto kickstarter --
   ------------------------
+  -- Combination of the configs from the 2 links below.
   -- Remove if not using quarto
   -- https://github.com/jmbuhr/lazyvim-starter-for-quarto/blob/main/lua/plugins/quarto.lua
   -- https://github.com/benlubas/molten-nvim/blob/main/docs/Notebook-Setup.md
+
+  -- this taps into vim.ui.select and vim.ui.input
+  -- and in doing so currently breaks renaming in otter.nvim
+  { "stevearc/dressing.nvim", enabled = false },
+
+  {
+    "quarto-dev/quarto-nvim",
+    opts = {
+      lspFeatures = {
+        languages = { "r", "python", "julia", "bash", "html", "lua" },
+        chunks = "all",
+        diagnostics = {
+          enabled = true,
+          triggers = { "BufWritePost" },
+        },
+        completion = {
+          enabled = true,
+        },
+      },
+      -- keymap = {
+      --   -- NOTE: setup your own keymaps:
+      --   hover = "H",
+      --   definition = "gd",
+      --   rename = "<leader>rn",
+      --   references = "gr",
+      --   format = "<leader>gf",
+      -- },
+      codeRunner = {
+        enabled = true,
+        default_method = "molten",
+      },
+    },
+    ft = { "quarto", "markdown" },
+    -- keys = {
+    --   { "<leader>qa", ":QuartoActivate<cr>", desc = "quarto activate" },
+    --   { "<leader>qp", ":lua require'quarto'.quartoPreview()<cr>", desc = "quarto preview" },
+    --   { "<leader>qq", ":lua require'quarto'.quartoClosePreview()<cr>", desc = "quarto close" },
+    --   { "<leader>qh", ":QuartoHelp ", desc = "quarto help" },
+    --   { "<leader>qe", ":lua require'otter'.export()<cr>", desc = "quarto export" },
+    --   { "<leader>qE", ":lua require'otter'.export(true)<cr>", desc = "quarto export overwrite" },
+    --   { "<leader>qrr", ":QuartoSendAbove<cr>", desc = "quarto run to cursor" },
+    --   { "<leader>qra", ":QuartoSendAll<cr>", desc = "quarto run all" },
+    --   { "<leader><cr>", ":SlimeSend<cr>", desc = "send code chunk" },
+    --   { "<c-cr>", ":SlimeSend<cr>", desc = "send code chunk" },
+    --   { "<c-cr>", "<esc>:SlimeSend<cr>i", mode = "i", desc = "send code chunk" },
+    --   { "<c-cr>", "<Plug>SlimeRegionSend<cr>", mode = "v", desc = "send code chunk" },
+    --   { "<cr>", "<Plug>SlimeRegionSend<cr>", mode = "v", desc = "send code chunk" },
+    --   { "<leader>ctr", ":split term://R<cr>", desc = "terminal: R" },
+    --   { "<leader>cti", ":split term://ipython<cr>", desc = "terminal: ipython" },
+    --   { "<leader>ctp", ":split term://python<cr>", desc = "terminal: python" },
+    --   { "<leader>ctj", ":split term://julia<cr>", desc = "terminal: julia" },
+    -- },
+  },
+
+  --provides lsp features and a code completion source for code embedded in other documents
+  {
+    "jmbuhr/otter.nvim",
+    opts = {
+      buffers = {
+        set_filetype = true,
+      },
+    },
+  },
+  -- change nvim-cmpt settings
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "jmbuhr/otter.nvim" },
+    opts = function(_, opts)
+      ---@param opts cmp.ConfigSchema
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "otter" } }))
+    end,
+  },
+
+  -- not sure what we need to configure for.
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        pyright = {},
+        r_language_server = {},
+        julials = {},
+        marksman = {
+          -- also needs:
+          -- $home/.config/marksman/config.toml :
+          -- [core]
+          -- markdown.file_extensions = ["md", "markdown", "qmd"]
+          filetypes = { "markdown", "quarto" },
+          root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
+        },
+      },
+    },
+  },
+
+  ----------------
+  -- Quarto END --
+  ----------------
 }
