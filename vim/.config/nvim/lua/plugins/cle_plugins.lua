@@ -571,4 +571,11 @@ return {
     -- Depending on your nvim distro or config you may need to make the loading not lazy
     -- lazy=false,
   },
+
+  ------------------------
+  -- Quarto kickstarter --
+  ------------------------
+  -- Remove if not using quarto
+  -- https://github.com/jmbuhr/lazyvim-starter-for-quarto/blob/main/lua/plugins/quarto.lua
+  -- https://github.com/benlubas/molten-nvim/blob/main/docs/Notebook-Setup.md
 }
