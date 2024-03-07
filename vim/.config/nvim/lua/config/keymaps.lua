@@ -144,22 +144,64 @@ wk.register({
 
 -- Molten
 wk.register({
-  ["<leader>"] = {
+  ["<localleader>"] = {
     M = {
       name = "Molten",
       i = { ":MoltenInit<CR>", "Init Molten" },
       e = { ":MoltenEvaluateOperator<CR>", "run operator selection" },
       l = { ":MoltenEvaluateLine<CR>", "evaluate line" },
       r = { ":MoltenReevaluateCell<CR>", "re-evaluate cell" },
+      s = { ":noautocmd MoltenEnterOutput<CR>", "open output window" },
+      h = { ":MoltenHideOutput<CR>", "close output window" },
+      d = { ":MoltenDelete<CR>", "delete Molten cell" },
     },
   },
 }, { mode = "n" })
 
 wk.register({
-  ["<leader>"] = {
+  ["<localleader>"] = {
     M = {
       name = "Molten",
       r = { ":<C-u>MoltenEvaluateVisual<CR>gv", "evaluate visual selection" },
     },
   },
 }, { mode = "v" })
+
+-- Quarto
+local runner = require("quarto.runner")
+
+wk.register({
+  ["<localleader>"] = {
+    q = {
+      name = "Quarto",
+      c = { runner.run_cell, "run cell" },
+      a = { runner.run_above, "run cell and above" },
+      A = { runner.run_all, "run all cells" },
+      l = { runner.run_line, "run line" },
+      R = {
+        function()
+          runner.run_all(true)
+        end,
+        "run all cells of all languages",
+      },
+    },
+  },
+}, { mode = "n" })
+
+wk.register({
+  ["<localleader>"] = {
+    q = {
+      name = "Quarto",
+      r = { runner.run_range, "run visual range" },
+    },
+  },
+}, { mode = "v" })
+
+-- vim.keymap.set("n", "<localleader>rc", runner.run_cell,  { desc = "run cell", silent = true })
+-- vim.keymap.set("n", "<localleader>ra", runner.run_above, { desc = "run cell and above", silent = true })
+-- vim.keymap.set("n", "<localleader>rA", runner.run_all,   { desc = "run all cells", silent = true })
+-- vim.keymap.set("n", "<localleader>rl", runner.run_line,  { desc = "run line", silent = true })
+-- vim.keymap.set("v", "<localleader>r",  runner.run_range, { desc = "run visual range", silent = true })
+-- vim.keymap.set("n", "<localleader>RA", function()
+--   runner.run_all(true)
+-- end, { desc = "run all cells of all languages", silent = true })

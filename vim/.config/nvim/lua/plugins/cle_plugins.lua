@@ -177,15 +177,15 @@ return {
   },
 
   -- Configure treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      indent = {
-        enable = true,
-        disable = { "r" },
-      },
-    },
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = {
+  --     indent = {
+  --       enable = true,
+  --       disable = { "r" },
+  --     },
+  --   },
+  -- },
 
   -- Extends default treesitter config.
   {
@@ -683,6 +683,26 @@ return {
         },
       },
     },
+  },
+
+  -- Background for code blocks and nicer headlines.
+  {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("headlines").setup({
+        quarto = {
+          query = vim.treesitter.query.parse(
+            "markdown",
+            [[
+                (fenced_code_block) @codeblock
+                ]]
+          ),
+          codeblock_highlight = "CodeBlock",
+          treesitter_language = "markdown",
+        },
+      })
+    end,
   },
 
   ----------------
