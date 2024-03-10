@@ -7,3 +7,5 @@
 	directory = /project/CAclust_scripts/CAclust_paper/Code_submission
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false

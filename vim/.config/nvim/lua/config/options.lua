@@ -2,42 +2,29 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Set gui font and size for GUI editors.
+vim.opt.guifont = { "JetBrainsMono NFM:style=Regular:h10" }
+vim.g.neovide_font_hinting = "none"
+vim.g.neovide_font_edging = "antialias"
+-- vim.g.neovide_font_edging = "subpixelantialias"
+
 -- Set the colorscheme
 vim.opt.termguicolors = true
 
 -- General vim setup
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert x spaces for a tab
+vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 
 -- align function parameters
 vim.cmd([[
     :set cino+=(0,W2
 ]])
 
--- set diagnostic options
-
--- vim.diagnostic.config({
---   virtual_text = false,
---   -- signs = true,
---   underline = false,
---   float = {
---     show_header = false,
---     source = "if_many",
---     border = "rounded",
---     focusable = false,
---   },
---   update_in_insert = false,
--- })
-
 -- Options for Nvim-R
 
--- StartRdevel = function()
---   vim.g.R_path = "~/bin"
---   vim.fn.StartR("Rdev")
--- end
-
--- vim.g.R_cmd = "R-4.2.2"
-
+-- doesnt seem to work anymore?
 vim.g.R_assign_map = "<<"
 
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme
@@ -63,3 +50,10 @@ Toggle_colorcolumn = function()
     vim.opt.colorcolumn = ""
   end
 end
+
+-- Set up for molten-nvm
+
+-- Require image.nvim setup first:
+-- Example for configuring Neovim to load user-installed installed Lua rocks:
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"

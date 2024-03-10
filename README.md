@@ -55,3 +55,9 @@ Fonts such as JetBrains Mono and Nerd Font Symbols are required for kitty and nv
 # OH-MY-ZSH
 The ./zsh folder contains the custom directory used by [OH-MY-ZSH](https://github.com/ohmyzsh/ohmyzsh). When updating oh-m-zsh via `$ omz update` it will not update if the `$ZSH_CUSTOM` directory is symlinked to `~/.oh-my-zsh/custom`. Instead it is better to set the `$ZSH_CUSTOM` variable to the dotfiles folder in the `.zshrc` file. This is done in the `.zshrc` file shipped in this repository.
 
+# TODO
+
+## NeoVim
+- [ ] Get plots to show in molten.
+- [ ] Make utils toggle for color plugin.
+

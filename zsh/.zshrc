@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [ -d "$HOME/.npm-global/bin" ]; then
+  export PATH="$PATH:$HOME/.npm-global/bin"
+fi
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 

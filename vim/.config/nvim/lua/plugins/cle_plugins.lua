@@ -6,7 +6,10 @@ return {
   -- { "ellisonleao/gruvbox.nvim" },
 
   -- gruvbox but with softer contrast.
-  { "sainnhe/gruvbox-material" },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false,
+  },
 
   -- Catpuccino Theme - Miau!
   {
@@ -19,6 +22,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
+      compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
       transparent_background = false, -- disables setting the background color.
       integrations = {
         aerial = true,
@@ -62,6 +66,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    lazy = false,
     opts = {
       variant = "auto", -- auto, main, moon, or dawn
       dark_variant = "main", -- main, moon, or dawn
@@ -172,15 +177,15 @@ return {
   },
 
   -- Configure treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      indent = {
-        enable = true,
-        disable = { "r" },
-      },
-    },
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = {
+  --     indent = {
+  --       enable = true,
+  --       disable = { "r" },
+  --     },
+  --   },
+  -- },
 
   -- Extends default treesitter config.
   {
@@ -195,6 +200,14 @@ return {
         "regex",
         "vim",
         "r",
+        "julia",
+        "vim",
+        "vimdoc",
+        "luadoc",
+        "json",
+        "html",
+        "yaml",
+        "c",
       })
     end,
   },
@@ -273,29 +286,31 @@ return {
   },
 
   -- --  Integration with R.
-  -- {
-  --   "jalvesaq/Nvim-R",
-  -- },
-
-  -- New Version of Nvim-R
   {
-    "R-nvim/R.nvim",
-    lazy = false,
+    "jalvesaq/Nvim-R",
   },
 
-  -- Needs cmp-r
-  { "R-nvim/cmp-r" },
-
-  -- Below is necessary for cmp-r
-  -- Integrated into general nvim-cmp setup
+  -- -- New Version of Nvim-R
+  -- {
+  --   "R-nvim/R.nvim",
+  --   lazy = false,
+  -- },
+  --
+  -- -- Needs cmp-r
+  -- { "R-nvim/cmp-r" },
+  --
+  -- -- Below is necessary for cmp-r
+  -- -- Integrated into general nvim-cmp setup
   -- {
   --   "hrsh7th/nvim-cmp",
-  --   config = function()
-  --     require("cmp").setup({ sources = {{ name = "cmp_r" }}})
-  --     require("cmp_r").setup({ })
+  --   dependencies = { "R-nvim/cmp-r" },
+  --   opts = function(_, opts)
+  --     ---@param opts cmp.ConfigSchema
+  --     local cmp = require("cmp")
+  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "cmp-r" } }))
   --   end,
   -- },
-
+  --
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
@@ -311,10 +326,6 @@ return {
     dependencies = {
       "hrsh7th/cmp-emoji",
     },
-    config = function()
-      require("cmp").setup({ sources = { { name = "cmp_r" } } })
-      require("cmp_r").setup({})
-    end,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()
@@ -451,4 +462,250 @@ return {
     cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
     opts = {},
   },
+
+  -- Typing training. Thats all.
+  {
+    "NStefan002/speedtyper.nvim",
+    cmd = "Speedtyper",
+    lazy = true,
+    opts = {
+      -- your config
+    },
+  },
+
+  -- Add viewing colors
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({
+        filetypes = { "*" },
+        user_default_options = {
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          names = true, -- "Name" codes like Blue or blue
+          RRGGBBAA = false, -- #RRGGBBAA hex codes
+          AARRGGBB = false, -- 0xAARRGGBB hex codes
+          rgb_fn = false, -- CSS rgb() and rgba() functions
+          hsl_fn = false, -- CSS hsl() and hsla() functions
+          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          -- Available modes for `mode`: foreground, background,  virtualtext
+          mode = "background", -- Set the display mode.
+          -- Available methods are false / true / "normal" / "lsp" / "both"
+          -- True is same as normal
+          tailwind = false, -- Enable tailwind colors
+          -- parsers can contain values used in |user_default_options|
+          sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+          virtualtext = "■",
+          -- update color values even if buffer is not focused
+          -- example use: cmp_menu, cmp_docs
+          always_update = false,
+        },
+        -- all the sub-options of filetypes apply to buftypes
+        buftypes = {},
+      })
+    end,
+  },
+
+  -- Work in Jupyter Notebooks.
+  {
+    "benlubas/molten-nvim",
+    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+    dependencies = { "3rd/image.nvim" },
+    build = ":UpdateRemotePlugins",
+    init = function()
+      -- these are examples, not defaults. Please see the readme
+      vim.g.molten_image_provider = "image.nvim"
+      vim.g.molten_output_win_max_height = 20
+      -- I find auto open annoying, keep in mind setting this option will require setting
+      -- a keybind for `:noautocmd MoltenEnterOutput` to open the output again
+      vim.g.molten_auto_open_output = true
+
+      -- optional, I like wrapping. works for virt text and the output window
+      vim.g.molten_wrap_output = true
+
+      -- Output as virtual text. Allows outputs to always be shown, works with images, but can
+      -- be buggy with longer images
+      vim.g.molten_virt_text_output = true
+
+      -- this will make it so the output shows up below the \`\`\` cell delimiter
+      vim.g.molten_virt_lines_off_by_1 = true
+    end,
+  },
+
+  -- image.nvim - required for image showing in molten.
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    opts = {
+      backend = "kitty",
+      integrations = {
+        markdown = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+        },
+        neorg = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          filetypes = { "norg" },
+        },
+      },
+      kitty_method = "normal",
+      max_width = 100, -- tweak to preference
+      max_height = 12, -- ^
+      max_height_window_percentage = math.huge, -- this is necessary for a good experience
+      max_width_window_percentage = math.huge,
+      window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
+      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+      editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+      tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+      hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
+    },
+  },
+
+  -- Make Jupyter notebooks into text files
+  {
+    "GCBallesteros/jupytext.nvim",
+    config = function()
+      require("jupytext").setup({
+        style = "markdown",
+        output_extension = "md",
+        force_ft = "markdown",
+      })
+    end,
+    -- Depending on your nvim distro or config you may need to make the loading not lazy
+    -- lazy=false,
+  },
+
+  ------------------------
+  -- Quarto kickstarter --
+  ------------------------
+  -- Combination of the configs from the 2 links below.
+  -- Remove if not using quarto
+  -- https://github.com/jmbuhr/lazyvim-starter-for-quarto/blob/main/lua/plugins/quarto.lua
+  -- https://github.com/benlubas/molten-nvim/blob/main/docs/Notebook-Setup.md
+
+  -- this taps into vim.ui.select and vim.ui.input
+  -- and in doing so currently breaks renaming in otter.nvim
+  { "stevearc/dressing.nvim", enabled = false },
+
+  {
+    "quarto-dev/quarto-nvim",
+    opts = {
+      lspFeatures = {
+        languages = { "r", "python", "julia", "bash", "html", "lua" },
+        chunks = "all",
+        diagnostics = {
+          enabled = true,
+          triggers = { "BufWritePost" },
+        },
+        completion = {
+          enabled = true,
+        },
+      },
+      -- keymap = {
+      --   -- NOTE: setup your own keymaps:
+      --   hover = "H",
+      --   definition = "gd",
+      --   rename = "<leader>rn",
+      --   references = "gr",
+      --   format = "<leader>gf",
+      -- },
+      codeRunner = {
+        enabled = true,
+        default_method = "molten",
+      },
+    },
+    ft = { "quarto", "markdown" },
+    -- keys = {
+    --   { "<leader>qa", ":QuartoActivate<cr>", desc = "quarto activate" },
+    --   { "<leader>qp", ":lua require'quarto'.quartoPreview()<cr>", desc = "quarto preview" },
+    --   { "<leader>qq", ":lua require'quarto'.quartoClosePreview()<cr>", desc = "quarto close" },
+    --   { "<leader>qh", ":QuartoHelp ", desc = "quarto help" },
+    --   { "<leader>qe", ":lua require'otter'.export()<cr>", desc = "quarto export" },
+    --   { "<leader>qE", ":lua require'otter'.export(true)<cr>", desc = "quarto export overwrite" },
+    --   { "<leader>qrr", ":QuartoSendAbove<cr>", desc = "quarto run to cursor" },
+    --   { "<leader>qra", ":QuartoSendAll<cr>", desc = "quarto run all" },
+    --   { "<leader><cr>", ":SlimeSend<cr>", desc = "send code chunk" },
+    --   { "<c-cr>", ":SlimeSend<cr>", desc = "send code chunk" },
+    --   { "<c-cr>", "<esc>:SlimeSend<cr>i", mode = "i", desc = "send code chunk" },
+    --   { "<c-cr>", "<Plug>SlimeRegionSend<cr>", mode = "v", desc = "send code chunk" },
+    --   { "<cr>", "<Plug>SlimeRegionSend<cr>", mode = "v", desc = "send code chunk" },
+    --   { "<leader>ctr", ":split term://R<cr>", desc = "terminal: R" },
+    --   { "<leader>cti", ":split term://ipython<cr>", desc = "terminal: ipython" },
+    --   { "<leader>ctp", ":split term://python<cr>", desc = "terminal: python" },
+    --   { "<leader>ctj", ":split term://julia<cr>", desc = "terminal: julia" },
+    -- },
+  },
+
+  --provides lsp features and a code completion source for code embedded in other documents
+  {
+    "jmbuhr/otter.nvim",
+    opts = {
+      buffers = {
+        set_filetype = true,
+      },
+    },
+  },
+  -- change nvim-cmpt settings
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "jmbuhr/otter.nvim" },
+    opts = function(_, opts)
+      ---@param opts cmp.ConfigSchema
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "otter" } }))
+    end,
+  },
+
+  -- not sure what we need to configure for.
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        pyright = {},
+        r_language_server = {},
+        julials = {},
+        marksman = {
+          -- also needs:
+          -- $home/.config/marksman/config.toml :
+          -- [core]
+          -- markdown.file_extensions = ["md", "markdown", "qmd"]
+          filetypes = { "markdown", "quarto" },
+          root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
+        },
+      },
+    },
+  },
+
+  -- Background for code blocks and nicer headlines.
+  {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("headlines").setup({
+        quarto = {
+          query = vim.treesitter.query.parse(
+            "markdown",
+            [[
+                (fenced_code_block) @codeblock
+                ]]
+          ),
+          codeblock_highlight = "CodeBlock",
+          treesitter_language = "markdown",
+        },
+      })
+    end,
+  },
+
+  ----------------
+  -- Quarto END --
+  ----------------
 }
