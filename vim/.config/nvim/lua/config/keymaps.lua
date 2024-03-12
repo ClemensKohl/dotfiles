@@ -5,6 +5,8 @@
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
+-- Toggle Color highlighting of Hex codes
+vim.keymap.set("n", "<leader>zh", "<cmd>ColorizerToggle<cr>", { desc = "Toggle Colors Highlighting" })
 -- Buffers/tabs with telescope
 vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
 vim.keymap.set("n", "<leader>bt", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
