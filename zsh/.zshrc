@@ -8,6 +8,11 @@ fi
 if [ -d "$HOME/.npm-global/bin" ]; then
   export PATH="$PATH:$HOME/.npm-global/bin"
 fi
+
+if [ -d "$HOME/.config/emacs/bin" ]; then
+  export PATH="$PATH:$HOME/.config/emacs/bin"
+fi
+
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 
