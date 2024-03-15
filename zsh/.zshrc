@@ -47,7 +47,7 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
 	PATH=$HOME/.local/bin:$PATH
 fi
-export PATH=/usr/local/bin:/usr/local/package/bin:$PATH
+export PATH=$PATH:/usr/local/bin:/usr/local/package/bin
 
 # Set SSH User
 export SSH_DEFAULT_USER=$USER
