@@ -31,6 +31,7 @@ stow --target=$HOME kitty
 stow --target=$HOME kitty
 stow --target=$HOME keyboard # Not working currently
 stow --target=$HOME kde
+stow --target=$HOME stow
 
 ```
 
