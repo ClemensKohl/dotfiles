@@ -170,12 +170,13 @@ wk.register({
 }, { mode = "v" })
 
 -- Quarto
-local runner = require("quarto.runner")
+runner = require("quarto.runner")
 
 wk.register({
   ["<localleader>"] = {
     q = {
       name = "Quarto",
+      i = { ":QuartoActivate<cr>", "quarto activate" },
       c = { runner.run_cell, "run cell" },
       a = { runner.run_above, "run cell and above" },
       A = { runner.run_all, "run all cells" },

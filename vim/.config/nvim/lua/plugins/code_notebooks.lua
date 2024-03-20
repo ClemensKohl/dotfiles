@@ -114,7 +114,7 @@ return {
         default_method = "molten",
       },
     },
-    ft = { "quarto", "markdown" },
+    ft = { "quarto", "markdown", "ipython" },
     -- keys = {
     --   { "<leader>qa", ":QuartoActivate<cr>", desc = "quarto activate" },
     --   { "<leader>qp", ":lua require'quarto'.quartoPreview()<cr>", desc = "quarto preview" },
