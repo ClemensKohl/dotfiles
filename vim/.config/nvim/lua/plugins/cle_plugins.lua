@@ -142,31 +142,6 @@ return {
     },
   },
 
-  -- --  Integration with R.
-  {
-    "jalvesaq/Nvim-R",
-  },
-
-  -- -- New Version of Nvim-R
-  -- {
-  --   "R-nvim/R.nvim",
-  --   lazy = false,
-  -- },
-  --
-  -- -- Needs cmp-r
-  -- { "R-nvim/cmp-r" },
-  --
-  -- -- Below is necessary for cmp-r
-  -- -- Integrated into general nvim-cmp setup
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = { "R-nvim/cmp-r" },
-  --   opts = function(_, opts)
-  --     ---@param opts cmp.ConfigSchema
-  --     local cmp = require("cmp")
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "cmp-r" } }))
-  --   end,
-  -- },
   --
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
