@@ -43,6 +43,12 @@ stow --target=$HOME --restow */
 
 But make sure there aren't any weird folders in your dot_files repository! (Backups, incorrect folder structure ...)
 The --restow parameter tells stow to unstow the packages first before stowing them again.
+If you want to unstow a package, you can use the following command:
+``` bash
+stow --target=$HOME --delete zsh
+```
+
+If you want a specific file or folder to be ignored (not stowed), add it to the `.stow-local-ignore` file.
 
 # Bash configuration
 Some things, e.g. conda initializaton and computer specific aliases are difficult to manage with one script.
