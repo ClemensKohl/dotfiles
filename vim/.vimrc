@@ -3,6 +3,9 @@ syntax on
 set background=dark
 set mouse=  " disables the mouse
 
+" Ask for confirmation when handling unsaved or read-only files
+set confirm
+
 if !has('nvim')
     " Change cursor shapes based on whether we are in insert mode,
     " see https://vi.stackexchange.com/questions/9131/i-cant-switch-to-cursor-in-insert-mode
@@ -15,6 +18,10 @@ if !has('nvim')
     " The number of color to use
     set t_Co=256
 endif
+
+"
+" General settings
+"
 
 set number
 set showmatch " Shows matching brackets
@@ -55,7 +62,24 @@ set cursorline
 " Minimum lines to keep above and below cursor when scrolling
 set scrolloff=3
 
- " map leader to Space
+" Auto-write the file based on some condition
+set autowrite
+
+" Show hostname, full path of file and last-mod time on the window title. The
+" meaning of the format str for strftime can be found in
+" http://man7.org/linux/man-pages/man3/strftime.3.html. The function to get
+" lastmod time is drawn from https://stackoverflow.com/q/8426736/6064933
+set title
+set titlestring=
+set titlestring+=%(%{hostname()}\ \ %)
+set titlestring+=%(%{expand('%:p')}\ \ %)
+set titlestring+=%{strftime('%Y-%m-%d\ %H:%M',getftime(expand('%')))}
+
+"
+" Basic keymaps
+"
+
+" map leader to Space
 let mapleader = " "
 
 " " Copy to clipboard
@@ -71,9 +95,10 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Switch between buffers 
-map <leader>b :bnext<cr>
-map <leader>B :bprevious<cr>
-map <leader>d :bdelete<cr>
+map <leader>bn :bnext<cr>
+map <leader>bb :bprevious<cr>
+map <leader>bd :bdelete<cr>
+map <leader>bf :bufffers<cr>
 
 " Move between splits
 " Use ctrl-[hjkl] to select the active split!
@@ -81,6 +106,10 @@ nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
+
+"
+" PLUGINS
+"
 
 " Install vim-plug if not found
 
@@ -139,3 +168,5 @@ function! StripTrailingWhitespaces() abort
     keeppatterns %s/\v\s+$//e
     call winrestview(l:save)
 endfunction
+
+map <F5> :call StripTrailingWhitespaces()<CR>
