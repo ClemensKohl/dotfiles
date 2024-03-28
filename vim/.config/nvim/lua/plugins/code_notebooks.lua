@@ -1,3 +1,7 @@
+-- all the modules can easily be turned off:
+-- stylua: ignore
+-- if true then return {} end
+
 return {
 
   -- Work in Jupyter Notebooks.

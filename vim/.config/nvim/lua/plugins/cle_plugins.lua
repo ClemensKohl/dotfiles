@@ -64,6 +64,7 @@ return {
         "yaml",
         "c",
         "cpp",
+        "rust",
       })
     end,
   },
@@ -77,6 +78,7 @@ return {
         "bash-language-server",
         "pyright",
         "clangd",
+        "rust-analyzer",
       },
     },
   },
