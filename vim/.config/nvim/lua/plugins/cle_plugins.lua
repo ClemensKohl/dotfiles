@@ -312,7 +312,7 @@ return {
     "NvChad/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({
-        filetypes = { "*" },
+        filetypes = { "R", "r", "py" },
         user_default_options = {
           RGB = true, -- #RGB hex codes
           RRGGBB = true, -- #RRGGBB hex codes

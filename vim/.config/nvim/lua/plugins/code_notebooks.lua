@@ -86,10 +86,11 @@ return {
   -- Remove if not using quarto
   -- https://github.com/jmbuhr/lazyvim-starter-for-quarto/blob/main/lua/plugins/quarto.lua
   -- https://github.com/benlubas/molten-nvim/blob/main/docs/Notebook-Setup.md
-
+  
+  -- NOTE:commented out by cle. Uncomment if there are problems!
   -- this taps into vim.ui.select and vim.ui.input
   -- and in doing so currently breaks renaming in otter.nvim
-  { "stevearc/dressing.nvim", enabled = false },
+  -- { "stevearc/dressing.nvim", enabled = false },
 
   {
     "quarto-dev/quarto-nvim",
