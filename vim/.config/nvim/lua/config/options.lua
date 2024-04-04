@@ -32,7 +32,7 @@ vim.g.Rout_more_colors = 1
 
 -- This uses vims indentation plugin.
 -- In the future neovim will replace it with treesitter and this might break!
-vim.g.r_indent_align_args = 0
+-- vim.g.r_indent_align_args = 0
 
 -- allow correct continuation for R/Roxygen comments
 -- vim.cmd([[
