@@ -300,16 +300,6 @@ return {
     opts = {},
   },
 
-  -- Typing training. Thats all.
-  {
-    "NStefan002/speedtyper.nvim",
-    cmd = "Speedtyper",
-    lazy = true,
-    opts = {
-      -- your config
-    },
-  },
-
   -- Add viewing colors
   {
     "NvChad/nvim-colorizer.lua",
