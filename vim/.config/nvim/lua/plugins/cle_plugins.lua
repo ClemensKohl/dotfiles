@@ -1,6 +1,9 @@
 -- Plugins loaded by clemens.
 
 return {
+  -- disable mini.surround
+  -- I don't like it.
+  -- { "echasnovski/mini.pairs", enabled = false },
 
   -- Configure LSP
   {
@@ -32,15 +35,15 @@ return {
   },
 
   -- Configure treesitter
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = {
-  --     indent = {
-  --       enable = true,
-  --       disable = { "r" },
-  --     },
-  --   },
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      indent = {
+        enable = true,
+        disable = { "r" },
+      },
+    },
+  },
 
   -- Extends default treesitter config.
   {
