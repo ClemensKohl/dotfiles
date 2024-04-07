@@ -1,0 +1,24 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/kohl/PhD/gits/ClemensKohl/dotfiles
+- /home/kohl/PhD/gits/VingronLab/CAbiNet
+- /home/kohl/PhD/gits/VingronLab/APL
+- /project/CAclust_scripts/CAclust_paper/2024_NAR_submission_files
+- /home/kohl/PhD/gits/VingronLab/CAbiNet_paper
+- /project/kohl_analysis/analysis/CAclust_scripts/CAclust_paper/2024_NAR_submission_files
+- /project/kohl_analysis/analysis/CAdir/benchmarking
+- /home/kohl/PhD/gits/ClemensKohl/CAdir
+- /project/kohl_analysis/analysis/CAdir/CAdir
+- /home/kohl/PhD/gits/ClemensKohl/RUtils
+- /home/kohl/PhD/gits/ClemensKohl/CAdir_paper
+- /project/kohl_analysis/analysis/CA_means/CAmeans
+- /project/kohl_analysis/analysis/CAbiNet/CAbiNet
+- /project/CAclust_scripts/CAclust_paper/2024_NAR_renv
+- /home/kohl/PhD/gits/AlessandroDiamanti/mcioa
+- /home/kohl/PhD/gits/ClemensKohl/mcioa
+startuppopupversion: 5
+customcommandshistory:
+- q
+- bugfixes
+hidecommandlog: false
+ignorewhitespaceindiffview: false
