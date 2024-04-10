@@ -6,9 +6,12 @@ recentrepos:
 - /home/clemens/gits/VingronLab/CAbiNet
 - /home/clemens/gits/ClemensKohl/RUtils
 - /home/clemens/gits/ClemensKohl/CV
+- /home/kohl/PhD/gits/ClemensKohl/dotfiles
+- /home/kohl/PhD/gits/VingronLab/APL
+- /home/kohl/PhD/gits/VingronLab/CAbiNet
 startuppopupversion: 5
 customcommandshistory:
-- q
 - bugfixes
+- q
 hidecommandlog: false
 ignorewhitespaceindiffview: false
