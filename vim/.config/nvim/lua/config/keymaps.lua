@@ -124,8 +124,13 @@ wk.register({
 --   vim.api.nvim_feedkeys("ggg@G''", "n", false)
 -- end)
 
--- custom functions
+----------------------
+-- custom functions --
+----------------------
+
 vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
+vim.keymap.set("n", "<leader>zo", "<cmd>lua Toggle_diagnostics()<cr>", { desc = "Toggle diagnostics (custom)" })
+vim.keymap.set("n", "<leader>zf", "<cmd>lua Turnoff_diagnostics()<cr>", { desc = "Turn off diagnostics (custom)" })
 
 --------------
 -- Transfer --

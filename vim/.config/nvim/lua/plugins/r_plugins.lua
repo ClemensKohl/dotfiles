@@ -1,6 +1,6 @@
 -- all the modules can easily be turned off:
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
 
 -- R plugins and configs
 return {

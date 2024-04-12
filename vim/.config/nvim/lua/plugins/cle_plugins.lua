@@ -12,7 +12,7 @@ return {
       -- options for vim.diagnostic.config()
       diagnostics = {
         -- signs = true,
-        underline = false,
+        underline = true,
         update_in_insert = false,
         virtual_text = false,
         -- virtual_text = {
@@ -82,6 +82,8 @@ return {
         "pyright",
         "clangd",
         "rust-analyzer",
+        "texlab",
+        "ltex"
       },
     },
   },
@@ -91,12 +93,12 @@ return {
     "rmagatti/goto-preview",
     config = function()
       require("goto-preview").setup({
-        width = 120, -- Width of the floating window
-        height = 25, -- Height of the floating window
+        width = 120,             -- Width of the floating window
+        height = 25,             -- Height of the floating window
         default_mappings = true, -- Bind default mappings
-        debug = false, -- Print debug information
-        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        debug = false,           -- Print debug information
+        opacity = nil,           -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        post_open_hook = nil,    -- A function taking two arguments, a buffer and a window to be ran as a hook.
       })
     end,
   },
@@ -224,7 +226,7 @@ return {
         -- * a percentage of the width / height of the editor when <= 1
         -- * a function that returns the width or the height
         width = 120, -- width of the Zen window
-        height = 1, -- height of the Zen window
+        height = 1,  -- height of the Zen window
         -- by default, no options are changed for the Zen window
         -- uncomment any of the options below, or add other vim.wo options you want to apply
         options = {
@@ -242,15 +244,15 @@ return {
         -- comment the lines to not apply the options
         options = {
           enabled = true,
-          ruler = false, -- disables the ruler text in the cmd line area
+          ruler = false,   -- disables the ruler text in the cmd line area
           showcmd = false, -- disables the command in the last line of the screen
           -- you may turn on/off statusline in zen mode by setting 'laststatus'
           -- statusline will be shown only if 'laststatus' == 3
-          laststatus = 0, -- turn off the statusline in zen mode
+          laststatus = 0,               -- turn off the statusline in zen mode
         },
-        twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+        twilight = { enabled = true },  -- enable to start Twilight when zen mode opens
         gitsigns = { enabled = false }, -- disables git signs
-        tmux = { enabled = false }, -- disables the tmux statusline
+        tmux = { enabled = false },     -- disables the tmux statusline
         -- this will change the font size on kitty when in zen mode
         -- to make this work, you need to set the following kitty options:
         -- - allow_remote_control socket-only
@@ -276,10 +278,10 @@ return {
         -- we try to get the foreground from the highlight groups or fallback color
         color = { "Normal", "#ffffff" },
         term_bg = "#000000", -- if guibg=NONE, this will be used to calculate text color
-        inactive = true, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+        inactive = true,     -- when true, other windows will be fully dimmed (unless they contain the same buffer)
       },
-      context = 10, -- amount of lines we will try to show around the current line
-      treesitter = true, -- use treesitter when available for the filetype
+      context = 10,          -- amount of lines we will try to show around the current line
+      treesitter = true,     -- use treesitter when available for the filetype
       -- treesitter is used to automatically expand the visible text,
       -- but you can further control the types of nodes that should always be fully expanded
       expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
@@ -307,20 +309,20 @@ return {
       require("colorizer").setup({
         filetypes = { "R", "r", "py" },
         user_default_options = {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          names = true, -- "Name" codes like Blue or blue
-          RRGGBBAA = false, -- #RRGGBBAA hex codes
-          AARRGGBB = false, -- 0xAARRGGBB hex codes
-          rgb_fn = false, -- CSS rgb() and rgba() functions
-          hsl_fn = false, -- CSS hsl() and hsla() functions
-          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          RGB = true,          -- #RGB hex codes
+          RRGGBB = true,       -- #RRGGBB hex codes
+          names = true,        -- "Name" codes like Blue or blue
+          RRGGBBAA = false,    -- #RRGGBBAA hex codes
+          AARRGGBB = false,    -- 0xAARRGGBB hex codes
+          rgb_fn = false,      -- CSS rgb() and rgba() functions
+          hsl_fn = false,      -- CSS hsl() and hsla() functions
+          css = false,         -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false,      -- Enable all CSS *functions*: rgb_fn, hsl_fn
           -- Available modes for `mode`: foreground, background,  virtualtext
           mode = "background", -- Set the display mode.
           -- Available methods are false / true / "normal" / "lsp" / "both"
           -- True is same as normal
-          tailwind = false, -- Enable tailwind colors
+          tailwind = false,                               -- Enable tailwind colors
           -- parsers can contain values used in |user_default_options|
           sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
