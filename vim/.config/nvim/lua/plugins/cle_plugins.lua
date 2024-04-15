@@ -58,6 +58,7 @@ return {
         "regex",
         "vim",
         "r",
+        "rnoweb",
         "julia",
         "vim",
         "vimdoc",

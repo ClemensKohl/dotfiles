@@ -1,7 +1,7 @@
-return {
+-- stylua: ignore
+-- if true then return {} end
 
-  -- Add cmp-r for R
-  { "R-nvim/cmp-r" },
+return {
 
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
@@ -17,7 +17,6 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
-      "R-nvim/cmp-r",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -29,10 +28,6 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
-
-      table.insert(opts.sources, { name = "emoji" })
-      table.insert(opts.sources, { name = "cmp-r" })
-      require("cmp_r").setup({})
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -58,6 +53,16 @@ return {
           end
         end, { "i", "s" }),
       })
+    end,
+  },
+
+  -- add emoji cmp
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "emoji" })
     end,
   },
 }
