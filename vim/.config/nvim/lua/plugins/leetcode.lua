@@ -1,4 +1,7 @@
 -- leetcode.nvim config
+-- stylua: ignore
+if true then return {} end
+
 -- Call via:
 -- $ nvim leetcode.nvim
 -- F12 or inspect -> Network -> filter for graphql -> post -> Cookie -> Copy Value
