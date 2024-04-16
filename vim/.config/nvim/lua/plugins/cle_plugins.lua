@@ -64,6 +64,10 @@ return {
               --   ["en-US"] = DICT_words,
               --   ["en-GB"] = DICT_words,
               -- },
+              language = "en-US", -- "de-DE"
+              additionalRules = {
+                languageModel = "~/.local/share/ngrams/",
+              },
             },
           },
         },
@@ -341,11 +345,11 @@ return {
       workspaces = {
         {
           name = "PhD",
-          path = "~/PhD/Notes/PhD",
+          path = "~/Obsidian/PhD",
         },
         {
           name = "work",
-          path = "~/PhD/Notes/Privat",
+          path = "~/Obsidian/Privat",
         },
       },
     },
