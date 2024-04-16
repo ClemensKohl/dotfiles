@@ -1,5 +1,16 @@
 -- Plugins loaded by clemens.
 
+-- ===========================================
+--  Add user dictionary for ltex-ls
+--  * en.utf-8.add must be created using `zg` when set spell is on
+-- ===========================================
+-- local path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+-- DICT_words = {}
+--
+-- for word in io.open(path, "r"):lines() do
+--   table.insert(DICT_words, word)
+-- end
+
 return {
   -- disable mini.surround
   -- I don't like it.
@@ -30,6 +41,32 @@ return {
           focusable = false,
         },
         severity_sort = true,
+      },
+      servers = {
+        ltex = {
+          settings = {
+            ltex = {
+              -- on_attach = on_attach,
+              -- capabilities = capabilities,
+              disabledRules = {
+                ["en"] = { "MORFOLOGIK_RULE_EN" },
+                ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
+                ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
+                ["en-GB"] = { "MORFOLOGIK_RULE_EN_GB" },
+                ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
+                ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
+                ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
+                ["es"] = { "MORFOLOGIK_RULE_ES" },
+                ["it"] = { "MORFOLOGIK_RULE_IT_IT" },
+                ["de"] = { "MORFOLOGIK_RULE_DE_DE" },
+              },
+              -- dictionary = {
+              --   ["en-US"] = DICT_words,
+              --   ["en-GB"] = DICT_words,
+              -- },
+            },
+          },
+        },
       },
     },
   },
@@ -281,5 +318,36 @@ return {
         buftypes = {},
       })
     end,
+  },
+
+  -- Obsidian integration
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+    --   "BufReadPre path/to/my-vault/**.md",
+    --   "BufNewFile path/to/my-vault/**.md",
+    -- },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "PhD",
+          path = "~/PhD/Notes/PhD",
+        },
+        {
+          name = "work",
+          path = "~/PhD/Notes/Privat",
+        },
+      },
+    },
   },
 }

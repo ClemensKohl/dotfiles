@@ -12,10 +12,10 @@ vim.g.neovide_font_edging = "antialias"
 vim.opt.termguicolors = true
 
 -- General vim setup
-vim.opt.shiftwidth = 2   -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 2      -- insert x spaces for a tab
+vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2 -- insert x spaces for a tab
 vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
-vim.opt.softtabstop = 2  -- Number of spaces inserted instead of a TAB character
+vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 
 -- align function parameters
 vim.cmd([[
@@ -66,18 +66,18 @@ Toggle_diagnostics = function()
       underline = true,
       float = {
         show_header = false,
-        source = 'if_many',
-        border = 'rounded',
+        source = "if_many",
+        border = "rounded",
         focusable = false,
       },
-      update_in_insert = false
+      update_in_insert = false,
     })
   else
     vim.diagnostic.config({
       virtual_text = false,
       signs = true,
       underline = false,
-      update_in_insert = false
+      update_in_insert = false,
     })
   end
 end
@@ -92,18 +92,18 @@ Turnoff_diagnostics = function()
       underline = true,
       float = {
         show_header = false,
-        source = 'if_many',
-        border = 'rounded',
+        source = "if_many",
+        border = "rounded",
         focusable = false,
       },
-      update_in_insert = false
+      update_in_insert = false,
     })
   else
     vim.diagnostic.config({
       virtual_text = false,
       signs = false,
       underline = false,
-      update_in_insert = false
+      update_in_insert = false,
     })
   end
 end
