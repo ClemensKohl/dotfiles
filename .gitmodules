@@ -13,3 +13,6 @@
 [submodule "vim/.config/nvim-kickstart"]
 	path = vim/.config/nvim-kickstart
 	url = https://github.com/nvim-lua/kickstart.nvim.git
+[submodule "ranger/.config/ranger/plugins/ranger_devicons"]
+	path = ranger/.config/ranger/plugins/ranger_devicons
+	url = https://github.com/alexanderjeurissen/ranger_devicons
