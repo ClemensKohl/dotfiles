@@ -145,6 +145,17 @@ else
   export EDITOR='nvim'
 fi
 
+# Enable fzf
+# FZF_KEYBINDS="/usr/local/share/examples/fzf/shell/key-bindings.zsh"
+# if [ -f $FZF_KEYBINDS ]; then
+#   source $FZF_KEYBINDS
+# fi
+#
+# FZF_COMP="/usr/local/share/examples/fzf/shell/completion.zsh"
+# if [ -f $FZF_COMP ]; then
+#   source $FZF_COMP
+# fi
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
