@@ -151,7 +151,7 @@ return {
         "clangd",
         "rust-analyzer",
         "texlab",
-        -- "ltex-ls",
+        "ltex-ls",
       },
     },
   },

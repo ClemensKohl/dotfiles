@@ -55,55 +55,85 @@ Toggle_colorcolumn = function()
   end
 end
 
--- function to toggle diagnostics on/off
-Diagnostics_active = true
-Toggle_diagnostics = function()
-  Diagnostics_active = not Diagnostics_active
-  if Diagnostics_active then
+-- -- function to toggle diagnostics on/off
+-- Diagnostics_active = true
+-- Toggle_diagnostics = function()
+--   Diagnostics_active = not Diagnostics_active
+--   if Diagnostics_active then
+--     vim.diagnostic.config({
+--       virtual_text = true,
+--       signs = true,
+--       underline = true,
+--       float = {
+--         show_header = false,
+--         source = "if_many",
+--         border = "rounded",
+--         focusable = false,
+--       },
+--       update_in_insert = false,
+--     })
+--   else
+--     vim.diagnostic.config({
+--       virtual_text = false,
+--       signs = true,
+--       underline = false,
+--       update_in_insert = false,
+--     })
+--   end
+-- end
+--
+-- -- Turn diagnostics on/off. COMPLETELY OFF.
+-- Turnoff_diagnostics = function()
+--   Diagnostics_active = not Diagnostics_active
+--   if Diagnostics_active then
+--     vim.diagnostic.config({
+--       virtual_text = false,
+--       signs = true,
+--       underline = true,
+--       float = {
+--         show_header = false,
+--         source = "if_many",
+--         border = "rounded",
+--         focusable = false,
+--       },
+--       update_in_insert = false,
+--     })
+--   else
+--     vim.diagnostic.config({
+--       virtual_text = false,
+--       signs = false,
+--       underline = false,
+--       update_in_insert = false,
+--     })
+--   end
+-- end
+
+-- Turn undercurl on/off. All else untouched.
+Curl_active = true
+Toggle_curl = function()
+  Curl_active = not Curl_active
+  if Curl_active then
     vim.diagnostic.config({
-      virtual_text = true,
-      signs = true,
       underline = true,
-      float = {
-        show_header = false,
-        source = "if_many",
-        border = "rounded",
-        focusable = false,
-      },
-      update_in_insert = false,
     })
   else
     vim.diagnostic.config({
-      virtual_text = false,
-      signs = true,
       underline = false,
-      update_in_insert = false,
     })
   end
 end
 
--- Turn diagnostics on/off. COMPLETELY OFF.
-Turnoff_diagnostics = function()
-  Diagnostics_active = not Diagnostics_active
-  if Diagnostics_active then
+-- Turn virtual text on/off. All else untouched.
+Virt_active = false
+Toggle_virt = function()
+  Virt_active = not Virt_active
+  if Virt_active then
     vim.diagnostic.config({
-      virtual_text = false,
-      signs = true,
-      underline = true,
-      float = {
-        show_header = false,
-        source = "if_many",
-        border = "rounded",
-        focusable = false,
-      },
-      update_in_insert = false,
+      virtual_text = true,
     })
   else
     vim.diagnostic.config({
       virtual_text = false,
-      signs = false,
-      underline = false,
-      update_in_insert = false,
     })
   end
 end
