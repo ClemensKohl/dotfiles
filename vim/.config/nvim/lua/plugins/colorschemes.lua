@@ -21,6 +21,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
+      term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
       transparent_background = false, -- disables setting the background color.
       integrations = {

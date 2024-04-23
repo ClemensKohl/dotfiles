@@ -2,6 +2,10 @@
 -- stylua: ignore
 -- if true then return {} end
 
+-- if vim.g.neovide then -- Put anything you want to happen only in Neovide here
+--   if true then return {} end
+-- end
+
 return {
 
   -- Work in Jupyter Notebooks.
@@ -34,6 +38,13 @@ return {
   {
     "3rd/image.nvim",
     event = "VeryLazy",
+    enabled = function()
+      if vim.g.neovide then -- Disables plugin when starting neovide.
+        return false
+      else
+        return true
+      end
+    end,
     opts = {
       backend = "kitty",
       integrations = {

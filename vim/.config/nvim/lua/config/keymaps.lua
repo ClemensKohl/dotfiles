@@ -215,3 +215,36 @@ wk.register({
 -- vim.keymap.set("n", "<localleader>RA", function()
 --   runner.run_all(true)
 -- end, { desc = "run all cells of all languages", silent = true })
+--
+
+-------------
+-- NEOVIDE --
+-------------
+
+-- vim.g.neovide_scale_factor = 1.0
+-- local change_scale_factor = function(delta)
+--   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+-- end
+-- vim.keymap.set("n", "<C-=>", function()
+--   change_scale_factor(1.25)
+-- end)
+--
+-- vim.keymap.set("n", "<C-->", function()
+--   change_scale_factor(1 / 1.25)
+-- end)
+
+if vim.g.neovide == true then
+  vim.api.nvim_set_keymap(
+    "n",
+    "<C-+>",
+    ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>",
+    { silent = true }
+  )
+  vim.api.nvim_set_keymap(
+    "n",
+    "<C-->",
+    ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>",
+    { silent = true }
+  )
+  vim.api.nvim_set_keymap("n", "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
+end
