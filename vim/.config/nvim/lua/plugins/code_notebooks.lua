@@ -107,7 +107,7 @@ return {
     "quarto-dev/quarto-nvim",
     opts = {
       lspFeatures = {
-        languages = { "r", "python", "julia", "bash", "html", "lua" },
+        languages = { "r", "R", "python", "julia", "bash", "html", "lua" },
         chunks = "all",
         diagnostics = {
           enabled = true,

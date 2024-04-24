@@ -57,6 +57,7 @@
   "otter.nvim": { "branch": "main", "commit": "e67aa5082c65eeffd8a57b672e1353e8cf2ca7a9" },
   "persistence.nvim": { "branch": "main", "commit": "4982499c1636eac254b72923ab826ee7827b3084" },
   "plenary.nvim": { "branch": "master", "commit": "5129a3693c482fcbc5ab99a7706ffc4360b995a0" },
+  "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "quarto-nvim": { "branch": "main", "commit": "67e09027b5d8bd948907734fc6fb15028ffdcd28" },
   "rose-pine": { "branch": "main", "commit": "17b466e79479758b332a3cac12544a3ad2be6241" },
   "rustaceanvim": { "branch": "master", "commit": "2a53e2fe911e971fa90341af27d2fe1447c0cbd2" },
