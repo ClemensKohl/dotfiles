@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 -- Set gui font and size for GUI editors.
-vim.opt.guifont = { "JetBrainsMono NFP,Noto Color Emoji:style=Regular:h10" }
+vim.opt.guifont = { "JetBrainsMono NF,Noto Color Emoji:style=Regular:h10" }
 vim.g.neovide_font_hinting = "none"
 vim.g.neovide_font_edging = "antialias"
 -- vim.g.neovide_font_edging = "subpixelantialias"
