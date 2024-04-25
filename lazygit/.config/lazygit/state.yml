@@ -1,15 +1,15 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/kohl/PhD/gits/ClemensKohl/dotfiles
-- /home/kohl/PhD/gits/ClemensKohl/Diamanti_Thesis
-- /home/kohl/PhD/gits/ClemensKohl/CAdir_paper
 - /project/kohl_analysis/analysis/CAdir/benchmarking
+- /home/kohl/PhD/gits/ClemensKohl/RUtils
+- /home/kohl/PhD/gits/ClemensKohl/CAdir_paper
+- /home/kohl/PhD/gits/ClemensKohl/Diamanti_Thesis
 - /project/kohl_analysis/analysis/autoencoders/VAE
 - /home/kohl/PhD/gits/ClemensKohl/CAdir
 - /home/kohl/PhD/gits/VingronLab/CAbiNet
 - /home/kohl/PhD/gits/VingronLab/APL
 - /home/kohl/PhD/submitted_papers/Nucleic_Acids_Research/2nd_revision/CAbiNet_NAR_revised
-- /home/kohl/PhD/gits/ClemensKohl/RUtils
 startuppopupversion: 5
 customcommandshistory:
 - bugfixes
