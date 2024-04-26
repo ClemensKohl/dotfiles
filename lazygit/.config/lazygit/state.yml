@@ -1,7 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/kohl/PhD/gits/ClemensKohl/dotfiles
-- /project/kohl_analysis/analysis/CAdir/benchmarking
+- /home/kohl/PhD/gits/ClemensKohl/CAdir_benchmarking
+- /home/kohl/.oh-my-zsh
 - /home/kohl/PhD/gits/ClemensKohl/RUtils
 - /home/kohl/PhD/gits/ClemensKohl/CAdir_paper
 - /home/kohl/PhD/gits/ClemensKohl/Diamanti_Thesis
