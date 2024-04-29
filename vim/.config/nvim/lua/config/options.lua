@@ -3,10 +3,19 @@
 -- Add any additional options here
 
 -- Set gui font and size for GUI editors.
-vim.opt.guifont = { "JetBrainsMono NFM:style=Regular:h10" }
+vim.opt.guifont = { "JetBrainsMono NF,Noto Color Emoji:style=Regular:h10" }
 vim.g.neovide_font_hinting = "none"
 vim.g.neovide_font_edging = "antialias"
 -- vim.g.neovide_font_edging = "subpixelantialias"
+
+-- Controls Floating window blur in neovide
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_z_height = 10
+vim.g.neovide_light_angle_degrees = 45
+vim.g.neovide_light_radius = 5
 
 -- Set the colorscheme
 vim.opt.termguicolors = true
@@ -17,12 +26,24 @@ vim.opt.tabstop = 2 -- insert x spaces for a tab
 vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 
+-- add German spellchecking
+vim.opt.spelllang = { "en", "de" }
+
 -- align function parameters
 vim.cmd([[
     :set cino+=(0,W2
 ]])
 
--- Options for Nvim-R
+-- LazyVim automatically configures lazygit:
+--  * theme, based on the active colorscheme.
+--  * editorPreset to nvim-remote
+--  * enables nerd font icons
+-- Set to false to disable.
+vim.g.lazygit_config = true
+
+------------
+-- Nvim.R --
+------------
 
 -- doesnt seem to work anymore?
 -- vim.g.assign_map = "<<"
@@ -39,10 +60,9 @@ vim.g.Rout_more_colors = 1
 --     autocmd FileType r setlocal formatoptions+=r
 -- ]])
 
--- add German spellchecking
-vim.opt.spelllang = { "en", "de" }
-
--- Custom functions
+----------------------
+-- Custom functions --
+----------------------
 
 -- Toggle colorcolumn
 Colorcolumn_active = false
