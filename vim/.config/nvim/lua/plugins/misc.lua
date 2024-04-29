@@ -1,4 +1,6 @@
 -- Miscanellous and fun plugins
+-- stylua: ignore
+if true then return {} end
 
 return {
 
