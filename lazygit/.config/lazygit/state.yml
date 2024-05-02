@@ -1,10 +1,10 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/kohl/PhD/gits/ClemensKohl/dotfiles
+- /home/kohl/PhD/gits/ClemensKohl/CAdir_benchmarking
 - /project/kohl_analysis/analysis/CAdir/exploration
 - /home/kohl/PhD/gits/ClemensKohl/CAdir_paper
 - /home/kohl/PhD/gits/ClemensKohl/CAdir
-- /home/kohl/PhD/gits/ClemensKohl/CAdir_benchmarking
 startuppopupversion: 5
 customcommandshistory:
 - bugfixes
