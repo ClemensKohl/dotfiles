@@ -28,11 +28,14 @@ stow --target=$HOME bash
 stow --target=$HOME zsh
 stow --target=$HOME R
 stow --target=$HOME kitty
-stow --target=$HOME kitty
+stow --target=$HOME git
 stow --target=$HOME keyboard # Not working currently
 stow --target=$HOME kde
 stow --target=$HOME htop
+stow --target=$HOME emacs
 stow --target=$HOME btop
+stow --target=$HOME zellij
+stow --target=$HOME ranger
 
 ```
 
