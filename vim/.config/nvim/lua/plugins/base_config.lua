@@ -47,7 +47,7 @@ return {
           use_spellfile = false,
           on_attach = on_attach,
           capabilities = capabilities,
-          filetypes = { "latex", "tex", "markdown", "gitcommit", "text" },
+          filetypes = { "latex", "tex" },
           settings = {
             ltex = {
               disabledRules = {
