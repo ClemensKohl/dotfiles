@@ -29,6 +29,9 @@ vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 -- add German spellchecking
 vim.opt.spelllang = { "en", "de" }
 
+--Change default shell
+vim.opt.shell = "zsh"
+
 -- align function parameters
 vim.cmd([[
     :set cino+=(0,W2
