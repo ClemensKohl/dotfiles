@@ -9,59 +9,59 @@ return {
     "sainnhe/gruvbox-material",
     lazy = false,
   },
-
+  -- NOW INCLUDED IN LAZYVIM
   -- Catpuccino Theme - Miau!
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    opts = {
-      flavour = "frappe", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
-        light = "latte",
-        dark = "mocha",
-      },
-      term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
-      compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-      transparent_background = false, -- disables setting the background color.
-      integrations = {
-        aerial = true,
-        alpha = true,
-        cmp = true,
-        dashboard = true,
-        flash = true,
-        gitsigns = true,
-        headlines = true,
-        illuminate = true,
-        indent_blankline = { enabled = true },
-        leap = true,
-        lsp_trouble = true,
-        mason = true,
-        markdown = true,
-        mini = true,
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-          },
-        },
-        navic = { enabled = true, custom_bg = "lualine" },
-        neotest = true,
-        neotree = true,
-        noice = true,
-        notify = true,
-        semantic_tokens = true,
-        telescope = true,
-        treesitter = true,
-        treesitter_context = true,
-        which_key = true,
-      },
-    },
-  },
-
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   opts = {
+  --     flavour = "frappe", -- latte, frappe, macchiato, mocha
+  --     background = { -- :h background
+  --       light = "latte",
+  --       dark = "mocha",
+  --     },
+  --     term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
+  --     compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+  --     transparent_background = false, -- disables setting the background color.
+  --     integrations = {
+  --       aerial = true,
+  --       alpha = true,
+  --       cmp = true,
+  --       dashboard = true,
+  --       flash = true,
+  --       gitsigns = true,
+  --       headlines = true,
+  --       illuminate = true,
+  --       indent_blankline = { enabled = true },
+  --       leap = true,
+  --       lsp_trouble = true,
+  --       mason = true,
+  --       markdown = true,
+  --       mini = true,
+  --       native_lsp = {
+  --         enabled = true,
+  --         underlines = {
+  --           errors = { "undercurl" },
+  --           hints = { "undercurl" },
+  --           warnings = { "undercurl" },
+  --           information = { "undercurl" },
+  --         },
+  --       },
+  --       navic = { enabled = true, custom_bg = "lualine" },
+  --       neotest = true,
+  --       neotree = true,
+  --       noice = true,
+  --       notify = true,
+  --       semantic_tokens = true,
+  --       telescope = true,
+  --       treesitter = true,
+  --       treesitter_context = true,
+  --       which_key = true,
+  --     },
+  --   },
+  -- },
+  --
   -- Rose pine theme
   {
     "rose-pine/neovim",
@@ -141,7 +141,7 @@ return {
     opts = {
       -- colorscheme = "gruvbox",
       -- colorscheme = "gruvbox-material",
-      colorscheme = "catppuccin",
+      colorscheme = "catppuccin-frappe",
       gruvbox_material_background = "medium",
       gruvbox_material_better_performance = 1,
     },
