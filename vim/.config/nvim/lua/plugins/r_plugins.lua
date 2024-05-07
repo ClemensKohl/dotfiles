@@ -15,7 +15,8 @@ return {
     "R-nvim/R.nvim",
     lazy = false,
     opts = {
-      assign_map = "<<",
+      R_args = {"--no-save"},
+      assignment_keymap = "<<",
     },
   },
 
