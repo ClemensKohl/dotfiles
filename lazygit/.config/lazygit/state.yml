@@ -2,9 +2,10 @@ lastupdatecheck: 0
 recentrepos:
 - /home/kohl/PhD/gits/ClemensKohl/dotfiles
 - /home/kohl/PhD/gits/ClemensKohl/CAdir
-- /project/kohl_analysis/analysis/CAdir/exploration
-- /home/kohl/PhD/gits/ClemensKohl/CAdir_benchmarking
 - /home/kohl/PhD/gits/VingronLab/APL
+- /home/kohl/PhD/gits/ClemensKohl/CAdir_benchmarking
+- /home/kohl/.oh-my-zsh
+- /project/kohl_analysis/analysis/CAdir/exploration
 - /home/kohl/PhD/gits/ClemensKohl/CAdir_paper
 startuppopupversion: 5
 customcommandshistory:
