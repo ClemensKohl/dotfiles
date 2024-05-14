@@ -228,4 +228,23 @@ return {
     end,
     dependencies = { "nvim-telescope/telescope.nvim" },
   },
+
+  -- {
+  --   "folke/flash.nvim",
+  --   keys = {
+  --     {
+  --       "m",
+  --       mode = "o",
+  --       function()
+  --         require("flash").jump({
+  --           remote_op = {
+  --             motion = true,
+  --             restore = false,
+  --           },
+  --         })
+  --       end,
+  --       desc = "Magnetic",
+  --     },
+  --   },
+  -- },
 }
