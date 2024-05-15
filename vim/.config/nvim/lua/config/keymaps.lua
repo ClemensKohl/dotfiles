@@ -2,6 +2,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+--TODO: Add as many as possible directly to plugin config.
+--This way you can easily disable both the plugin and the keymaps.
+
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
