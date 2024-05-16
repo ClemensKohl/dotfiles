@@ -20,6 +20,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      inlay_hints = { enabled = true },
       -- options for vim.diagnostic.config()
       diagnostics = {
         -- signs = true,
