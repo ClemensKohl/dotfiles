@@ -1,6 +1,6 @@
 -- all the modules can easily be turned off:
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
 
 -- if vim.g.neovide then -- Put anything you want to happen only in Neovide here
 --   if true then return {} end
@@ -32,6 +32,16 @@ return {
       -- this will make it so the output shows up below the \`\`\` cell delimiter
       vim.g.molten_virt_lines_off_by_1 = true
     end,
+    keys = {
+      { "<localleader>Mi", ":MoltenInit<CR>", mode = "n", desc = "Init Molten" },
+      { "<localleader>Me", ":MoltenEvaluateOperator<CR>", mode = "n", desc = "run operator selection" },
+      { "<localleader>Ml", ":MoltenEvaluateLine<CR>", mode = "n", desc = "evaluate line" },
+      { "<localleader>Mr", ":MoltenReevaluateCell<CR>", mode = "n", desc = "re-evaluate cell" },
+      { "<localleader>Ms", ":noautocmd MoltenEnterOutput<CR>", mode = "n", desc = "open output window" },
+      { "<localleader>Mh", ":MoltenHideOutput<CR>", mode = "n", desc = "close output window" },
+      { "<localleader>Md", ":MoltenDelete<CR>", mode = "n", desc = "delete Molten cell" },
+      { "<localleader>Mr", ":<C-u>MoltenEvaluateVisual<CR>gv", mode = "v", desc = "evaluate visual selection" },
+    },
   },
 
   -- image.nvim - required for image showing in molten.
@@ -131,6 +141,22 @@ return {
       },
     },
     ft = { "quarto", "markdown", "ipython" },
+    keys = {
+      { "<localleader>qi", ":QuartoActivate<cr>", mode = "n", desc = "quarto activate" },
+      { "<localleader>qc", require("quarto.runner").run_cell, mode = "n", desc = "run cell" },
+      { "<localleader>qa", require("quarto.runner").run_above, mode = "n", desc = "run cell and above" },
+      { "<localleader>qA", require("quarto.runner").run_all, mode = "n", desc = "run all cells" },
+      { "<localleader>ql", require("quarto.runner").run_line, mode = "n", desc = "run line" },
+      {
+        "<localleader>qR",
+        function()
+          runner.run_all(true)
+        end,
+        mode = "n",
+        desc = "run all cells of all languages",
+      },
+      { "<localleader>qr", require("quarto.runner").run_range, mode = "v", desc = "run visual range" },
+    },
     -- keys = {
     --   { "<leader>qa", ":QuartoActivate<cr>", desc = "quarto activate" },
     --   { "<leader>qp", ":lua require'quarto'.quartoPreview()<cr>", desc = "quarto preview" },
@@ -193,26 +219,6 @@ return {
         },
       },
     },
-  },
-
-  -- Background for code blocks and nicer headlines.
-  {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("headlines").setup({
-        quarto = {
-          query = vim.treesitter.query.parse(
-            "markdown",
-            [[
-                (fenced_code_block) @codeblock
-                ]]
-          ),
-          codeblock_highlight = "CodeBlock",
-          treesitter_language = "markdown",
-        },
-      })
-    end,
   },
 
   ----------------

@@ -14,7 +14,25 @@ vim.keymap.set("n", "<leader>zh", "<cmd>ColorizerToggle<cr>", { desc = "Toggle C
 vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
 vim.keymap.set("n", "<leader>bt", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
 
+-- vim.keymap.set("n", "<leader>cB", ":s/, /,\\r/g<cr>", { desc = "Break line" })
+vim.keymap.set(
+  "n",
+  "gob",
+  ":s/\\((\\zs\\|,\\ *\\zs\\|)\\)/\\r&/g<CR><Bar>:'[,']normal ==<CR>",
+  { desc = "Break Line and align" }
+)
+
 local wk = require("which-key")
+
+----------------------
+-- custom functions --
+----------------------
+
+vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
+-- vim.keymap.set("n", "<leader>zo", "<cmd>lua Toggle_diagnostics()<cr>", { desc = "Toggle diagnostics (custom)" })
+-- vim.keymap.set("n", "<leader>zf", "<cmd>lua Turnoff_diagnostics()<cr>", { desc = "Turn off diagnostics (custom)" })
+vim.keymap.set("n", "<leader>zc", "<cmd>lua Toggle_curl()<cr>", { desc = "Toggle diagnostic curl" })
+vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
 
 ------------
 -- Notify --
@@ -73,26 +91,26 @@ wk.register({
 ----------------
 -- ToggleTerm --
 ----------------
-
-wk.register({
-  t = {
-    name = "ToggleTerm", -- optional group name
-    f = {
-      "lua function() set_opfunc(function(motion_type) require('toggleterm').send_lines_to_terminal(motion_type, false, { args = vim.v.count }) end) vim.api.nvim_feedkeys('g@', 'n', false) end)<cr>",
-      "Send Line",
-    },
-  },
-}, { prefix = "<leader>", mode = "n" })
-
-wk.register({
-  t = {
-    name = "ToggleTerm", -- optional group name
-    l = {
-      "<cmd>lua require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })<cr>",
-      "Send Line",
-    },
-  },
-}, { prefix = "<leader>", mode = "v" })
+-- ... we dont have it installed.
+-- wk.register({
+--   t = {
+--     name = "ToggleTerm", -- optional group name
+--     f = {
+--       "lua function() set_opfunc(function(motion_type) require('toggleterm').send_lines_to_terminal(motion_type, false, { args = vim.v.count }) end) vim.api.nvim_feedkeys('g@', 'n', false) end)<cr>",
+--       "Send Line",
+--     },
+--   },
+-- }, { prefix = "<leader>", mode = "n" })
+--
+-- wk.register({
+--   t = {
+--     name = "ToggleTerm", -- optional group name
+--     l = {
+--       "<cmd>lua require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })<cr>",
+--       "Send Line",
+--     },
+--   },
+-- }, { prefix = "<leader>", mode = "v" })
 
 -- local trim_spaces = true
 -- vim.keymap.set("v", "<leader>t", function()
@@ -127,16 +145,6 @@ wk.register({
 --   vim.api.nvim_feedkeys("ggg@G''", "n", false)
 -- end)
 
-----------------------
--- custom functions --
-----------------------
-
-vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
--- vim.keymap.set("n", "<leader>zo", "<cmd>lua Toggle_diagnostics()<cr>", { desc = "Toggle diagnostics (custom)" })
--- vim.keymap.set("n", "<leader>zf", "<cmd>lua Turnoff_diagnostics()<cr>", { desc = "Turn off diagnostics (custom)" })
-vim.keymap.set("n", "<leader>zc", "<cmd>lua Toggle_curl()<cr>", { desc = "Toggle diagnostic curl" })
-vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
-
 --------------
 -- Transfer --
 --------------
@@ -154,62 +162,62 @@ wk.register({
   },
 })
 
--- Molten
-wk.register({
-  ["<localleader>"] = {
-    M = {
-      name = "Molten",
-      i = { ":MoltenInit<CR>", "Init Molten" },
-      e = { ":MoltenEvaluateOperator<CR>", "run operator selection" },
-      l = { ":MoltenEvaluateLine<CR>", "evaluate line" },
-      r = { ":MoltenReevaluateCell<CR>", "re-evaluate cell" },
-      s = { ":noautocmd MoltenEnterOutput<CR>", "open output window" },
-      h = { ":MoltenHideOutput<CR>", "close output window" },
-      d = { ":MoltenDelete<CR>", "delete Molten cell" },
-    },
-  },
-}, { mode = "n" })
-
-wk.register({
-  ["<localleader>"] = {
-    M = {
-      name = "Molten",
-      r = { ":<C-u>MoltenEvaluateVisual<CR>gv", "evaluate visual selection" },
-    },
-  },
-}, { mode = "v" })
-
--- Quarto
-runner = require("quarto.runner")
-
-wk.register({
-  ["<localleader>"] = {
-    q = {
-      name = "Quarto",
-      i = { ":QuartoActivate<cr>", "quarto activate" },
-      c = { runner.run_cell, "run cell" },
-      a = { runner.run_above, "run cell and above" },
-      A = { runner.run_all, "run all cells" },
-      l = { runner.run_line, "run line" },
-      R = {
-        function()
-          runner.run_all(true)
-        end,
-        "run all cells of all languages",
-      },
-    },
-  },
-}, { mode = "n" })
-
-wk.register({
-  ["<localleader>"] = {
-    q = {
-      name = "Quarto",
-      r = { runner.run_range, "run visual range" },
-    },
-  },
-}, { mode = "v" })
-
+-- Molten -> Added to lazy plugin load.
+-- wk.register({
+--   ["<localleader>"] = {
+--     M = {
+--       name = "Molten",
+--       i = { ":MoltenInit<CR>", "Init Molten" },
+--       e = { ":MoltenEvaluateOperator<CR>", "run operator selection" },
+--       l = { ":MoltenEvaluateLine<CR>", "evaluate line" },
+--       r = { ":MoltenReevaluateCell<CR>", "re-evaluate cell" },
+--       s = { ":noautocmd MoltenEnterOutput<CR>", "open output window" },
+--       h = { ":MoltenHideOutput<CR>", "close output window" },
+--       d = { ":MoltenDelete<CR>", "delete Molten cell" },
+--     },
+--   },
+-- }, { mode = "n" })
+--
+-- wk.register({
+--   ["<localleader>"] = {
+--     M = {
+--       name = "Molten",
+--       r = { ":<C-u>MoltenEvaluateVisual<CR>gv", "evaluate visual selection" },
+--     },
+--   },
+-- }, { mode = "v" })
+--
+-- Quarto -> Integrated into lazy load.
+-- runner = require("quarto.runner")
+--
+-- wk.register({
+--   ["<localleader>"] = {
+--     q = {
+--       name = "Quarto",
+--       i = { ":QuartoActivate<cr>", "quarto activate" },
+--       c = { runner.run_cell, "run cell" },
+--       a = { runner.run_above, "run cell and above" },
+--       A = { runner.run_all, "run all cells" },
+--       l = { runner.run_line, "run line" },
+--       R = {
+--         function()
+--           runner.run_all(true)
+--         end,
+--         "run all cells of all languages",
+--       },
+--     },
+--   },
+-- }, { mode = "n" })
+--
+-- wk.register({
+--   ["<localleader>"] = {
+--     q = {
+--       name = "Quarto",
+--       r = { runner.run_range, "run visual range" },
+--     },
+--   },
+-- }, { mode = "v" })
+--
 -- vim.keymap.set("n", "<localleader>rc", runner.run_cell,  { desc = "run cell", silent = true })
 -- vim.keymap.set("n", "<localleader>ra", runner.run_above, { desc = "run cell and above", silent = true })
 -- vim.keymap.set("n", "<localleader>rA", runner.run_all,   { desc = "run all cells", silent = true })
