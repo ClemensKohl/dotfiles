@@ -1,6 +1,6 @@
 -- all the modules can easily be turned off:
 -- stylua: ignore
-if true then return {} end
+-- if true then return {} end
 
 -- if vim.g.neovide then -- Put anything you want to happen only in Neovide here
 --   if true then return {} end
@@ -143,19 +143,19 @@ return {
     ft = { "quarto", "markdown", "ipython" },
     keys = {
       { "<localleader>qi", ":QuartoActivate<cr>", mode = "n", desc = "quarto activate" },
-      { "<localleader>qc", require("quarto.runner").run_cell, mode = "n", desc = "run cell" },
-      { "<localleader>qa", require("quarto.runner").run_above, mode = "n", desc = "run cell and above" },
-      { "<localleader>qA", require("quarto.runner").run_all, mode = "n", desc = "run all cells" },
-      { "<localleader>ql", require("quarto.runner").run_line, mode = "n", desc = "run line" },
+      { "<localleader>qc", ":lua require('quarto.runner').run_cell", mode = "n", desc = "run cell" },
+      { "<localleader>qa", ":lua require('quarto.runner').run_above", mode = "n", desc = "run cell and above" },
+      { "<localleader>qA", ":lua require('quarto.runner').run_all", mode = "n", desc = "run all cells" },
+      { "<localleader>ql", ":lua require('quarto.runner').run_line", mode = "n", desc = "run line" },
       {
         "<localleader>qR",
         function()
-          runner.run_all(true)
+          require("quarto.runner").run_all(true)
         end,
         mode = "n",
         desc = "run all cells of all languages",
       },
-      { "<localleader>qr", require("quarto.runner").run_range, mode = "v", desc = "run visual range" },
+      { "<localleader>qr", ":lua require('quarto.runner').run_range", mode = "v", desc = "run visual range" },
     },
     -- keys = {
     --   { "<leader>qa", ":QuartoActivate<cr>", desc = "quarto activate" },
