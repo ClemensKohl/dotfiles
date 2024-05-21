@@ -36,7 +36,7 @@ stow --target=$HOME emacs
 stow --target=$HOME btop
 stow --target=$HOME zellij
 stow --target=$HOME ranger
-
+stow --target=$HOME x11
 ```
 
 You can also stow everything at once:

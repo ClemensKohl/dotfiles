@@ -1,9 +1,9 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/kohl/gits/ClemensKohl/dotfiles
 - /home/kohl/PhD/gits/ClemensKohl/dotfiles
-- /project/kohl_analysis/analysis/CAdir/benchmarking
 - /project/kohl_analysis/analysis/CAdir/exploration
+- /project/kohl_analysis/analysis/CAdir/benchmarking
+- /home/kohl/gits/ClemensKohl/dotfiles
 - /home/kohl/PhD/gits/ClemensKohl/CAdir
 - /home/kohl/PhD/gits/ClemensKohl/RUtils
 - /home/kohl/rust/rustlings
