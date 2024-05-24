@@ -1,11 +1,12 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/kohl/PhD/gits/ClemensKohl/dotfiles
+- /home/kohl/PhD/gits/ClemensKohl/CAdir
 - /project/kohl_analysis/analysis/CAdir/exploration
+- /project/kohl_analysis/analysis/CAdir/benchmarking
+- /home/kohl/gits/R_packages/scuttle
 - /home/kohl/PhD/gits/ClemensKohl/RUtils
 - /home/kohl/PhD/applications/Sevilla
-- /home/kohl/PhD/gits/ClemensKohl/CAdir
-- /project/kohl_analysis/analysis/CAdir/benchmarking
 - /home/kohl/gits/ClemensKohl/dotfiles
 - /home/kohl/rust/rustlings
 - /home/kohl/PhD/gits/VingronLab/CAbiNet
