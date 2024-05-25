@@ -11,6 +11,20 @@ return {
   },
   -- NOW INCLUDED IN LAZYVIM
   -- Catpuccino Theme - Miau!
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      flavour = "frappe", -- latte, frappe, macchiato, mocha
+      background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+      },
+      term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
+      compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+    },
+  },
   -- {
   --   "catppuccin/nvim",
   --   name = "catppuccin",

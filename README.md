@@ -36,7 +36,7 @@ stow --target=$HOME emacs
 stow --target=$HOME btop
 stow --target=$HOME zellij
 stow --target=$HOME ranger
-
+stow --target=$HOME x11
 ```
 
 You can also stow everything at once:
@@ -71,4 +71,5 @@ The ./zsh folder contains the custom directory used by [OH-MY-ZSH](https://githu
 ## NeoVim
 - [ ] Get plots to show in molten.
 - [ ] Make utils toggle for color plugin.
+- [ ] Move all plugin specific keymaps to plugin loading.
 

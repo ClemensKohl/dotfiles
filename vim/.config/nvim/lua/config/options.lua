@@ -67,6 +67,42 @@ vim.g.Rout_more_colors = 1
 -- Custom functions --
 ----------------------
 
+--Toggle ltex-ls
+Toggle_ltex = function()
+  local lsp_clients = vim.lsp.get_clients()
+
+  for _, client in pairs(lsp_clients) do
+    if client.name == "ltex" then
+      vim.lsp.stop_client(client.id)
+      return
+    end
+  end
+
+  vim.lsp.start({
+    name = "ltex",
+    cmd = { "ltex-ls" },
+  })
+end
+
+-- Toggle ltex-ls simple function
+-- Ltex_running = false
+-- Toggle_ltex = function()
+--   if Ltex_running then
+--     local ltex_id = 0
+--     for _, client in pairs(vim.lsp.get_clients()) do
+--       if client.name == "ltex" then
+--         vim.lsp.stop_client(client.id)
+--       end
+--     end
+--   else
+--     vim.lsp.start({
+--       name = "ltex",
+--       cmd = { "ltex-ls" },
+--     })
+--   end
+--   Ltex_running = not Ltex_running
+-- end
+
 -- Toggle colorcolumn
 Colorcolumn_active = false
 Toggle_colorcolumn = function()

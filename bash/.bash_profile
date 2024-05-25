@@ -1,17 +1,3 @@
-if [ "$JOB_NAME" != "" ]; then
-	exit 0
-fi
-
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
-if [ -f ~/.profile ]; then
-	. ~/.profile
-fi
-
-#TODO: The below is really only necessary I think for work.
-#Find better way to handle!
 
 if [[ "$(whoami)" == "kohl" ]]; then
 	export LOADED="BASH_PROFILE"
@@ -50,6 +36,22 @@ if [[ "$(whoami)" == "clemens" ]]; then
 
 	export R_PROFILE="$HOME/.Rprofile"
 fi
+
+if [ "$JOB_NAME" != "" ]; then
+	exit 0
+fi
+
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+if [ -f ~/.profile ]; then
+	. ~/.profile
+fi
+
+#TODO: The below is really only necessary I think for work.
+#Find better way to handle!
+
 
 #source ~/.bashrc
 #source ~/.profile
