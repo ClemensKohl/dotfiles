@@ -19,7 +19,7 @@ return {
       flavour = "frappe", -- latte, frappe, macchiato, mocha
       background = { -- :h background
         light = "latte",
-        dark = "mocha",
+        dark = "frappe",
       },
       term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
