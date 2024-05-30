@@ -1,6 +1,8 @@
 -- all the modules can easily be turned off:
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
+
+--NOTE: Superseded by lazyvim r.lang extra!
 
 -- R plugins and configs
 return {
@@ -15,14 +17,15 @@ return {
     "R-nvim/R.nvim",
     lazy = false,
     opts = {
-      R_args = {"--no-save"},
+      R_args = { "--no-save" },
       assignment_keymap = "<<",
     },
   },
 
   -- Needs cmp-r
-  { "R-nvim/cmp-r",
-    opts={} -- calls setup!
+  {
+    "R-nvim/cmp-r",
+    opts = {}, -- calls setup!
   },
 
   -- Adding cmp-r acccording to lazyvim doc.
