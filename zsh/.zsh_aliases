@@ -50,7 +50,8 @@ if [[ "$(whoami)" == "kohl" ]]; then
     alias radian41='radian --r-binary=/usr/local/package/bin/R-4.1.0'
     alias radian42='radian --r-binary=/usr/local/package/bin/R-4.2.1'
     alias mxq-killall='$HOME/bin/mxqkillall.sh'
-    alias mxqinfo="$HOME/bin/mxqtab.sh | column -t -s $'\t' | less -S"
+    # alias mxqinfo="$HOME/bin/mxqtab.sh | column -t -s $'\t' | less -S"
+    alias mxqinfo="links http://afk.molgen.mpg.de/mxq/mxq/"
 
     alias r44vim="prun R-4.4.0-0 nvim"
     alias r44nvd="prun R-4.4.0-0 neovide"

@@ -1,6 +1,6 @@
 -- all the modules can easily be turned off:
 -- stylua: ignore
-if true then return {} end
+-- if true then return {} end
 
 --NOTE: Superseded by lazyvim r.lang extra!
 
@@ -17,26 +17,26 @@ return {
     "R-nvim/R.nvim",
     lazy = false,
     opts = {
-      R_args = { "--no-save" },
+      R_args = { "--no-save" }, -- add --quiet if you dont want the startup message.
       assignment_keymap = "<<",
     },
   },
 
   -- Needs cmp-r
-  {
-    "R-nvim/cmp-r",
-    opts = {}, -- calls setup!
-  },
+  -- {
+  --   "R-nvim/cmp-r",
+  --   opts = {}, -- calls setup!
+  -- },
 
   -- Adding cmp-r acccording to lazyvim doc.
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "R-nvim/cmp-r" },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "cmp_r" })
-    end,
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = { "R-nvim/cmp-r" },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, { name = "cmp_r" })
+  --   end,
+  -- },
 
   -- This is the config for cmp from the github page.
   -- Overwrites cmp sources!
