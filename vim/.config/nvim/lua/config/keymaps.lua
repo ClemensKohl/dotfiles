@@ -55,26 +55,26 @@ vim.keymap.set("n", "<leader>uS", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle
 -- Nvim-R --
 ------------
 
-wk.register({
-  r = {
-    name = "Nvim-R", -- optional group name
-    f = { "<Plug>RStart", "Start R" },
-    q = { "<Plug>RClose", "Close R" },
-    l = { "<Plug>RSendLine", "Send Line to R" },
-    s = { "<Plug>RSendSelection", "Send Selection to R" },
-    h = { "<Plug>RHelp", "Open R Help" },
-    o = { "<Plug>RUpdateObjBrowser", "Open Object Browser" },
-    c = { "<Plug>RSendChunk", "Send Rmd Chunk" },
-    d = { "<Plug>RDSendChunk", "Send Rmd Chunk (DOWN)" },
-  },
-}, { prefix = "<leader>" })
-
-wk.register({
-  r = {
-    name = "Nvim-R", -- optional group name
-    s = { "<Plug>RSendSelection", "Send Selection to R" },
-  },
-}, { prefix = "<leader>", mode = "v" })
+-- wk.register({
+--   r = {
+--     name = "Nvim-R", -- optional group name
+--     f = { "<Plug>RStart", "Start R" },
+--     q = { "<Plug>RClose", "Close R" },
+--     l = { "<Plug>RSendLine", "Send Line to R" },
+--     s = { "<Plug>RSendSelection", "Send Selection to R" },
+--     h = { "<Plug>RHelp", "Open R Help" },
+--     o = { "<Plug>RUpdateObjBrowser", "Open Object Browser" },
+--     c = { "<Plug>RSendChunk", "Send Rmd Chunk" },
+--     d = { "<Plug>RDSendChunk", "Send Rmd Chunk (DOWN)" },
+--   },
+-- }, { prefix = "<leader>" })
+--
+-- wk.register({
+--   r = {
+--     name = "Nvim-R", -- optional group name
+--     s = { "<Plug>RSendSelection", "Send Selection to R" },
+--   },
+-- }, { prefix = "<leader>", mode = "v" })
 
 --------------
 -- Zen Mode --
