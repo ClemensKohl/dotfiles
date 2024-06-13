@@ -48,8 +48,7 @@ return {
           use_spellfile = false,
           on_attach = on_attach,
           capabilities = capabilities,
-          filetypes = {},
-          -- filetypes = { "latex", "tex" },
+          filetypes = { "latex", "tex" },
           settings = {
             ltex = {
               disabledRules = {
