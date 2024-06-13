@@ -1,0 +1,4 @@
+options(radian.color_scheme = "material")
+
+# either  `"emacs"` (default) or `"vi"`.
+options(radian.editing_mode = "emacs")
