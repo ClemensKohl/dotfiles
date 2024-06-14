@@ -20,6 +20,9 @@ return {
       R_args = { "--no-save" }, -- add --quiet if you dont want the startup message.
       assignment_keymap = "<<",
       R_app = "radian",
+      R_cmd = "R",
+      R_hl_term = 0,
+      R_bracketed_paste = 1,
     },
   },
 

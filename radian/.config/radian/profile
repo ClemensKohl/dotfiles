@@ -2,3 +2,16 @@ options(radian.color_scheme = "material")
 
 # either  `"emacs"` (default) or `"vi"`.
 options(radian.editing_mode = "emacs")
+
+options(radian.auto_match = FALSE)
+options(radian.highlight_matching_bracket = TRUE)
+
+
+# indent continuation lines
+# turn this off if you want to copy code without the extra indentation;
+# but it leads to less elegent layout
+options(radian.indent_lines = TRUE)
+
+# auto indentation for new line and curly braces
+options(radian.auto_indentation = FALSE)
+options(radian.tab_size = 4)
