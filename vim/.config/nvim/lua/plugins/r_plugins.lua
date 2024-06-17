@@ -21,8 +21,8 @@ return {
       assignment_keymap = "<<",
       R_app = "radian",
       R_cmd = "R",
-      R_hl_term = 0,
-      R_bracketed_paste = 1,
+      -- R_hl_term = 0,
+      -- R_bracketed_paste = 1,
     },
   },
 
