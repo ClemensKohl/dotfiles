@@ -137,6 +137,8 @@ return {
         "c",
         "cpp",
         "rust",
+        "bibtex",
+        "latex",
       })
     end,
   },
