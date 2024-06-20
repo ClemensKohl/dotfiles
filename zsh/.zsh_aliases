@@ -71,6 +71,11 @@ then
   alias analyse="cd /project/kohl_analysis/analysis/"
 fi
 
+if [ -d /project/kohl_data/ ];
+then
+  alias datalyse="cd /project/kohl_data/"
+fi
+
 # quick aliases for git repos
 if [ -d ~/PhD/gits/ClemensKohl/ ];
 then

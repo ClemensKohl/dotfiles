@@ -23,18 +23,10 @@ return {
       -- inlay_hints = { enabled = true }, -- not necessary in new lazyvim
       -- options for vim.diagnostic.config()
       diagnostics = {
-        -- signs = true,
+        signs = true,
         underline = true,
         update_in_insert = false,
         virtual_text = false,
-        -- virtual_text = {
-        --   spacing = 4,
-        --   source = "if_many",
-        --   prefix = "●",
-        --   -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-        --   -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-        --   -- prefix = "icons",
-        -- },
         float = {
           show_header = true,
           source = "if_many",
@@ -46,20 +38,29 @@ return {
       servers = {
         ltex = {
           use_spellfile = false,
+          autostart = false,
           on_attach = on_attach,
           capabilities = capabilities,
           filetypes = { "latex", "tex" },
           settings = {
             ltex = {
+              checkFrequency = "save",
+              language = "en-US",
+              -- language = "de-DE",
+              additionalRules = {
+                languageModel = "~/.local/share/ngrams/",
+                enablePickyRules = true,
+                motherTongue = "de",
+              },
               disabledRules = {
                 ["en"] = { "MORFOLOGIK_RULE_EN" },
-                ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
-                ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
+                -- ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
+                -- ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
                 ["en-GB"] = { "MORFOLOGIK_RULE_EN_GB" },
-                ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
+                -- ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
                 ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
-                ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
-                ["es"] = { "MORFOLOGIK_RULE_ES" },
+                -- ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
+                -- ["es"] = { "MORFOLOGIK_RULE_ES" },
                 ["it"] = { "MORFOLOGIK_RULE_IT_IT" },
                 ["de"] = { "MORFOLOGIK_RULE_DE_DE" },
               },
@@ -67,11 +68,6 @@ return {
               --   ["en-US"] = DICT_words,
               --   ["en-GB"] = DICT_words,
               -- },
-              language = "en-US",
-              -- language = "de-DE",
-              additionalRules = {
-                languageModel = "~/.local/share/ngrams/",
-              },
               dictionary = (function()
                 -- For dictionary, search for files in the runtime to have
                 -- and include them as externals the format for them is

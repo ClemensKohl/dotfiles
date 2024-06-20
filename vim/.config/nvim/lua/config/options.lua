@@ -33,9 +33,14 @@ vim.opt.spelllang = { "en", "de" }
 vim.opt.shell = "zsh"
 
 -- align function parameters
-vim.cmd([[
-    :set cino+=(0,W2
-]])
+-- vim.cmd([[
+--     :set cino+=(0,W2
+-- ]])
+
+-- Set LSP updates in insert mode
+-- vim.diagnostic.config({
+--   update_in_insert = false,
+-- })
 
 -- LazyVim automatically configures lazygit:
 --  * theme, based on the active colorscheme.
@@ -63,6 +68,12 @@ vim.g.Rout_more_colors = 1
 --     autocmd FileType r setlocal formatoptions+=r
 -- ]])
 
+------------
+-- Vimtex --
+------------
+
+-- vim.g.vimtex_view_method = "zathura"
+
 ----------------------
 -- Custom functions --
 ----------------------
@@ -84,25 +95,6 @@ Toggle_ltex = function()
   })
 end
 
--- Toggle ltex-ls simple function
--- Ltex_running = false
--- Toggle_ltex = function()
---   if Ltex_running then
---     local ltex_id = 0
---     for _, client in pairs(vim.lsp.get_clients()) do
---       if client.name == "ltex" then
---         vim.lsp.stop_client(client.id)
---       end
---     end
---   else
---     vim.lsp.start({
---       name = "ltex",
---       cmd = { "ltex-ls" },
---     })
---   end
---   Ltex_running = not Ltex_running
--- end
-
 -- Toggle colorcolumn
 Colorcolumn_active = false
 Toggle_colorcolumn = function()
@@ -113,59 +105,6 @@ Toggle_colorcolumn = function()
     vim.opt.colorcolumn = ""
   end
 end
-
--- -- function to toggle diagnostics on/off
--- Diagnostics_active = true
--- Toggle_diagnostics = function()
---   Diagnostics_active = not Diagnostics_active
---   if Diagnostics_active then
---     vim.diagnostic.config({
---       virtual_text = true,
---       signs = true,
---       underline = true,
---       float = {
---         show_header = false,
---         source = "if_many",
---         border = "rounded",
---         focusable = false,
---       },
---       update_in_insert = false,
---     })
---   else
---     vim.diagnostic.config({
---       virtual_text = false,
---       signs = true,
---       underline = false,
---       update_in_insert = false,
---     })
---   end
--- end
---
--- -- Turn diagnostics on/off. COMPLETELY OFF.
--- Turnoff_diagnostics = function()
---   Diagnostics_active = not Diagnostics_active
---   if Diagnostics_active then
---     vim.diagnostic.config({
---       virtual_text = false,
---       signs = true,
---       underline = true,
---       float = {
---         show_header = false,
---         source = "if_many",
---         border = "rounded",
---         focusable = false,
---       },
---       update_in_insert = false,
---     })
---   else
---     vim.diagnostic.config({
---       virtual_text = false,
---       signs = false,
---       underline = false,
---       update_in_insert = false,
---     })
---   end
--- end
 
 -- Turn undercurl on/off. All else untouched.
 Curl_active = true
