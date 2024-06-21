@@ -72,7 +72,7 @@ vim.g.Rout_more_colors = 1
 -- Vimtex --
 ------------
 
--- vim.g.vimtex_view_method = "zathura"
+-- vim.g.vimtex_view_method = "qpdfview"
 
 ----------------------
 -- Custom functions --
