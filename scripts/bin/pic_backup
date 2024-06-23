@@ -1,0 +1,164 @@
+#!/bin/bash
+
+
+####################
+## Foto3 to Foto2 ##
+####################
+
+if [[ $1 = "-f3tof2" ]]; then
+
+  today=$(date +'%Y%m%d')
+  LOGDIR=/media/clemens/Foto3/logs/${today}
+
+  if mountpoint -q /media/clemens/Foto3/; then
+  	rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /home/clemens/digikam /media/clemens/Foto3/
+  else
+  	echo "\n/media/clemens/Foto3/ is not not mounted"
+  fi
+  
+  if mountpoint -q /media/clemens/Foto3/ && mountpoint -q /media/clemens/Foto2/; then
+		
+  	mkdir -p $LOGDIR
+	time=$(date +'%H%M')
+
+    rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto2/digikam/ &> $LOGDIR/${time}_digikam.log
+    # rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto2/gfs/ &> $LOGDIR/${time}_gfs.log
+    rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto2/vaults/ &> $LOGDIR/${time}_vaults.log
+    rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto2/Pictures/ &> $LOGDIR/${time}_Pictures.log
+    
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto2/digikam/ &> $LOGDIR/${time}_digikam.log
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto2/gfs/ &> $LOGDIR/${time}_gfs.log
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto2/Pictures/ &> $LOGDIR/${time}_Pictures.log
+
+  else
+    echo "\nOne of the drives is not mounted."  
+  fi
+
+fi
+
+####################
+## Foto2 to Foto3 ##
+####################
+
+if [[ $1 = "-f2tof3" ]]; then
+
+  read -p "Transfering from Foto2 to Foto3. Continue? (y/n)   " choice
+  case "$choice" in 
+    y|Y|yes|Yes ) echo "yes";;
+    n|N|no|No ) echo "no"; exit 1;;
+    * ) echo "invalid"; exit 1;;
+  esac
+
+  if mountpoint -q /media/clemens/Foto3/ && mountpoint -q /media/clemens/Foto2/; then
+
+      # rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/digikam/ /media/clemens/Foto3/digikam/
+      # rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/gfs/ /media/clemens/Foto3/gfs/
+      # rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/Pictures/ /media/clemens/Foto3/Pictures/
+
+      rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/digikam/ /media/clemens/Foto3/digikam/
+      # rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/gfs/ /media/clemens/Foto3/gfs/
+      rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/vaults/ /media/clemens/Foto3/vaults/ &> $LOGDIR/${time}_vaults.log
+      rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/Pictures/ /media/clemens/Foto3/Pictures/
+      
+  else  
+      echo "One of the drives is not mounted."
+  fi
+fi
+
+####################
+## Foto3 to Foto1 ##
+####################
+# TODO: reformat foto 1
+
+if [[ $1 = "-f3tof1" ]]; then
+
+  today=$(date +'%Y%m%d')
+  LOGDIR=/media/clemens/Foto3/logs/${today}
+
+  if mountpoint -q /media/clemens/Foto3/; then
+  	rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /home/clemens/digikam /media/clemens/Foto3/
+  else
+  	echo "/media/clemens/Foto3/ is not not mounted"
+  fi
+  
+  if mountpoint -q /media/clemens/Foto3/ && mountpoint -q /media/clemens/Foto1/; then
+		
+  	mkdir -p $LOGDIR
+	time=$(date +'%H%M')
+
+    rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto1/digikam/ &> $LOGDIR/${time}_digikam.log
+    # rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto1/gfs/ &> $LOGDIR/${time}_gfs.log
+    rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto1/vaults/ &> $LOGDIR/${time}_vaults.log
+    rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto1/Pictures/ &> $LOGDIR/${time}_Pictures.log
+    
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto1/digikam/ &> $LOGDIR/${time}_digikam.log
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto1/gfs/ &> $LOGDIR/${time}_gfs.log
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto1/Pictures/ &> $LOGDIR/${time}_Pictures.log
+
+  else
+    echo "One of the drives is not mounted."  
+  fi
+
+fi
+
+####################
+## Foto2 to Foto1 ##
+####################
+# TODO: update the below.
+if [[ $1 = "-f2tof1" ]]; then
+
+  read -p "Transfering from Foto2 to Foto1. Continue? (y/n)   " choice
+  case "$choice" in 
+    y|Y|yes|Yes ) echo "yes";;
+    n|N|no|No ) echo "no"; exit 1;;
+    * ) echo "invalid"; exit 1;;
+  esac
+
+  if mountpoint -q /media/clemens/Foto1/ && mountpoint -q /media/clemens/Foto2/; then
+
+      # rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/digikam/ /media/clemens/Foto1/digikam/
+      # rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/gfs/ /media/clemens/Foto1/gfs/
+      # rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/Pictures/ /media/clemens/Foto1/Pictures/
+
+      rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/digikam/ /media/clemens/Foto1/digikam/
+      # rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/gfs/ /media/clemens/Foto1/gfs/
+      rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/vaults/ /media/clemens/Foto1/vaults/ &> $LOGDIR/${time}_vaults.log
+      rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto2/Pictures/ /media/clemens/Foto1/Pictures/
+      
+  else  
+      echo "One of the drives is not mounted."
+  fi
+fi
+
+
+
+# TODO: delete this
+####################
+## Foto1 to Foto2 ##
+####################
+
+
+# if [[ $1 = "-f1tof2" ]]; then
+
+#   if mountpoint -q /media/clemens/Foto1/; then
+#   	rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /home/clemens/digikam /media/clemens/Foto1/
+#   else
+#   	echo "/media/clemens/Foto1/ is not not mounted"
+#   fi
+#   
+#   if mountpoint -q /media/clemens/Foto1/ && mountpoint -q /media/clemens/Foto2/; then
+
+#     # rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto1/digikam/ /media/clemens/Foto2/digikam/
+#     # rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto1/gfs/ /media/clemens/Foto2/gfs/
+#     # rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto1/Pictures/ /media/clemens/Foto2/Pictures/
+#     
+#     rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto1/digikam/ /media/clemens/Foto2/digikam/
+#     rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto1/gfs/ /media/clemens/Foto2/gfs/
+#     rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto1/Pictures/ /media/clemens/Foto2/Pictures/
+
+#   else
+#     echo "One of the drives is not mounted."  
+#   fi
+
+# fi
+

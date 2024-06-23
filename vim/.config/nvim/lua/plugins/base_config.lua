@@ -49,8 +49,8 @@ return {
               -- language = "de-DE",
               additionalRules = {
                 languageModel = "~/.local/share/ngrams/",
-                enablePickyRules = true,
-                motherTongue = "de",
+                -- enablePickyRules = true,
+                -- motherTongue = "de",
               },
               disabledRules = {
                 ["en"] = { "MORFOLOGIK_RULE_EN" },
