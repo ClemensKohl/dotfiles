@@ -1,16 +1,5 @@
 -- Plugins loaded by clemens.
 
--- ===========================================
---  Add user dictionary for ltex-ls
---  * en.utf-8.add must be created using `zg` when set spell is on
--- ===========================================
--- local path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
--- DICT_words = {}
---
--- for word in io.open(path, "r"):lines() do
---   table.insert(DICT_words, word)
--- end
-
 return {
   -- disable mini.surround
   -- I don't like it.
@@ -36,64 +25,37 @@ return {
         severity_sort = true,
       },
       servers = {
-        ltex = {
-          use_spellfile = false,
-          autostart = false,
-          on_attach = on_attach,
-          capabilities = capabilities,
-          filetypes = { "latex", "tex" },
-          settings = {
-            ltex = {
-              checkFrequency = "save",
-              language = "en-US",
-              -- language = "de-DE",
-              additionalRules = {
-                languageModel = "~/.local/share/ngrams/",
-                -- enablePickyRules = true,
-                -- motherTongue = "de",
-              },
-              disabledRules = {
-                ["en"] = { "MORFOLOGIK_RULE_EN" },
-                -- ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
-                -- ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
-                ["en-GB"] = { "MORFOLOGIK_RULE_EN_GB" },
-                -- ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
-                ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
-                -- ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
-                -- ["es"] = { "MORFOLOGIK_RULE_ES" },
-                ["it"] = { "MORFOLOGIK_RULE_IT_IT" },
-                ["de"] = { "MORFOLOGIK_RULE_DE_DE" },
-              },
-              -- dictionary = {
-              --   ["en-US"] = DICT_words,
-              --   ["en-GB"] = DICT_words,
-              -- },
-              dictionary = (function()
-                -- For dictionary, search for files in the runtime to have
-                -- and include them as externals the format for them is
-                -- dict/{LANG}.txt
-                --
-                -- Also add dict/default.txt to all of them
-                local files = {}
-                for _, file in ipairs(vim.api.nvim_get_runtime_file("dict/*", true)) do
-                  local lang = vim.fn.fnamemodify(file, ":t:r")
-                  local fullpath = vim.fs.normalize(file, ":p")
-                  files[lang] = { ":" .. fullpath }
-                end
-
-                if files.default then
-                  for lang, _ in pairs(files) do
-                    if lang ~= "default" then
-                      vim.list_extend(files[lang], files.default)
-                    end
-                  end
-                  files.default = nil
-                end
-                return files
-              end)(),
-            },
-          },
-        },
+        -- ltex = {
+        --   use_spellfile = false,
+        --   autostart = false,
+        --   -- on_attach = on_attach,
+        --   -- capabilities = capabilities,
+        --   filetypes = { "latex", "tex" },
+        --   settings = {
+        --     ltex = {
+        --       checkFrequency = "save",
+        --       language = "en-US",
+        --       -- language = "de-DE",
+        --       additionalRules = {
+        --         languageModel = "~/.local/share/ngrams/",
+        --         -- enablePickyRules = true,
+        --         -- motherTongue = "de",
+        --       },
+        --       disabledRules = {
+        --         ["en"] = { "MORFOLOGIK_RULE_EN" },
+        --         -- ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
+        --         -- ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
+        --         ["en-GB"] = { "MORFOLOGIK_RULE_EN_GB" },
+        --         -- ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
+        --         ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
+        --         -- ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
+        --         -- ["es"] = { "MORFOLOGIK_RULE_ES" },
+        --         ["it"] = { "MORFOLOGIK_RULE_IT_IT" },
+        --         ["de"] = { "MORFOLOGIK_RULE_DE_DE" },
+        --       },
+        --     },
+        --   },
+        -- },
       },
     },
   },

@@ -73,7 +73,8 @@ vim.g.Rout_more_colors = 1
 ------------
 
 -- vim.g.vimtex_view_method = "qpdfview"
-
+-- vim.g.vimtex_quickfix_ignore_filters = { "Underfull", "Overfull" }
+vim.g.vimtex_quickfix_open_on_warning = 0
 ----------------------
 -- Custom functions --
 ----------------------
