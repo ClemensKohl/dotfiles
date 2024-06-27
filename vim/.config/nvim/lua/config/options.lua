@@ -21,6 +21,8 @@ vim.g.neovide_light_radius = 5
 vim.opt.termguicolors = true
 
 -- General vim setup
+vim.opt.smartindent = true
+vim.opt.autoindent = true
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert x spaces for a tab
 vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character

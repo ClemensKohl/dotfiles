@@ -12,7 +12,7 @@ vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" 
 vim.keymap.set("n", "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", { desc = "Toggle Colors Highlighting" })
 -- Buffers/tabs with telescope
 vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
-vim.keymap.set("n", "<leader>bt", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
+vim.keymap.set("n", "<leader><Tab>t", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
 
 -- vim.keymap.set("n", "<leader>cB", ":s/, /,\\r/g<cr>", { desc = "Break line" })
 vim.keymap.set(
@@ -20,6 +20,13 @@ vim.keymap.set(
   "gob",
   ":s/\\((\\zs\\|,\\ *\\zs\\|)\\)/\\r&/g<CR><Bar>:'[,']normal ==<CR>",
   { desc = "Break Line and align" }
+)
+
+vim.keymap.set(
+  "n",
+  "<F5>",
+  ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>",
+  { desc = "Trim trailing whitespace" }
 )
 
 local wk = require("which-key")

@@ -11,9 +11,13 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- { import = "lazyvim.plugins.extras.lang.json" },
-    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.r" },
+    { import = "lazyvim.plugins.extras.lang.tex" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
+    { import = "lazyvim.plugins.extras.util.project" },
+
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -26,8 +30,11 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  install = { colorscheme = { "tokyonight", "habamax", "catppuccin" } },
+  checker = {
+    enabled = true,
+    frequency = 604800, -- check for updates once a week
+  }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
