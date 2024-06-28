@@ -199,9 +199,22 @@ alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Yazi file explorer 
+# Allows to change directory
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+
+
+
 # Deactive conda auto activation
 export CONDA_AUTO_ACTIVATE_BASE=false
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
