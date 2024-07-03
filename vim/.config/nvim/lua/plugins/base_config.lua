@@ -25,37 +25,37 @@ return {
         severity_sort = true,
       },
       servers = {
-        -- ltex = {
-        --   use_spellfile = false,
-        --   autostart = false,
-        --   -- on_attach = on_attach,
-        --   -- capabilities = capabilities,
-        --   filetypes = { "latex", "tex" },
-        --   settings = {
-        --     ltex = {
-        --       checkFrequency = "save",
-        --       language = "en-US",
-        --       -- language = "de-DE",
-        --       additionalRules = {
-        --         languageModel = "~/.local/share/ngrams/",
-        --         -- enablePickyRules = true,
-        --         -- motherTongue = "de",
-        --       },
-        --       disabledRules = {
-        --         ["en"] = { "MORFOLOGIK_RULE_EN" },
-        --         -- ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
-        --         -- ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
-        --         ["en-GB"] = { "MORFOLOGIK_RULE_EN_GB" },
-        --         -- ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
-        --         ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
-        --         -- ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
-        --         -- ["es"] = { "MORFOLOGIK_RULE_ES" },
-        --         ["it"] = { "MORFOLOGIK_RULE_IT_IT" },
-        --         ["de"] = { "MORFOLOGIK_RULE_DE_DE" },
-        --       },
-        --     },
-        --   },
-        -- },
+        ltex = {
+          --   use_spellfile = false,
+          autostart = false,
+          --   -- on_attach = on_attach,
+          --   -- capabilities = capabilities,
+          filetypes = {},
+          settings = {
+            ltex = {
+              checkFrequency = "save",
+              --       language = "en-US",
+              --       -- language = "de-DE",
+              --       additionalRules = {
+              --         languageModel = "~/.local/share/ngrams/",
+              --         -- enablePickyRules = true,
+              --         -- motherTongue = "de",
+              --       },
+              --       disabledRules = {
+              --         ["en"] = { "MORFOLOGIK_RULE_EN" },
+              --         -- ["en-AU"] = { "MORFOLOGIK_RULE_EN_AU" },
+              --         -- ["en-CA"] = { "MORFOLOGIK_RULE_EN_CA" },
+              --         ["en-GB"] = { "MORFOLOGIK_RULE_EN_GB" },
+              --         -- ["en-NZ"] = { "MORFOLOGIK_RULE_EN_NZ" },
+              --         ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
+              --         -- ["en-ZA"] = { "MORFOLOGIK_RULE_EN_ZA" },
+              --         -- ["es"] = { "MORFOLOGIK_RULE_ES" },
+              --         ["it"] = { "MORFOLOGIK_RULE_IT_IT" },
+              --         ["de"] = { "MORFOLOGIK_RULE_DE_DE" },
+              --       },
+            },
+          },
+        },
       },
     },
   },
@@ -67,6 +67,41 @@ return {
       indent = {
         enable = true,
         disable = { "r" },
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          set_jumps = false, -- you can change this if you want.
+          goto_next_start = {
+            --- ... other keymaps
+            ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
+          },
+          goto_previous_start = {
+            --- ... other keymaps
+            ["[b"] = { query = "@code_cell.inner", desc = "previous code block" },
+          },
+        },
+        select = {
+          enable = true,
+          lookahead = true, -- you can change this if you want
+          keymaps = {
+            --- ... other keymaps
+            ["ib"] = { query = "@code_cell.inner", desc = "in block" },
+            ["ab"] = { query = "@code_cell.outer", desc = "around block" },
+          },
+        },
+        swap = { -- Swap only works with code blocks that are under the same
+          -- markdown header
+          enable = true,
+          swap_next = {
+            --- ... other keymap
+            ["<leader>sbl"] = "@code_cell.outer",
+          },
+          swap_previous = {
+            --- ... other keymap
+            ["<leader>sbh"] = "@code_cell.outer",
+          },
+        },
       },
     },
   },

@@ -19,7 +19,7 @@ return {
   -- Enable Codeactions etc. for ltex-ls
   {
     "barreiroleo/ltex_extra.nvim",
-    ft = { "markdown", "tex" },
+    ft = {},
     dependencies = { "neovim/nvim-lspconfig" },
     -- yes, you can use the opts field, just I'm showing the setup explicitly
     config = function()
@@ -46,7 +46,7 @@ return {
               autostart = false,
               -- on_attach = on_attach,
               -- capabilities = capabilities,
-              filetypes = { "latex", "tex" },
+              filetypes = {},
               settings = {
                 ltex = {
                   checkFrequency = "save",
