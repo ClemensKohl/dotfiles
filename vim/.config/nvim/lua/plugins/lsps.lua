@@ -49,7 +49,7 @@ return {
               filetypes = { "latex", "tex" },
               settings = {
                 ltex = {
-                  -- checkFrequency = "save",
+                  checkFrequency = "save",
                   -- language = { "en-US", "de-DE" },
                   -- language = "de-DE",
                   additionalRules = {
