@@ -139,7 +139,9 @@ Toggle_virt = function()
   end
 end
 
--- Set up for molten-nvm
+-- Quarto
+-- vim.cmd([[highlight CodeBlock guibg=#252525]])
+-- vim.cmd([[highlight Dash guibg=#FF0000 gui=bold]])
 
 -- Require image.nvim setup first:
 -- Example for configuring Neovim to load user-installed installed Lua rocks:

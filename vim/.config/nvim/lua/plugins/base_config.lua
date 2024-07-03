@@ -71,23 +71,40 @@ return {
       textobjects = {
         move = {
           enable = true,
-          set_jumps = false, -- you can change this if you want.
+          set_jumps = true, -- you can change this if you want.
           goto_next_start = {
             --- ... other keymaps
             ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
+            -- ["]m"] = "@function.outer",
+            -- ["]]"] = "@class.inner",
           },
+          -- goto_next_end = {
+          --   ["]M"] = "@function.outer",
+          --   ["]["] = "@class.outer",
+          -- },
           goto_previous_start = {
             --- ... other keymaps
             ["[b"] = { query = "@code_cell.inner", desc = "previous code block" },
+            -- ["[m"] = "@function.outer",
+            -- ["[["] = "@class.inner",
           },
+          -- goto_previous_end = {
+          --   ["[M"] = "@function.outer",
+          --   ["[]"] = "@class.outer",
+          -- },
         },
         select = {
           enable = true,
           lookahead = true, -- you can change this if you want
           keymaps = {
             --- ... other keymaps
+            -- You can use the capture groups defined in textobjects.scm
             ["ib"] = { query = "@code_cell.inner", desc = "in block" },
             ["ab"] = { query = "@code_cell.outer", desc = "around block" },
+            -- ["af"] = "@function.outer",
+            -- ["if"] = "@function.inner",
+            -- ["ac"] = "@class.outer",
+            -- ["ic"] = "@class.inner",
           },
         },
         swap = { -- Swap only works with code blocks that are under the same

@@ -7,11 +7,28 @@
 -- end
 
 return {
+  -- {
+  --   'lukas-reineke/headlines.nvim',
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   config = function()
+  --     require("headlines").setup {
+  --       quarto = {
+  --         query = vim.treesitter.query.parse(
+  --           "markdown",
+  --           [[
+  --               (fenced_code_block) @codeblock
+  --           ]]),
+  --         codeblock_highlight = "CodeBlock",
+  --         treesitter_language = "markdown",
+  --       },
+  --     }
+  --   end
+  -- },
 
   -- Work in Jupyter Notebooks.
   {
     "benlubas/molten-nvim",
-    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+    -- version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
     dependencies = { "3rd/image.nvim" },
     build = ":UpdateRemotePlugins",
     init = function()
@@ -115,6 +132,7 @@ return {
 
   {
     "quarto-dev/quarto-nvim",
+    dev = false,
     opts = {
       lspFeatures = {
         languages = { "r", "R", "python", "bash" },
@@ -127,14 +145,14 @@ return {
           enabled = true,
         },
       },
-      keymap = {
+      -- keymap = {
         -- NOTE: setup your own keymaps:
-        hover = "H",
-        definition = "gd",
-        rename = "<localleader>rn",
-        references = "gr",
-        format = "<localleader>gf",
-      },
+      --   hover = "H",
+      --   definition = "gd",
+      --   rename = "<localleader>rn",
+      --   references = "gr",
+      --   format = "<localleader>gf",
+      -- },
       codeRunner = {
         enabled = true,
         default_method = "molten",
