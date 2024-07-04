@@ -99,8 +99,8 @@ return {
           keymaps = {
             --- ... other keymaps
             -- You can use the capture groups defined in textobjects.scm
-            ["ib"] = { query = "@code_cell.inner", desc = "in block" },
-            ["ab"] = { query = "@code_cell.outer", desc = "around block" },
+            -- ["ib"] = { query = "@code_cell.inner", desc = "in block" },
+            -- ["ab"] = { query = "@code_cell.outer", desc = "around block" },
             -- ["af"] = "@function.outer",
             -- ["if"] = "@function.inner",
             -- ["ac"] = "@class.outer",
