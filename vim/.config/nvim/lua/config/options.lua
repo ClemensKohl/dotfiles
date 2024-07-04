@@ -34,6 +34,8 @@ vim.opt.spelllang = { "en", "de" }
 --Change default shell
 vim.opt.shell = "zsh"
 
+--Markdown settings:
+vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
 -- align function parameters
 -- vim.cmd([[
 --     :set cino+=(0,W2
