@@ -53,14 +53,14 @@ return {
       vim.g.molten_virt_lines_off_by_1 = true
     end,
     keys = {
-      { "<localleader>mi", ":MoltenInit<CR>", mode = "n", desc = "Init Molten" },
-      { "<localleader>me", ":MoltenEvaluateOperator<CR>", mode = "n", desc = "run operator selection" },
-      { "<localleader>ml", ":MoltenEvaluateLine<CR>", mode = "n", desc = "evaluate line" },
-      { "<localleader>mr", ":MoltenReevaluateCell<CR>", mode = "n", desc = "re-evaluate cell" },
-      { "<localleader>ms", ":noautocmd MoltenEnterOutput<CR>", mode = "n", desc = "open output window" },
-      { "<localleader>mh", ":MoltenHideOutput<CR>", mode = "n", desc = "close output window" },
-      { "<localleader>md", ":MoltenDelete<CR>", mode = "n", desc = "delete Molten cell" },
-      { "<localleader>mr", ":<C-u>MoltenEvaluateVisual<CR>gv", mode = "v", desc = "evaluate visual selection" },
+      { "<localleader><localleader>i", ":MoltenInit<CR>", mode = "n", desc = "Init Molten" },
+      { "<localleader><localleader>e", ":MoltenEvaluateOperator<CR>", mode = "n", desc = "run operator selection" },
+      { "<localleader><localleader>l", ":MoltenEvaluateLine<CR>", mode = "n", desc = "evaluate line" },
+      { "<localleader><localleader>r", ":MoltenReevaluateCell<CR>", mode = "n", desc = "re-evaluate cell" },
+      { "<localleader><localleader>s", ":noautocmd MoltenEnterOutput<CR>", mode = "n", desc = "open output window" },
+      { "<localleader><localleader>h", ":MoltenHideOutput<CR>", mode = "n", desc = "close output window" },
+      { "<localleader><localleader>d", ":MoltenDelete<CR>", mode = "n", desc = "delete Molten cell" },
+      { "<localleader><localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", mode = "v", desc = "evaluate visual selection" },
     },
   },
 

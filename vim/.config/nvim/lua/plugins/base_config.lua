@@ -63,6 +63,11 @@ return {
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+      },
+    },
     opts = {
       indent = {
         enable = true,
@@ -76,22 +81,22 @@ return {
             --- ... other keymaps
             ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
             -- ["]m"] = "@function.outer",
-            -- ["]]"] = "@class.inner",
+            ["]]"] = "@class.inner",
           },
-          -- goto_next_end = {
-          --   ["]M"] = "@function.outer",
-          --   ["]["] = "@class.outer",
-          -- },
+          goto_next_end = {
+            --   ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+          },
           goto_previous_start = {
             --- ... other keymaps
             ["[b"] = { query = "@code_cell.inner", desc = "previous code block" },
             -- ["[m"] = "@function.outer",
-            -- ["[["] = "@class.inner",
+            ["[["] = "@class.inner",
           },
-          -- goto_previous_end = {
-          --   ["[M"] = "@function.outer",
-          --   ["[]"] = "@class.outer",
-          -- },
+          goto_previous_end = {
+            --   ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+          },
         },
         select = {
           enable = true,
@@ -149,6 +154,7 @@ return {
         "rust",
         "bibtex",
         "latex",
+        "query",
       })
     end,
   },
