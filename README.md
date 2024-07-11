@@ -43,6 +43,7 @@ stow --target=$HOME zellij
 stow --target=$HOME ranger
 stow --target=$HOME x11
 stow --target=$HOME radian
+stow --target=$HOME yazi
 ```
 
 You can also stow everything at once:
