@@ -3,7 +3,11 @@
 return {
   -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
-
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = { style = "moon" },
+  },
   -- gruvbox but with softer contrast.
   {
     "sainnhe/gruvbox-material",
