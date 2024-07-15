@@ -60,6 +60,37 @@ return {
     },
   },
 
+  -- Extends default treesitter config.
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "bash",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "regex",
+        "vim",
+        "r",
+        "rnoweb",
+        "julia",
+        "vim",
+        "vimdoc",
+        "luadoc",
+        "json",
+        "html",
+        "yaml",
+        "c",
+        "cpp",
+        "rust",
+        -- "bibtex",
+        -- "latex",
+        "query",
+      })
+    end,
+  },
+
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -130,37 +161,6 @@ return {
         },
       },
     },
-  },
-
-  -- Extends default treesitter config.
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "bash",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "regex",
-        "vim",
-        "r",
-        "rnoweb",
-        "julia",
-        "vim",
-        "vimdoc",
-        "luadoc",
-        "json",
-        "html",
-        "yaml",
-        "c",
-        "cpp",
-        "rust",
-        -- "bibtex",
-        -- "latex",
-        "query",
-      })
-    end,
   },
 
   -- Configure Mason

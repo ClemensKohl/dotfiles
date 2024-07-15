@@ -17,7 +17,4 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd(
-  { "FileType" },
-  { pattern = "tex", group = optional_group, command = "TSBufDisable highlight" }
-)
+vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })

@@ -87,15 +87,13 @@ vim.keymap.set("n", "<leader>uS", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle
 -- Zen Mode --
 --------------
 
-wk.register({
-  z = {
-    name = "Util", -- optional group name
-    z = { "<cmd>ZenMode<cr>", "Toggle ZenMode" },
-    t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-    E = { "<cmd>Copilot enable<cr>", "start Copilot" },
-    D = { "<cmd>Copilot disable<cr>", "stop Copilot" },
-  },
-}, { prefix = "<leader>" })
+wk.add({
+  { "<leader>z", group = "Util" },
+  { "<leader>zD", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
+  { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
+  { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
+  { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
+})
 
 ----------------
 -- ToggleTerm --
@@ -158,17 +156,13 @@ wk.register({
 -- Transfer --
 --------------
 
-wk.register({
-  ["<leader>"] = {
-    zd = {
-      name = "Upload / Download",
-      d = { "<cmd>TransferDownload<cr>", "Download from remote server (scp)" },
-      u = { "<cmd>TransferUpload<cr>", "Upload to remote server (scp)" },
-      f = { "<cmd>DiffRemote<cr>", "Diff file with remote server (scp)" },
-      i = { "<cmd>TransferInit<cr>", "Init/Edit Deployment config" },
-      r = { "<cmd>TransferRepeat<cr>", "Repeat transfer command" },
-    },
-  },
+wk.add({
+  { "<leader>zd", group = "Upload / Download" },
+  { "<leader>zdd", "<cmd>TransferDownload<cr>", desc = "Download from remote server (scp)" },
+  { "<leader>zdf", "<cmd>DiffRemote<cr>", desc = "Diff file with remote server (scp)" },
+  { "<leader>zdi", "<cmd>TransferInit<cr>", desc = "Init/Edit Deployment config" },
+  { "<leader>zdr", "<cmd>TransferRepeat<cr>", desc = "Repeat transfer command" },
+  { "<leader>zdu", "<cmd>TransferUpload<cr>", desc = "Upload to remote server (scp)" },
 })
 
 -- Molten -> Added to lazy plugin load.
