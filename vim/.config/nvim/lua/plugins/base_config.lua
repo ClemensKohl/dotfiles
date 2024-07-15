@@ -73,6 +73,10 @@ return {
         enable = true,
         disable = { "r" },
       },
+      highlight = {
+        enable = true, -- false will disable the whole extension
+        disable = { "latex", "tex" }, -- list of language that will be disabled
+      },
       textobjects = {
         move = {
           enable = true,
@@ -152,8 +156,8 @@ return {
         "c",
         "cpp",
         "rust",
-        "bibtex",
-        "latex",
+        -- "bibtex",
+        -- "latex",
         "query",
       })
     end,
