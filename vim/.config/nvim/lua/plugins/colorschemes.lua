@@ -6,6 +6,7 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = true,
+    priority = 1000,
     opts = { style = "moon" },
   },
   -- gruvbox but with softer contrast.
