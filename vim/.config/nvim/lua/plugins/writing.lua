@@ -6,10 +6,10 @@ return {
 
   -- Plugin improves neovim and ltex-ls interoperability.
   -- If you want to use nvim-lspconfig
-  {
-    "vigoux/ltex-ls.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-  },
+  -- {
+  --   "vigoux/ltex-ls.nvim",
+  --   dependencies = "neovim/nvim-lspconfig",
+  -- },
 
   -- Mode for focused writing.
   {

@@ -27,6 +27,7 @@ vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert x spaces for a tab
 vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
+vim.opt.breakindent = true
 
 -- add German spellchecking
 vim.opt.spelllang = { "en", "de" }

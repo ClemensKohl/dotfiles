@@ -28,6 +28,11 @@ return {
       },
       term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+      custom_highlights = function(colors)
+        return {
+          RenderMarkdownCode = { bg = colors.mantle },
+        }
+      end,
     },
   },
   -- {

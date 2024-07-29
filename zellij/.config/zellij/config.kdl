@@ -150,10 +150,10 @@ keybinds {
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
-        bind "Alt H" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt L" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt J" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt K" "Alt Up" { MoveFocus "Up"; }
+        bind "Alt Left" { MoveFocusOrTab "Left"; }
+        bind "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt Down" { MoveFocus "Down"; }
+        bind "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
