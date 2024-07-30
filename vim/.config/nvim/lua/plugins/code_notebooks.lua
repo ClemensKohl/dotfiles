@@ -2,9 +2,9 @@
 -- stylua: ignore
 -- if true then return {} end
 
--- if vim.g.neovide then -- Put anything you want to happen only in Neovide here
---   if true then return {} end
--- end
+if vim.g.neovide then -- Put anything you want to happen only in Neovide here
+  if true then return {} end
+end
 
 return {
   {
@@ -57,7 +57,12 @@ return {
       { "<localleader><localleader>s", ":noautocmd MoltenEnterOutput<CR>", mode = "n", desc = "open output window" },
       { "<localleader><localleader>h", ":MoltenHideOutput<CR>", mode = "n", desc = "close output window" },
       { "<localleader><localleader>d", ":MoltenDelete<CR>", mode = "n", desc = "delete Molten cell" },
-      { "<localleader><localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", mode = "v", desc = "evaluate visual selection" },
+      {
+        "<localleader><localleader>r",
+        ":<C-u>MoltenEvaluateVisual<CR>gv",
+        mode = "v",
+        desc = "evaluate visual selection",
+      },
     },
   },
 
@@ -146,7 +151,7 @@ return {
         },
       },
       -- keymap = {
-        -- NOTE: setup your own keymaps:
+      -- NOTE: setup your own keymaps:
       --   hover = "H",
       --   definition = "gd",
       --   rename = "<localleader>rn",
@@ -162,7 +167,12 @@ return {
     keys = {
       { "<localleader>qi", "<cmd>QuartoActivate<cr>", mode = "n", desc = "quarto activate" },
       { "<localleader>qc", "<cmd>lua require('quarto.runner').run_cell()<cr>", mode = "n", desc = "run cell" },
-      { "<localleader>qa", "<cmd>lua require('quarto.runner').run_above()<cr>", mode = "n", desc = "run cell and above" },
+      {
+        "<localleader>qa",
+        "<cmd>lua require('quarto.runner').run_above()<cr>",
+        mode = "n",
+        desc = "run cell and above",
+      },
       { "<localleader>qA", "<cmd>lua require('quarto.runner').run_all()<cr>", mode = "n", desc = "run all cells" },
       { "<localleader>ql", "<cmd>lua require('quarto.runner').run_line()<cr>", mode = "n", desc = "run line" },
       {
