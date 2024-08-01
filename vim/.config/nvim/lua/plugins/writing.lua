@@ -11,6 +11,13 @@ return {
   --   dependencies = "neovim/nvim-lspconfig",
   -- },
 
+
+  -- Telescope Thesaurus picker
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'rafi/telescope-thesaurus.nvim' },
+  },
+
   -- Mode for focused writing.
   {
     "folke/zen-mode.nvim",

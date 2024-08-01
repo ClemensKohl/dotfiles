@@ -43,45 +43,10 @@ vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle
 
 vim.keymap.set("n", "<leader>uS", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle ltex-ls" })
 
-------------
--- Notify --
-------------
-
--- wk.register({
---   uN = {
---     name = "Noice",
---     l = { "<cmd>lua require('noice').cmd('last')<cr>", "Noice Last Message" },
---     h = { "<cmd>lua require('noice').cmd('history')<cr>", "Noice History" },
---     a = { "<cmd>lua require('noice').cmd('all')<cr>", "Noice All" },
---     d = { "<cmd>lua require('noice').cmd('dismiss')<cr>", "Dismiss All" },
---     H = { "<cmd>:Telescope notify<cr>", "Notify History" },
---   },
--- }, { prefix = "<leader>" })
-
-------------
--- Nvim-R --
-------------
-
--- wk.register({
---   r = {
---     name = "Nvim-R", -- optional group name
---     f = { "<Plug>RStart", "Start R" },
---     q = { "<Plug>RClose", "Close R" },
---     l = { "<Plug>RSendLine", "Send Line to R" },
---     s = { "<Plug>RSendSelection", "Send Selection to R" },
---     h = { "<Plug>RHelp", "Open R Help" },
---     o = { "<Plug>RUpdateObjBrowser", "Open Object Browser" },
---     c = { "<Plug>RSendChunk", "Send Rmd Chunk" },
---     d = { "<Plug>RDSendChunk", "Send Rmd Chunk (DOWN)" },
---   },
--- }, { prefix = "<leader>" })
---
--- wk.register({
---   r = {
---     name = "Nvim-R", -- optional group name
---     s = { "<Plug>RSendSelection", "Send Selection to R" },
---   },
--- }, { prefix = "<leader>", mode = "v" })
+---------------
+-- Thesaurus --
+---------------
+vim.keymap.set("n", "<localleader>k", "<cmd>Telescope thesaurus lookup<CR>")
 
 --------------
 -- Zen Mode --

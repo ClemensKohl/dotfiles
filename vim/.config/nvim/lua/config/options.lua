@@ -82,6 +82,12 @@ if vim.fn.executable("zathura") == 1 then
 end
 -- vim.g.vimtex_quickfix_ignore_filters = { "Underfull", "Overfull" }
 vim.g.vimtex_quickfix_open_on_warning = 0
+
+---------------
+-- Thesaurus --
+---------------
+vim.g.dictionary_api_key = "00681251-6c67-4cd5-979c-3d58d11caf77"
+
 ----------------------
 -- Custom functions --
 ----------------------
