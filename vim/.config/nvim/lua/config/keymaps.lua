@@ -43,6 +43,15 @@ vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle
 
 vim.keymap.set("n", "<leader>uS", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle ltex-ls" })
 
+-- Todo_hl = vim.api.nvim_get_hl_id_by_name("Todo")
+-- TODO: Doesnt work yet.
+vim.keymap.set(
+  "n",
+  "<localleader>lh",
+  "<cmd>lua vim.api.nvim_set_hl(0, 'Todo', Todo_hl_settings)<cr>",
+  { desc = "Todo highlights" }
+)
+
 ---------------
 -- Thesaurus --
 ---------------

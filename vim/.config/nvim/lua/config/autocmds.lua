@@ -18,3 +18,10 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
+
+Todo_hl_settings = vim.api.nvim_get_hl(0, { name = "Todo" })
+vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "highlight clear Todo" })
+-- vim.api.nvim_create_autocmd(
+--   { "FileType" },
+--   { pattern = { "tex", "latex" }, command = "lua vim.api.nvim_set_hl(0, 'Todo', {})" }
+-- )

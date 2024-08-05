@@ -99,7 +99,7 @@ return {
 
       enable = {
         terminal = true,
-        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
         migrations = true, -- Handle deprecated options automatically
       },
 
@@ -114,12 +114,12 @@ return {
         link = "iris",
         panel = "surface",
 
-        error = "love",
-        hint = "iris",
-        info = "foam",
-        note = "pine",
-        todo = "rose",
-        warn = "gold",
+        -- error = "love",
+        -- hint = "iris",
+        -- info = "foam",
+        -- note = "pine",
+        -- todo = "rose",
+        -- warn = "gold",
 
         git_add = "foam",
         git_change = "rose",
@@ -163,9 +163,10 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "gruvbox",
+      colorscheme = "tokyonight-moon",
       -- colorscheme = "gruvbox-material",
-      colorscheme = "catppuccin-frappe",
+      -- colorscheme = "catppuccin-frappe",
+      -- colorscheme = "rose-pine-dawn",
       gruvbox_material_background = "medium",
       gruvbox_material_better_performance = 1,
     },
