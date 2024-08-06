@@ -20,6 +20,10 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Turns off treesitter highlights for latex files.
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
 
+-- Set Light colorscheme for Latex.
+-- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "set bg=light" })
+-- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "colorscheme rose-pine-dawn" })
+
 -- Solves vimtex and todo-comment both coloring the todos/notes...
 Todo_hl_settings = vim.api.nvim_get_hl(0, { name = "Todo" })
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "highlight clear Todo" })

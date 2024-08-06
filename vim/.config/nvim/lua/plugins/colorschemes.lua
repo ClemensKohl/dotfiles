@@ -163,9 +163,9 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-moon",
+      -- colorscheme = "tokyonight-moon",
       -- colorscheme = "gruvbox-material",
-      -- colorscheme = "catppuccin-frappe",
+      colorscheme = "catppuccin-frappe",
       -- colorscheme = "rose-pine-dawn",
       gruvbox_material_background = "medium",
       gruvbox_material_better_performance = 1,
