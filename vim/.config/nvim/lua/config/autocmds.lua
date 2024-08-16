@@ -27,6 +27,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, comm
 -- Solves vimtex and todo-comment both coloring the todos/notes...
 Todo_hl_settings = vim.api.nvim_get_hl(0, { name = "Todo" })
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "highlight clear Todo" })
+-- Enable wrap for tex
+vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "set wrap" })
 
 -- vim.api.nvim_create_autocmd(
 --   { "FileType" },
