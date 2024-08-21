@@ -7,7 +7,8 @@
 
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-
+-- Goto definition in new split.
+vim.keymap.set("n", "<leader>zv", ":vsplit | lua vim.lsp.buf.definition()<CR>")
 -- Toggle Color highlighting of Hex codes
 vim.keymap.set("n", "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", { desc = "Toggle Colors Highlighting" })
 -- Buffers/tabs with telescope
@@ -57,13 +58,13 @@ vim.keymap.set(
 ---------------
 vim.keymap.set("n", "<localleader>k", "<cmd>Telescope thesaurus lookup<CR>")
 
---------------
--- Zen Mode --
---------------
+-----------
+-- Utils --
+-----------
 
 wk.add({
   { "<leader>z", group = "Util" },
-  { "<leader>zD", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
+  { "<leader>zC", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
   { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
   { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
   { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
