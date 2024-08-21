@@ -34,6 +34,9 @@ fi
 ## Work ##
 ##########
 
+# First connect via VPN
+alias remote_windows='rdesktop -u kohl -d wis-net -f winter'
+
 if [[ "$(whoami)" == "kohl" ]]; then
 
     #xmodmap $HOME/.xmodmap
