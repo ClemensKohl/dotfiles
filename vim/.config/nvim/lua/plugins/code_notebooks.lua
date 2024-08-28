@@ -7,6 +7,7 @@ if vim.g.neovide then -- Put anything you want to happen only in Neovide here
 end
 
 return {
+  -- Just some customisation for markdown.nvim is in the lazyvim extension
   {
     "MeanderingProgrammer/markdown.nvim",
     opts = {
@@ -24,6 +25,18 @@ return {
     },
     ft = { "markdown", "norg", "rmd", "org", "quarto" },
   },
+
+  -- Telescope extension for markdown headers
+  -- {
+  --   "crispgm/telescope-heading.nvim",
+  --   opts = {
+  --     extensions = {
+  --       heading = {
+  --         treesitter = true,
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- Work in Jupyter Notebooks.
   {

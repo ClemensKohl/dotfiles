@@ -170,10 +170,10 @@ return {
       ensure_installed = {
         "r-languageserver",
         "bash-language-server",
-        "pyright",
+        -- "pyright",
         "clangd",
         "rust-analyzer",
-        "texlab",
+        -- "texlab",
         "ltex-ls",
         "markdownlint",
       },
