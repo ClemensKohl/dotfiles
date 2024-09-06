@@ -8,6 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+eval $(/opt/homebrew/bin/brew shellenv)
+
 export LOADED="PROFILE"
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

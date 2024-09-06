@@ -1,4 +1,6 @@
 
+export PATH="${HOMEBREW_PREFIX}/opt/openssl/bin:$PATH"
+
 if [[ "$(whoami)" == "kohl" ]]; then
 	export LOADED="BASH_PROFILE"
 	PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
