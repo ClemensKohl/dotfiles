@@ -168,14 +168,14 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "r-languageserver",
-        "bash-language-server",
+        -- "r-languageserver",
+        -- "bash-language-server",
         -- "pyright",
         "clangd",
         "rust-analyzer",
-        -- "texlab",
+        "texlab",
         "ltex-ls",
-        "markdownlint",
+        -- "markdownlint",
       },
     },
   },

@@ -40,8 +40,8 @@ if [ -d "$HOME/.local/bin" ]; then
 	PATH="$PATH:$HOME/.local/bin"
 fi
 
-PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
-PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
+# PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
+# PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
 
 export PATH
 
@@ -150,6 +150,23 @@ alias vvim='NVIM_APPNAME=nvim nvim'             # lazy vim
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
+alias lg='lazygit'
+alias zj="zellij"
+alias zju="zellij options --simplified-ui true"
+alias khome="cd /home/kohlc1/"
+alias stash_res="cd /stash/results/dev/kohlc1/"
+
+# Yazi file explorer 
+# Allows to change directory
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # Path to dot files on personal computers.
 if [ -d ~/gits/ClemensKohl/dot_files ];
 then
@@ -189,25 +206,30 @@ fi
 # Vim mode
 set -o vi
 
-# Deactivate auto-activation of base environment
-export CONDA_AUTO_ACTIVATE_BASE=false
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/clemens/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/clemens/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/clemens/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/clemens/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+# # Deactivate auto-activation of base environment
+# export CONDA_AUTO_ACTIVATE_BASE=false
+#
+#
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/clemens/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/clemens/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/clemens/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/clemens/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+#
 . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
