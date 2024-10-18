@@ -29,6 +29,47 @@ vim.keymap.set(
   ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>",
   { desc = "Trim trailing whitespace" }
 )
+-- Function to format function arguments
+local function format_arguments()
+  -- Get the current line
+  local line = vim.api.nvim_get_current_line()
+
+  -- Find the start and end of the argument list
+  local start_pos = line:find("%(")
+  local end_pos = line:find("%)")
+
+  if not start_pos or not end_pos then
+    print("No function arguments found on the current line.")
+    return
+  end
+
+  -- Extract the arguments
+  local args = line:sub(start_pos + 1, end_pos - 1)
+
+  -- Split the arguments by comma
+  local formatted_args = {}
+  for arg in args:gmatch("[^,]+") do
+    table.insert(formatted_args, arg:match("^%s*(.-)%s*$")) -- Trim whitespace
+  end
+
+  -- Create the new formatted line
+  local new_lines = {}
+  table.insert(new_lines, line:sub(1, start_pos) .. "(")
+  for _, arg in ipairs(formatted_args) do
+    table.insert(new_lines, "  " .. arg .. ",")
+  end
+  new_lines[#new_lines] = new_lines[#new_lines]:gsub(",$", "") -- Remove trailing comma
+  table.insert(new_lines, ")" .. line:sub(end_pos + 1))
+
+  -- Set the new lines
+  vim.api.nvim_buf_set_lines(0, vim.fn.line(".") - 1, vim.fn.line("."), false, new_lines)
+end
+
+-- Create a command to call the function
+vim.api.nvim_create_user_command("FormatArgs", format_arguments, {})
+
+-- Keymap to format function arguments
+vim.api.nvim_set_keymap("n", "<leader>c,", ":FormatArgs<CR>", { noremap = true, silent = true })
 
 local wk = require("which-key")
 

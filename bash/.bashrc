@@ -152,9 +152,9 @@ alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
 alias lg='lazygit'
 alias zj="zellij"
-alias zju="zellij options --simplified-ui true"
+alias zjc="zellij --layout compact"
 alias khome="cd /home/kohlc1/"
-alias stash_res="cd /stash/results/dev/kohlc1/"
+alias kcstash="cd /stash/results/dev/kohlc1/"
 
 # Yazi file explorer 
 # Allows to change directory
