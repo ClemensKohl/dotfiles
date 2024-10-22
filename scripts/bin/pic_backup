@@ -21,12 +21,11 @@ if [[ $1 = "-f3tof2" ]]; then
     time=$(date +'%H%M')
 
     rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto2/digikam/ &>$LOGDIR/${time}_digikam.log
-    # rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto2/gfs/ &> $LOGDIR/${time}_gfs.log
     rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto2/vaults/ &>$LOGDIR/${time}_vaults.log
     rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto2/Pictures/ &>$LOGDIR/${time}_Pictures.log
 
     #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto2/digikam/ &> $LOGDIR/${time}_digikam.log
-    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto2/gfs/ &> $LOGDIR/${time}_gfs.log
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto2/vaults/ &> $LOGDIR/${time}_vaults.log
     #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto2/Pictures/ &> $LOGDIR/${time}_Pictures.log
 
   else
@@ -57,12 +56,11 @@ if [[ $1 = "-f3tof1" ]]; then
     time=$(date +'%H%M')
 
     rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto1/digikam/ &>$LOGDIR/${time}_digikam.log
-    # rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto1/gfs/ &> $LOGDIR/${time}_gfs.log
     rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto1/vaults/ &>$LOGDIR/${time}_vaults.log
     rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto1/Pictures/ &>$LOGDIR/${time}_Pictures.log
 
     #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto1/digikam/ &> $LOGDIR/${time}_digikam.log
-    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/gfs/ /media/clemens/Foto1/gfs/ &> $LOGDIR/${time}_gfs.log
+    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto1/vaults/ &> $LOGDIR/${time}_vaults.log
     #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto1/Pictures/ &> $LOGDIR/${time}_Pictures.log
 
   else
