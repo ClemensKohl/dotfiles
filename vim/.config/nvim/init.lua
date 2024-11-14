@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+require("mini.align").setup()
 -- require("telescope").load_extension("heading")
 
 -- -- Molten status line

@@ -34,6 +34,7 @@ vim.opt.spelllang = { "en", "de" }
 
 --Change default shell
 -- vim.opt.shell = "zsh"
+vim.opt.shell = "bash"
 
 --Markdown settings:
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
