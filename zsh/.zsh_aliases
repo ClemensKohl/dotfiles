@@ -4,6 +4,7 @@
 #############
 alias lg="lazygit"
 alias zj="zellij"
+alias zjc="zellij --layout compact"
 alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' nvim"
 
 ############
