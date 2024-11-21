@@ -5,6 +5,8 @@
 --TODO: Add as many as possible directly to plugin config.
 --This way you can easily disable both the plugin and the keymaps.
 
+-- Switch splits with tab.
+vim.keymap.set("n", "<tab>", "<C-w><C-w>")
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 -- Goto definition in new split.
@@ -109,6 +111,20 @@ wk.add({
   { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
   { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
   { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
+})
+
+wk.add({
+  { "<leader>k", group = "keymaps" },
+  { "<leader>km", require("treesj").toggle, desc = "TreeSJ Toggle" },
+  {
+    "<leader>kM",
+    function()
+      require("treesj").toggle({ split = { recursive = true } })
+    end,
+    desc = "TreeSJ Recursive Toggle",
+  },
+  { "<leader>ks", require("treesj").split, desc = "TreeSJ Split" },
+  { "<leader>kj", require("treesj").join, desc = "TreeSJ Join" },
 })
 
 ----------------
