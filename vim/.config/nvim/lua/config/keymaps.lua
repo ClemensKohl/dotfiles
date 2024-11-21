@@ -2,6 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Switch splits with tab.
+
+vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
+
 --TODO: Add as many as possible directly to plugin config.
 --This way you can easily disable both the plugin and the keymaps.
 
@@ -32,6 +36,7 @@ vim.keymap.set(
 
 if not vim.g.vscode then
   local wk = require("which-key")
+  local mi = require("mini.icons") -- needs to be loaded.
 
   ----------------------
   -- custom functions --
@@ -40,9 +45,8 @@ if not vim.g.vscode then
   vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
   -- vim.keymap.set("n", "<leader>zo", "<cmd>lua Toggle_diagnostics()<cr>", { desc = "Toggle diagnostics (custom)" })
   -- vim.keymap.set("n", "<leader>zf", "<cmd>lua Turnoff_diagnostics()<cr>", { desc = "Turn off diagnostics (custom)" })
-  vim.keymap.set("n", "<leader>zc", "<cmd>lua Toggle_curl()<cr>", { desc = "Toggle diagnostic curl" })
-  vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
-
+  vim.keymap.set("n", "<leader>ux", "<cmd>lua Toggle_curl()<cr>", { desc = "Toggle diagnostic curl" })
+  vim.keymap.set("n", "<leader>uv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
   vim.keymap.set("n", "<leader>uS", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle ltex-ls" })
 
   -- Todo_hl = vim.api.nvim_get_hl_id_by_name("Todo")
@@ -64,69 +68,29 @@ if not vim.g.vscode then
   -----------
 
   wk.add({
-    { "<leader>z", group = "Util" },
-    { "<leader>zC", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
-    { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
+    { "<leader>z", group = "Util", icon = MiniIcons.get("os", "linux") },
+    -- { "<leader>zC", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
+    -- { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
     { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
   })
 
-  ----------------
-  -- ToggleTerm --
-  ----------------
-  -- ... we dont have it installed.
-  -- wk.register({
-  --   t = {
-  --     name = "ToggleTerm", -- optional group name
-  --     f = {
-  --       "lua function() set_opfunc(function(motion_type) require('toggleterm').send_lines_to_terminal(motion_type, false, { args = vim.v.count }) end) vim.api.nvim_feedkeys('g@', 'n', false) end)<cr>",
-  --       "Send Line",
-  --     },
-  --   },
-  -- }, { prefix = "<leader>", mode = "n" })
-  --
-  -- wk.register({
-  --   t = {
-  --     name = "ToggleTerm", -- optional group name
-  --     l = {
-  --       "<cmd>lua require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })<cr>",
-  --       "Send Line",
-  --     },
-  --   },
-  -- }, { prefix = "<leader>", mode = "v" })
-
-  -- local trim_spaces = true
-  -- vim.keymap.set("v", "<leader>t", function()
-  --   require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
-  -- end)
-  -- Replace with these for the other two options
-  -- require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
-  -- require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
-
-  -- For use as an operator map:
-  -- Send motion to terminal
-  -- vim.keymap.set("n", [[<leader><c-\>]], function()
-  --   set_opfunc(function(motion_type)
-  --     require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-  --   end)
-  --   vim.api.nvim_feedkeys("g@", "n", false)
-  -- end)
-
-  -- Double the command to send line to terminal
-  -- vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
-  --   set_opfunc(function(motion_type)
-  --     require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-  --   end)
-  --   vim.api.nvim_feedkeys("g@_", "n", false)
-  -- end)
-  --
-  -- Send whole file
-  -- vim.keymap.set("n", [[<leader><leader><c-\>]], function()
-  --   set_opfunc(function(motion_type)
-  --     require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-  --   end)
-  --   vim.api.nvim_feedkeys("ggg@G''", "n", false)
-  -- end)
+  ------------
+  -- TreeSJ --
+  ------------
+  wk.add({
+    { "<leader>k", group = "keymaps", icon = MiniIcons.get("lsp", "key") },
+    { "<leader>km", require("treesj").toggle, desc = "TreeSJ Toggle" },
+    {
+      "<leader>kM",
+      function()
+        require("treesj").toggle({ split = { recursive = true } })
+      end,
+      desc = "TreeSJ Recursive Toggle",
+    },
+    { "<leader>ks", require("treesj").split, desc = "TreeSJ Split" },
+    { "<leader>kj", require("treesj").join, desc = "TreeSJ Join" },
+  })
 
   --------------
   -- Transfer --
@@ -145,18 +109,6 @@ end
 -------------
 -- NEOVIDE --
 -------------
-
--- vim.g.neovide_scale_factor = 1.0
--- local change_scale_factor = function(delta)
---   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
--- end
--- vim.keymap.set("n", "<C-=>", function()
---   change_scale_factor(1.25)
--- end)
---
--- vim.keymap.set("n", "<C-->", function()
---   change_scale_factor(1 / 1.25)
--- end)
 
 if vim.g.neovide == true then
   vim.api.nvim_set_keymap(

@@ -253,22 +253,14 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim" },
   },
 
-  -- {
-  --   "folke/flash.nvim",
-  --   keys = {
-  --     {
-  --       "m",
-  --       mode = "o",
-  --       function()
-  --         require("flash").jump({
-  --           remote_op = {
-  --             motion = true,
-  --             restore = false,
-  --           },
-  --         })
-  --       end,
-  --       desc = "Magnetic",
-  --     },
-  --   },
-  -- },
+  {
+    "Wansmer/treesj",
+    keys = { "gom", "goj", "gos" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
+    end,
+  },
 }
