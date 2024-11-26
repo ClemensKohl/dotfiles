@@ -11,6 +11,8 @@ vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
 
 -- Switch splits with tab.
 vim.keymap.set("n", "<tab>", "<C-w><C-w>")
+-- Get out of terminal mode
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n")
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 -- Goto definition in new split.
