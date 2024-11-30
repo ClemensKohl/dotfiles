@@ -1,12 +1,12 @@
-# dot_files
+# dotfiles
 
 all my .dot files
 
 This repository contains submodules. To clone it, do the following:
 
 ```bash
-git clone git@github.com:ClemensKohl/dot_files.git
-cd dot_files
+git clone git@github.com:ClemensKohl/dotfiles.git
+cd dotfiles
 git submodule init
 git submodule update
 ```
@@ -24,7 +24,7 @@ You can simply use `stow` to manage all your simlinks.
 The below commands will install the dotfiles in the correct subdirectories etc. :
 
 ```
-cd /path/to/dot_files
+cd /path/to/dotfiles
 
 stow --target=$HOME vim
 stow --target=$HOME tmux
@@ -52,7 +52,7 @@ You can also stow everything at once:
 stow --target=$HOME --restow */
 ```
 
-But make sure there aren't any weird folders in your dot_files repository! (Backups, incorrect folder structure ...)
+But make sure there aren't any weird folders in your dotfiles repository! (Backups, incorrect folder structure ...)
 The --restow parameter tells stow to unstow the packages first before stowing them again.
 If you want to unstow a package, you can use the following command:
 
@@ -86,6 +86,8 @@ Some applications require you to install the theme separately. E.g. to be able t
 
 ## NeoVim
 
-- [ ] Get plots to show in molten.
-- [ ] Make utils toggle for color plugin.
 - [ ] Move all plugin specific keymaps to plugin loading.
+- [ ] Reduce LSPs to minimum required.
+- [ ] Clean up plugin configs.
+- [ ] Make specialized configs for e.g.: writing LATEX, Jupyter Notebooks, etc.
+
