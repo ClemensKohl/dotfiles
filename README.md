@@ -90,4 +90,5 @@ Some applications require you to install the theme separately. E.g. to be able t
 - [ ] Reduce LSPs to minimum required.
 - [ ] Clean up plugin configs.
 - [ ] Make specialized configs for e.g.: writing LATEX, Jupyter Notebooks, etc.
+- [ ] Remove unused configs (x11, xinput, ..)
 
