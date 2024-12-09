@@ -79,7 +79,10 @@ vim.g.Rout_more_colors = 1
 
 if vim.fn.executable("zathura") == 1 then
   vim.g.vimtex_view_method = "zathura"
+elseif vim.fn.executable("sioyek") == 1 then
+  vim.g.vimtex_view_method = "sioyek"
 end
+
 -- vim.g.vimtex_quickfix_ignore_filters = { "Underfull", "Overfull" }
 vim.g.vimtex_quickfix_open_on_warning = 0
 

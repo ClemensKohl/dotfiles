@@ -1,2 +1,5 @@
 [opener]
 edit = [{ run = 'nvim "$@"', block = true }]
+
+[manager]
+linemode = "size_and_mtime"
