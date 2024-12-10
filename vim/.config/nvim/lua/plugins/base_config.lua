@@ -84,8 +84,8 @@ return {
         "c",
         "cpp",
         "rust",
-        -- "bibtex",
-        -- "latex",
+        "bibtex",
+        "latex",
         "query",
       })
     end,
@@ -170,10 +170,8 @@ return {
       ensure_installed = {
         "r-languageserver",
         "bash-language-server",
-        -- "pyright",
         "clangd",
         "rust-analyzer",
-        -- "texlab",
         "ltex-ls",
         "markdownlint",
       },

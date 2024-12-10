@@ -8,23 +8,23 @@ end
 
 return {
   -- Just some customisation for markdown.nvim is in the lazyvim extension
-  {
-    "MeanderingProgrammer/markdown.nvim",
-    opts = {
-      file_types = { "markdown", "norg", "rmd", "org", "quarto" },
-      code = {
-        sign = false,
-        width = "block",
-        right_pad = 1,
-      },
-      heading = {
-        sign = false,
-        icons = {},
-        -- icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
-      },
-    },
-    ft = { "markdown", "norg", "rmd", "org", "quarto" },
-  },
+  -- {
+  --   "MeanderingProgrammer/markdown.nvim",
+  --   opts = {
+  --     file_types = { "markdown", "norg", "rmd", "org", "quarto" },
+  --     code = {
+  --       sign = false,
+  --       width = "block",
+  --       right_pad = 1,
+  --     },
+  --     heading = {
+  --       sign = false,
+  --       icons = {},
+  --       -- icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+  --     },
+  --   },
+  --   ft = { "markdown", "norg", "rmd", "org", "quarto" },
+  -- },
 
   -- Telescope extension for markdown headers
   -- {

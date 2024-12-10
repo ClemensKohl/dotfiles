@@ -3,7 +3,6 @@
 -- Add any additional keymaps here
 
 -- Switch splits with tab.
-
 vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
 
 --TODO: Add as many as possible directly to plugin config.
@@ -11,15 +10,11 @@ vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
 
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
--- Goto definition in new split.
-vim.keymap.set("n", "<leader>zv", ":vsplit | lua vim.lsp.buf.definition()<CR>")
--- Toggle Color highlighting of Hex codes
-vim.keymap.set("n", "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", { desc = "Toggle Colors Highlighting" })
+
 -- Buffers/tabs with telescope
 vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
 vim.keymap.set("n", "<leader><Tab>t", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
 
--- vim.keymap.set("n", "<leader>cB", ":s/, /,\\r/g<cr>", { desc = "Break line" })
 vim.keymap.set(
   "n",
   "gob",
@@ -73,6 +68,8 @@ if not vim.g.vscode then
     -- { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
     { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
+    { "<leader>zv", ":vsplit | lua vim.lsp.buf.definition()<CR>", desc = "Goto definition in split" },
+    { "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", desc = "Toggle Colors Highlighting" },
   })
 
   ------------
