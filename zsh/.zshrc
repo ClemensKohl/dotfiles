@@ -193,9 +193,6 @@ alias nv='NVIM_APPNAME=nvim nvim'               # lazy vim
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
-# OVIwrite Neovim
-alias ovim="NVIM_APPNAME=nvim-oviwrite nvim"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
