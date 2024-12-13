@@ -4,7 +4,8 @@
 
 -- Switch splits with tab.
 vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
-
+-- Exit terminal mode with Esc.
+vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { noremap = true, desc = "Leave terminal mode" })
 --TODO: Add as many as possible directly to plugin config.
 --This way you can easily disable both the plugin and the keymaps.
 
