@@ -240,16 +240,16 @@ return {
   },
 
   -- Use telescope to switch tabs
-  {
-    "LukasPietzschmann/telescope-tabs",
-    config = function()
-      require("telescope").load_extension("telescope-tabs")
-      require("telescope-tabs").setup({
-        -- Your custom config :^)
-      })
-    end,
-    dependencies = { "nvim-telescope/telescope.nvim" },
-  },
+  -- {
+  --   "LukasPietzschmann/telescope-tabs",
+  --   config = function()
+  --     require("telescope").load_extension("telescope-tabs")
+  --     require("telescope-tabs").setup({
+  --       -- Your custom config :^)
+  --     })
+  --   end,
+  --   dependencies = { "nvim-telescope/telescope.nvim" },
+  -- },
 
   {
     "Wansmer/treesj",

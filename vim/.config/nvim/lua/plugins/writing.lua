@@ -1,6 +1,6 @@
 -- Plugins for writing.
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
 
 return {
 
@@ -11,11 +11,10 @@ return {
   --   dependencies = "neovim/nvim-lspconfig",
   -- },
 
-
   -- Telescope Thesaurus picker
   {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { 'rafi/telescope-thesaurus.nvim' },
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "rafi/telescope-thesaurus.nvim" },
   },
 
   -- Mode for focused writing.
@@ -96,5 +95,4 @@ return {
       exclude = {}, -- exclude these filetypes
     },
   },
-
 }

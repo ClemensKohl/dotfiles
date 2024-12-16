@@ -240,15 +240,15 @@ return {
   --   end,
   -- },
 
-  {
-    "hrsh7th/nvim-cmp",
-    optional = true,
-    dependencies = { "jmbuhr/otter.nvim" },
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, { name = "otter" })
-    end,
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   optional = true,
+  --   dependencies = { "jmbuhr/otter.nvim" },
+  --   opts = function(_, opts)
+  --     opts.sources = opts.sources or {}
+  --     table.insert(opts.sources, { name = "otter" })
+  --   end,
+  -- },
 
   -- not sure what we need to configure for.
   -- {

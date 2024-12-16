@@ -13,8 +13,8 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { noremap = true, desc = "Leave term
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
 -- Buffers/tabs with telescope
-vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
-vim.keymap.set("n", "<leader><Tab>t", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
+-- vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
+-- vim.keymap.set("n", "<leader><Tab>t", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
 
 vim.keymap.set(
   "n",
@@ -57,7 +57,7 @@ if not vim.g.vscode then
   ---------------
   -- Thesaurus --
   ---------------
-  vim.keymap.set("n", "<localleader>k", "<cmd>Telescope thesaurus lookup<CR>")
+  -- vim.keymap.set("n", "<localleader>k", "<cmd>Telescope thesaurus lookup<CR>")
 
   -----------
   -- Utils --
@@ -67,8 +67,8 @@ if not vim.g.vscode then
     { "<leader>z", group = "Util", icon = MiniIcons.get("os", "linux") },
     -- { "<leader>zC", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
     -- { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
-    { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
-    { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
+    -- { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
+    -- { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
     { "<leader>zv", ":vsplit | lua vim.lsp.buf.definition()<CR>", desc = "Goto definition in split" },
     { "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", desc = "Toggle Colors Highlighting" },
   })
