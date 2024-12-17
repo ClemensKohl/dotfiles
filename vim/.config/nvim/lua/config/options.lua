@@ -17,6 +17,11 @@ vim.g.neovide_floating_z_height = 10
 vim.g.neovide_light_angle_degrees = 45
 vim.g.neovide_light_radius = 5
 
+-- disable animations when using neovide.
+if vim.g.neovide == true then
+  vim.g.snacks_animate = false
+end
+
 -- Set the colorscheme
 vim.opt.termguicolors = true
 
