@@ -223,8 +223,17 @@ return {
   {
     "jmbuhr/otter.nvim",
     opts = {
+      lsp = {
+        -- `:h events` that cause the diagnostics to update. Set to:
+        -- { "BufWritePost", "InsertLeave", "TextChanged" } for less performant
+        -- but more instant diagnostic updates
+        diagnostic_update_events = { "InsertLeave" },
+      },
       buffers = {
-        set_filetype = true,
+        -- if set to true, the filetype of the otterbuffers will be set.
+        -- otherwise only the autocommand of lspconfig that attaches
+        -- the language server will be executed without setting the filetype
+        set_filetype = false,
       },
     },
   },
