@@ -18,13 +18,6 @@ vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" 
 
 vim.keymap.set(
   "n",
-  "gob",
-  ":s/\\((\\zs\\|,\\ *\\zs\\|)\\)/\\r&/g<CR><Bar>:'[,']normal ==<CR>",
-  { desc = "Break Line and align" }
-)
-
-vim.keymap.set(
-  "n",
   "<F5>",
   ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>",
   { desc = "Trim trailing whitespace" }
