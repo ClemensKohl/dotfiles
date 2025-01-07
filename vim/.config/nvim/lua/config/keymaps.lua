@@ -12,6 +12,9 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { noremap = true, desc = "Leave term
 -- Set Q instead of <leader>cd to open floating diagnostic window.
 vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
+-- allow movement to the right in insert mode
+vim.keymap.set("i", "<C-l>", "<Esc>la")
+
 -- Buffers/tabs with telescope
 -- vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
 -- vim.keymap.set("n", "<leader><Tab>t", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
