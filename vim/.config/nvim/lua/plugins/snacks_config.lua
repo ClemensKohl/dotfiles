@@ -18,8 +18,11 @@ return {
       },
     },
     zen = {
-      backdrop = false,
+      backdrop = true,
       minimal = false,
+      -- on_open = function()
+      --   vim.cmd([[highlight SnacksBackdrop_000000 guibg=#1E1E2F]])
+      -- end,
     },
   },
 }
