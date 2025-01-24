@@ -1,10 +1,11 @@
 return {
-  "folke/snacks.nvim",
-  ---@type snacks.Config
-  opts = {
-    dashboard = {
-      preset = {
-        header = [[
+  {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      dashboard = {
+        preset = {
+          header = [[
     |\__/,|   (`\
   _.|o o  |_   ) )
 -(((---(((--------
@@ -15,16 +16,29 @@ return {
 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
  ]],
+        },
+      },
+      zen = {
+        backdrop = true,
+        minimal = false,
+        -- on_open = function()
+        --   vim.cmd([[highlight SnacksBackdrop_000000 guibg=#1E1E2F]])
+        -- end,
       },
     },
-    zen = {
-      backdrop = true,
-      minimal = false,
-      -- on_open = function()
-      --   vim.cmd([[highlight SnacksBackdrop_000000 guibg=#1E1E2F]])
-      -- end,
-    },
   },
+  -- {
+  --   "folke/snacks.nvim",
+  --   optional = true,
+  --   opts = function(_, opts)
+  --     table.insert(opts.dashboard.preset.keys, 3, {
+  --       action = pick,
+  --       desc = "Projects",
+  --       icon = " ",
+  --       key = "p",
+  --     })
+  --   end,
+  -- },
 }
 
 -- ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z

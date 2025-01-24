@@ -1,16 +1,22 @@
 -- Miscanellous and fun plugins
 -- stylua: ignore
-if true then return {} end
+-- if true then return {} end
 
 return {
-
-  -- Typing training. Thats all.
+  -- A neovim plugin to practice typing with a very beautiful dashboard
   {
-    "NStefan002/speedtyper.nvim",
-    cmd = "Speedtyper",
-    lazy = true,
-    opts = {
-      -- your config
-    },
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
   },
+  -- Typing training. Thats all.
+  -- {
+  --   "NStefan002/speedtyper.nvim",
+  --   cmd = "Speedtyper",
+  --   lazy = true,
+  --   opts = {
+  --     -- your config
+  --   },
+  -- },
 }
