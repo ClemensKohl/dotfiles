@@ -19,12 +19,22 @@ return {
         },
       },
       zen = {
-        backdrop = true,
-        minimal = false,
-        -- on_open = function()
-        --   vim.cmd([[highlight SnacksBackdrop_000000 guibg=#1E1E2F]])
-        -- end,
+        toggles = {
+          dim = false,
+          git_signs = false,
+          mini_diff_signs = false,
+        },
+        win = {
+          backdrop = { transparent = false, blend = 99 }, -- This needs to be 99, 100 results in same behaviour as default setup
+        },
       },
+      -- zen = {
+      --   backdrop = true,
+      --   minimal = false,
+      --   -- on_open = function()
+      --   --   vim.cmd([[highlight SnacksBackdrop_000000 guibg=#1E1E2F]])
+      --   -- end,
+      -- },
     },
   },
   -- {
