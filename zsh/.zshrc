@@ -13,6 +13,9 @@ if [ -d "$HOME/.config/emacs/bin" ]; then
   export PATH="$PATH:$HOME/.config/emacs/bin"
 fi
 
+if [ -d "/opt/nvim-linux-x86_64" ]; then
+	export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+fi
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 

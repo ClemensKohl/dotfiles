@@ -45,6 +45,10 @@ PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/
 
 export PATH
 
+if [ -d "/opt/nvim-linux-x86_64" ]; then
+	export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+fi
+
 # Determine .Rprofile file:
 #export R_PROFILE="$HOME/R/Rprofile.site"
 export R_PROFILE="$HOME/.Rprofile"
