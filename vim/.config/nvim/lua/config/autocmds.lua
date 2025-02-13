@@ -17,6 +17,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- split paragraph into sentences.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.fn.setreg("s", ")hr\r\27@s")
+  end,
+})
+
 -- Turns off treesitter highlights for latex files.
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
 
