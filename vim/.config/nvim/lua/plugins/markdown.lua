@@ -14,6 +14,9 @@ return {
         sign = false,
         icons = {},
       },
+      checkbox = {
+        enabled = true,
+      },
     },
     ft = { "markdown", "norg", "rmd", "org", "quarto" },
   },
