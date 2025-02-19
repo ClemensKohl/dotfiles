@@ -28,7 +28,7 @@ return {
           backdrop = { transparent = false, blend = 99 }, -- This needs to be 99, 100 results in same behaviour as default setup
         },
       },
-      image = { enabled = true },
+      image = { enabled = false },
     },
   },
 }
