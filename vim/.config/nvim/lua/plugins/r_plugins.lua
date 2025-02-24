@@ -7,10 +7,6 @@
 -- R plugins and configs
 return {
 
-  --  Integration with R.
-  -- {
-  --   "jalvesaq/Nvim-R",
-  -- },
 
   -- New Version of Nvim-R
   {
@@ -18,9 +14,12 @@ return {
     lazy = false,
     opts = {
       R_args = { "--no-save" }, -- add --quiet if you dont want the startup message.
-      assignment_keymap = "<<",
       R_app = "R",
       R_cmd = "R",
+      hook = {
+        vim.keymap.set("i", "<<", "<Plug>RInsertAssign", { buffer = true }),
+        vim.keymap.set("i", "<M-b>", "<Plug>RmdInsertChunk", { buffer = true })
+      }, 
       -- R_hl_term = 0,
       -- R_bracketed_paste = 1,
     },
