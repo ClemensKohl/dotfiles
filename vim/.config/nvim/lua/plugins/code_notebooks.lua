@@ -195,6 +195,9 @@ return {
   --provides lsp features and a code completion source for code embedded in other documents
   {
     "jmbuhr/otter.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
     opts = {
       lsp = {
         -- `:h events` that cause the diagnostics to update. Set to:
