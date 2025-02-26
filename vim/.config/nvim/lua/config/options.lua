@@ -34,6 +34,8 @@ vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a
 vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 vim.opt.breakindent = true
 
+vim.opt.thesaurus = vim.fn.expand("$HOME") .. "/.config/nvim/spell/thesaurus_pkg/thesaurus.txt"
+
 -- add German spellchecking
 vim.opt.spelllang = { "en", "de" }
 
