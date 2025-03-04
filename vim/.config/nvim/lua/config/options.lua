@@ -5,7 +5,7 @@
 -- Set gui font and size for GUI editors.
 vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h10"
 vim.g.neovide_font_hinting = "none"
-vim.g.neovide_font_edging = "antialias"
+-- vim.g.neovide_font_edging = "antialias"
 -- vim.g.neovide_font_edging = "subpixelantialias"
 
 -- Controls Floating window blur in neovide
