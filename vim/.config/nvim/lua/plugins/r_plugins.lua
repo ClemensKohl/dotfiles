@@ -18,7 +18,7 @@ return {
       R_cmd = "R",
       hook = {
         vim.keymap.set("i", "<<", "<Plug>RInsertAssign", { buffer = true }),
-        vim.keymap.set("i", "<M-b>", "<Plug>RmdInsertChunk", { buffer = true })
+        -- vim.keymap.set("i", "<M-b>", "<Plug>RmdInsertChunk", { buffer = true })
       }, 
       -- R_hl_term = 0,
       -- R_bracketed_paste = 1,
