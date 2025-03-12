@@ -28,27 +28,9 @@ return {
           backdrop = { transparent = false, blend = 99 }, -- This needs to be 99, 100 results in same behaviour as default setup
         },
       },
-      -- zen = {
-      --   backdrop = true,
-      --   minimal = false,
-      --   -- on_open = function()
-      --   --   vim.cmd([[highlight SnacksBackdrop_000000 guibg=#1E1E2F]])
-      --   -- end,
-      -- },
+      image = { enabled = false },
     },
   },
-  -- {
-  --   "folke/snacks.nvim",
-  --   optional = true,
-  --   opts = function(_, opts)
-  --     table.insert(opts.dashboard.preset.keys, 3, {
-  --       action = pick,
-  --       desc = "Projects",
-  --       icon = " ",
-  --       key = "p",
-  --     })
-  --   end,
-  -- },
 }
 
 -- ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z

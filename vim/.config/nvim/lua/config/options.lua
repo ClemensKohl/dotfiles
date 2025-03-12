@@ -3,9 +3,9 @@
 -- Add any additional options here
 
 -- Set gui font and size for GUI editors.
-vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h10"
+vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h12"
 vim.g.neovide_font_hinting = "none"
-vim.g.neovide_font_edging = "antialias"
+-- vim.g.neovide_font_edging = "antialias"
 -- vim.g.neovide_font_edging = "subpixelantialias"
 
 -- Controls Floating window blur in neovide
@@ -33,6 +33,8 @@ vim.opt.tabstop = 2 -- insert x spaces for a tab
 vim.opt.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.opt.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
 vim.opt.breakindent = true
+
+vim.opt.thesaurus = vim.fn.expand("$HOME") .. "/.config/nvim/spell/thesaurus_pkg/thesaurus.txt"
 
 -- add German spellchecking
 vim.opt.spelllang = { "en", "de" }

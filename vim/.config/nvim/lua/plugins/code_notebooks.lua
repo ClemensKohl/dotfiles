@@ -7,36 +7,6 @@ if vim.g.neovide then -- Put anything you want to happen only in Neovide here
 end
 
 return {
-  -- Just some customisation for markdown.nvim is in the lazyvim extension
-  -- {
-  --   "MeanderingProgrammer/markdown.nvim",
-  --   opts = {
-  --     file_types = { "markdown", "norg", "rmd", "org", "quarto" },
-  --     code = {
-  --       sign = false,
-  --       width = "block",
-  --       right_pad = 1,
-  --     },
-  --     heading = {
-  --       sign = false,
-  --       icons = {},
-  --       -- icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
-  --     },
-  --   },
-  --   ft = { "markdown", "norg", "rmd", "org", "quarto" },
-  -- },
-
-  -- Telescope extension for markdown headers
-  -- {
-  --   "crispgm/telescope-heading.nvim",
-  --   opts = {
-  --     extensions = {
-  --       heading = {
-  --         treesitter = true,
-  --       },
-  --     },
-  --   },
-  -- },
 
   -- Work in Jupyter Notebooks.
   {
@@ -150,11 +120,14 @@ return {
 
   {
     "quarto-dev/quarto-nvim",
-    dev = false,
+    dependencies = {
+      "jmbuhr/otter.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
     opts = {
       lspFeatures = {
         languages = { "r", "R", "python", "bash" },
-        chunks = "all",
+        chunks = "curly",
         diagnostics = {
           enabled = true,
           triggers = { "BufWritePost" },
@@ -222,6 +195,9 @@ return {
   --provides lsp features and a code completion source for code embedded in other documents
   {
     "jmbuhr/otter.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
     opts = {
       lsp = {
         -- `:h events` that cause the diagnostics to update. Set to:

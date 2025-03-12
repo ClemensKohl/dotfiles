@@ -62,6 +62,8 @@ if [[ "$(whoami)" == "kohl" ]]; then
     alias r44nvd="prun R-4.4.0-0 neovide"
     alias r422vim="prun R-4.2.2-0 nvim"
     alias r421vim="prun R-4.2.1-0 nvim"
+
+    alias texcount="perl5.34.0 $HOME/bin/texcount.pl -inc -total"
 fi
 
 # Path to dot files on work computer
