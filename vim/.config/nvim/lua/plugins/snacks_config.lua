@@ -29,6 +29,7 @@ return {
         },
       },
       image = { enabled = false },
+      terminal = { enabled = true },
     },
   },
 }

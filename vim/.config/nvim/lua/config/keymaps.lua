@@ -2,6 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set("n", "<c-/>", function()
+  Snacks.terminal(nil, { cwd = LazyVim.root() })
+end, { desc = "Terminal (Root Dir)" })
+
 -- Switch splits with tab.
 vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
 -- Exit terminal mode with Esc.
