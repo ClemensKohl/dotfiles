@@ -1,6 +1,6 @@
 return {
   {
-    "hkupty/iron.nvim",
+    "Vigemus/iron.nvim",
     ft = { "python" },
     config = function()
       local iron = require("iron.core")
@@ -20,6 +20,7 @@ return {
           python = {
             command = { "ipython" }, -- or { "python3", "--no-autoindent" }
             format = require("iron.fts.common").bracketed_paste_python,
+            block_deviders = { "# %%", "#%%", "```" },
           },
           -- How the repl window will be displayed
           -- See below for more information
@@ -30,16 +31,19 @@ return {
         -- You can set them here or manually add keymaps to the functions in iron.core
         keymaps = {
           send_motion = "<localleader>sc",
-          visual_send = "<localleader>sc",
+          visual_send = "<localleader>ss",
           send_file = "<localleader>sf",
-          send_line = "<localleader>sl",
+          -- send_line = "<localleader>sl",
+          send_line = "<Enter>",
+          send_code_block = "<localleader>sb",
+          send_code_block_and_move = "<localleader>sn",
           send_mark = "<localleader>sm",
           mark_motion = "<localleader>mc",
           mark_visual = "<localleader>mc",
           remove_mark = "<localleader>md",
           cr = "<localleader>s<cr>",
           interrupt = "<localleader>s<space>",
-          exit = "<localleader>sq",
+          exit = "<localleader>cq",
           clear = "<localleader>cl",
         },
         -- If the highlight is on, you can change how it looks

@@ -7,7 +7,6 @@
 -- R plugins and configs
 return {
 
-
   -- New Version of Nvim-R
   {
     "R-nvim/R.nvim",
