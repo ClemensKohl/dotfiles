@@ -16,7 +16,7 @@ return {
       R_app = "R",
       R_cmd = "R",
       hook = {
-        vim.keymap.set("i", "<<", "<Plug>RInsertAssign", { buffer = true }),
+        vim.keymap.set("i", "<<", "<Plug>RInsertAssign" ),
         -- vim.keymap.set("i", "<M-b>", "<Plug>RmdInsertChunk", { buffer = true })
       }, 
       -- R_hl_term = 0,
