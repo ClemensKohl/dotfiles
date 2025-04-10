@@ -2,9 +2,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.set("n", "<M-/>", function()
-  Snacks.terminal.toggle()
-end, { desc = "Terminal Toggle" })
+-- vim.keymap.set("n", "<M-/>", function()
+--   Snacks.terminal.toggle()
+-- end, { desc = "Terminal Toggle" })
 
 -- Switch splits with tab.
 vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
