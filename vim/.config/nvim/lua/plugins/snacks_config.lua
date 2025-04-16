@@ -15,17 +15,11 @@ return {
 ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-╔══════════════════════════════════════════════════════════════════════════════════╗
-║ The most merciful thing in the world, I think, is the inability of the human     ║
-║ mind to correlate all its contents. We live on a placid island of ignorance in   ║
-║ the midst of black seas of the infinity, and it was not meant that we should     ║
-║ voyage far. The sciences, each straining in its own direction, have harmed us    ║
-║ little; but some day the piecing together of dissociated knowledge will open up  ║
-║ such terrifying vistas of reality, and of our frightful position therein, that   ║
-║ we shall either go mad from the revelation or flee from the light into the       ║
-║ peace and safety of a new dark age.                                              ║
-║                            -- H.P. Lovecraft --                                  ║
-╚══════════════════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ The happiness of your life depends upon the quality of your thoughts. ║
+║                         -- Marcus Aurelius --                         ║
+╚═══════════════════════════════════════════════════════════════════════╝
  ]],
         },
       },

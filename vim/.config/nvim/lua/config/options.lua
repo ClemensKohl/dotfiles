@@ -168,6 +168,88 @@ Toggle_virt = function()
   end
 end
 
+---
+--- Thesaurus ChatGPT
+---
+
+local curl = require("plenary.curl")
+
+-- Fetch synonyms
+local function thesaurus_source(word)
+  local response = curl.get("https://api.datamuse.com/words", {
+    query = { rel_syn = word },
+  })
+
+  local results = {}
+
+  if response.status == 200 then
+    local ok, decoded = pcall(vim.json.decode, response.body)
+    if ok then
+      for _, entry in ipairs(decoded) do
+        table.insert(results, {
+          label = entry.word,
+          word = entry.word,
+        })
+      end
+    end
+  end
+
+  return results
+end
+
+-- Get definition for preview
+local function get_definition(word)
+  local response = curl.get("https://api.datamuse.com/words", {
+    query = {
+      sp = word,
+      md = "d", -- metadata: d = definitions
+      max = 1,
+    },
+  })
+
+  if response.status == 200 then
+    local ok, decoded = pcall(vim.json.decode, response.body)
+    if ok and decoded[1] and decoded[1].defs then
+      return table.concat(decoded[1].defs, "\n\n")
+    end
+  end
+
+  return "No definition found."
+end
+
+-- Picker
+local function open_thesaurus_picker_under_cursor()
+  local word = vim.fn.expand("<cword>")
+  if not word or word == "" then
+    print("No word under cursor.")
+    return
+  end
+
+  local items = thesaurus_source(word)
+
+  Snacks.picker({
+    title = "Synonyms for: " .. word,
+    items = items,
+    on_select = function(selection)
+      vim.fn.setreg('"', selection.label)
+      print("Copied to clipboard: " .. selection.label)
+    end,
+    -- preview = function(selection, buf)
+    --   local word = type(selection) == "table" and selection.word or selection
+    --   if type(word) ~= "string" then
+    --     word = tostring(word or "")
+    --   end
+    --
+    --   local definition = get_definition(word)
+    --   vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(definition, "\n"))
+    -- end,
+  })
+end
+
+-- Optional keybinding
+vim.keymap.set("n", "<leader>t", open_thesaurus_picker_under_cursor, {
+  desc = "Thesaurus: Synonyms for word under cursor",
+})
 -- Quarto
 -- vim.cmd([[highlight CodeBlock guibg=#252525]])
 -- vim.cmd([[highlight Dash guibg=#FF0000 gui=bold]])
