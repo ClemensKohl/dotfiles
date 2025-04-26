@@ -174,82 +174,93 @@ end
 
 local curl = require("plenary.curl")
 
--- Fetch synonyms
+-- Fetch synonyms **and** their definitions
 local function thesaurus_source(word)
-  local response = curl.get("https://api.datamuse.com/words", {
-    query = { rel_syn = word },
+  local resp = curl.get("https://api.datamuse.com/words", {
+    query = { rel_syn = word, max = 20 }, -- ← _rel_syn_ is the correct Datamuse parameter
   })
-
   local results = {}
-
-  if response.status == 200 then
-    local ok, decoded = pcall(vim.json.decode, response.body)
+  if resp.status == 200 then
+    local ok, decoded = pcall(vim.json.decode, resp.body)
     if ok then
       for _, entry in ipairs(decoded) do
+        -- get_definition can be expensive, but we're capping at 20 items
+        local def_resp = curl.get("https://api.datamuse.com/words", {
+          query = { sp = entry.word, md = "d", max = 1 },
+        })
+        local definition = "No definition found."
+        if def_resp.status == 200 then
+          local ok2, dec2 = pcall(vim.json.decode, def_resp.body)
+          if ok2 and dec2[1] and dec2[1].defs then
+            definition = table.concat(dec2[1].defs, "\n\n")
+          end
+        end
+
         table.insert(results, {
           label = entry.word,
           word = entry.word,
+          -- attach to the item the preview data that the "preview" previewer will use
+          preview = {
+            text = definition,
+            ft = "markdown", -- highlight nicely
+          },
         })
       end
     end
   end
-
   return results
 end
 
--- Get definition for preview
-local function get_definition(word)
-  local response = curl.get("https://api.datamuse.com/words", {
-    query = {
-      sp = word,
-      md = "d", -- metadata: d = definitions
-      max = 1,
-    },
-  })
+-- local function word_defintion(item)
+--   if item then
+--     local word = item.word
+--   else
+--     local word = "NOPE"
+--   end
+--   -- get_definition can be expensive, but we're capping at 20 items
+--   local def_resp = curl.get("https://api.datamuse.com/words", {
+--     query = { sp = word, md = "d", max = 1 },
+--   })
+--   local definition = "No definition found."
+--   if def_resp.status == 200 then
+--     local ok2, dec2 = pcall(vim.json.decode, def_resp.body)
+--     if ok2 and dec2[1] and dec2[1].defs then
+--       definition = table.concat(dec2[1].defs, "\n\n")
+--     end
+--   end
+--   return definition
+-- end
 
-  if response.status == 200 then
-    local ok, decoded = pcall(vim.json.decode, response.body)
-    if ok and decoded[1] and decoded[1].defs then
-      return table.concat(decoded[1].defs, "\n\n")
-    end
-  end
-
-  return "No definition found."
-end
-
--- Picker
+-- The picker
 local function open_thesaurus_picker_under_cursor()
   local word = vim.fn.expand("<cword>")
-  if not word or word == "" then
-    print("No word under cursor.")
-    return
+  if word == "" then
+    return vim.notify("No word under cursor.", vim.log.levels.WARN)
   end
 
   local items = thesaurus_source(word)
+  if vim.tbl_isempty(items) then
+    return vim.notify("No synonyms found for “" .. word .. "”.", vim.log.levels.INFO)
+  end
 
-  Snacks.picker({
-    title = "Synonyms for: " .. word,
+  Snacks.picker.pick({
+    title = "Synonyms for “" .. word .. "”",
     items = items,
-    on_select = function(selection)
-      vim.fn.setreg('"', selection.label)
-      print("Copied to clipboard: " .. selection.label)
+    -- format = "text",
+    -- preview = word_defintion(Snacks.picker.Item),
+    preview = "preview",
+    confirm = function(picker, item)
+      picker:close()
+      vim.cmd("normal! ciw" .. item.word)
     end,
-    -- preview = function(selection, buf)
-    --   local word = type(selection) == "table" and selection.word or selection
-    --   if type(word) ~= "string" then
-    --     word = tostring(word or "")
-    --   end
-    --
-    --   local definition = get_definition(word)
-    --   vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(definition, "\n"))
-    -- end,
   })
 end
 
--- Optional keybinding
+-- optional mapping
 vim.keymap.set("n", "<leader>t", open_thesaurus_picker_under_cursor, {
-  desc = "Thesaurus: Synonyms for word under cursor",
+  desc = "Thesaurus: pick synonym for word under cursor",
 })
+
 -- Quarto
 -- vim.cmd([[highlight CodeBlock guibg=#252525]])
 -- vim.cmd([[highlight Dash guibg=#FF0000 gui=bold]])
