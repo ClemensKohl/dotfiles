@@ -94,13 +94,21 @@ if not vim.g.vscode then
   -- Transfer --
   --------------
 
+  -- wk.add({
+  --   { "<leader>zd", group = "Upload / Download" },
+  --   { "<leader>zdd", "<cmd>TransferDownload<cr>", desc = "Download from remote server (scp)" },
+  --   { "<leader>zdf", "<cmd>DiffRemote<cr>", desc = "Diff file with remote server (scp)" },
+  --   { "<leader>zdi", "<cmd>TransferInit<cr>", desc = "Init/Edit Deployment config" },
+  --   { "<leader>zdr", "<cmd>TransferRepeat<cr>", desc = "Repeat transfer command" },
+  --   { "<leader>zdu", "<cmd>TransferUpload<cr>", desc = "Upload to remote server (scp)" },
+  -- })
+
+  -------------
+  -- Copilot --
+  -------------
+
   wk.add({
-    { "<leader>zd", group = "Upload / Download" },
-    { "<leader>zdd", "<cmd>TransferDownload<cr>", desc = "Download from remote server (scp)" },
-    { "<leader>zdf", "<cmd>DiffRemote<cr>", desc = "Diff file with remote server (scp)" },
-    { "<leader>zdi", "<cmd>TransferInit<cr>", desc = "Init/Edit Deployment config" },
-    { "<leader>zdr", "<cmd>TransferRepeat<cr>", desc = "Repeat transfer command" },
-    { "<leader>zdu", "<cmd>TransferUpload<cr>", desc = "Upload to remote server (scp)" },
+    { "<leader>at", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
   })
 end
 
