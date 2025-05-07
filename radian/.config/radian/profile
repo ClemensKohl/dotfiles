@@ -1,4 +1,4 @@
-options(radian.color_scheme = "catppuccin-frappe")
+# options(radian.color_scheme = "catppuccin-frappe")
 
 # either  `"emacs"` (default) or `"vi"`.
 options(radian.editing_mode = "emacs")
