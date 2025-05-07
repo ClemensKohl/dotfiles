@@ -1,0 +1,7 @@
+{
+
+  "quarto": {
+  "prefix": ["qco"],
+  "body": ["```{r} ", "This is a quarto codeblock $1", "```"]
+},
+}
