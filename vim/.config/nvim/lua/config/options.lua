@@ -43,6 +43,10 @@ vim.g.lazyvim_picker = "snacks"
 -- Set to false to disable.
 vim.g.lazygit_config = true
 
+-- Set to `false` to prevent "non-lsp snippets"" from appearing inside completion windows
+-- Motivation: Less clutter in completion windows and a more direct usage of snippits
+vim.g.lazyvim_mini_snippets_in_completion = true
+
 -------------
 -- NEOVIDE --
 -------------
