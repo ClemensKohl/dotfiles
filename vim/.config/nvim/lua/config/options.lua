@@ -2,26 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- Set gui font and size for GUI editors.
-vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h12"
-vim.g.neovide_font_hinting = "none"
--- vim.g.neovide_font_edging = "antialias"
--- vim.g.neovide_font_edging = "subpixelantialias"
-
--- Controls Floating window blur in neovide
-vim.g.neovide_floating_blur_amount_x = 2.0
-vim.g.neovide_floating_blur_amount_y = 2.0
-
-vim.g.neovide_floating_shadow = true
-vim.g.neovide_floating_z_height = 10
-vim.g.neovide_light_angle_degrees = 45
-vim.g.neovide_light_radius = 5
-
--- disable animations when using neovide.
-if vim.g.neovide == true then
-  vim.g.snacks_animate = false
-end
-
+-------------
+-- GENERAL --
+-------------
 -- Set the colorscheme
 vim.opt.termguicolors = true
 
@@ -44,15 +27,6 @@ vim.opt.shell = "zsh"
 
 --Markdown settings:
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
--- align function parameters
--- vim.cmd([[
---     :set cino+=(0,W2
--- ]])
-
--- Set LSP updates in insert mode
--- vim.diagnostic.config({
---   update_in_insert = false,
--- })
 
 -------------
 -- LazyVim --
@@ -69,24 +43,36 @@ vim.g.lazyvim_picker = "snacks"
 -- Set to false to disable.
 vim.g.lazygit_config = true
 
+-------------
+-- NEOVIDE --
+-------------
+-- Set gui font and size for GUI editors.
+vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h12"
+vim.g.neovide_font_hinting = "none"
+-- vim.g.neovide_font_edging = "antialias"
+-- vim.g.neovide_font_edging = "subpixelantialias"
+vim.g.neovide_remember_window_size = true
+
+-- Controls Floating window blur in neovide
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_z_height = 10
+vim.g.neovide_light_angle_degrees = 45
+vim.g.neovide_light_radius = 5
+
+-- disable animations when using neovide.
+if vim.g.neovide == true then
+  vim.g.snacks_animate = false
+end
+
 ------------
 -- Nvim.R --
 ------------
 
--- doesnt seem to work anymore?
--- vim.g.assign_map = "<<"
---
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme
 vim.g.Rout_more_colors = 1
-
--- This uses vims indentation plugin.
--- In the future neovim will replace it with treesitter and this might break!
--- vim.g.r_indent_align_args = 0
-
--- allow correct continuation for R/Roxygen comments
--- vim.cmd([[
---     autocmd FileType r setlocal formatoptions+=r
--- ]])
 
 ------------
 -- Vimtex --
@@ -227,26 +213,6 @@ local function thesaurus_source(word)
   end
   return results
 end
-
--- local function word_defintion(item)
---   if item then
---     local word = item.word
---   else
---     local word = "NOPE"
---   end
---   -- get_definition can be expensive, but we're capping at 20 items
---   local def_resp = curl.get("https://api.datamuse.com/words", {
---     query = { sp = word, md = "d", max = 1 },
---   })
---   local definition = "No definition found."
---   if def_resp.status == 200 then
---     local ok2, dec2 = pcall(vim.json.decode, def_resp.body)
---     if ok2 and dec2[1] and dec2[1].defs then
---       definition = table.concat(dec2[1].defs, "\n\n")
---     end
---   end
---   return definition
--- end
 
 -- The picker
 local function open_thesaurus_picker_under_cursor()
