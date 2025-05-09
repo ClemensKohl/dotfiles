@@ -378,11 +378,12 @@
         "description": "tabular / array environment",
         "prefix": "taba"
     },
-    "table": {
+    "tex-table": {
         "body": "\\begin{table}[${1:htpb}]\n\t\\centering\n\t\\caption{${2:caption}}\n\t\\label{tab:${3:label}}\n\t\\begin{${4:t}${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${5:c}}\n\t$0${5/(?<=.)(c|l|r)|./(?1: & )/g}\n\t\\end{$4${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}\n\\end{table}",
         "description": "Table environment",
         "prefix": "table"
     },
+
     "td": {
         "body": "^{$1}$0",
         "description": "to the ... power",

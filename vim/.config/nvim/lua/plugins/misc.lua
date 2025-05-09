@@ -10,13 +10,31 @@ return {
     opts = {},
     cmd = { "Typr", "TyprStats" },
   },
-  -- Typing training. Thats all.
-  -- {
-  --   "NStefan002/speedtyper.nvim",
-  --   cmd = "Speedtyper",
-  --   lazy = true,
-  --   opts = {
-  --     -- your config
-  --   },
+  -- { "nvzone/timerly",
+  --   dependencies = "nvzone/volt",
+  --   config = {
+  --     minutes = { 30, 5 },
+  --     position = "top-right",
+  --   }
   -- },
+
+  {
+    'cbrgm/countdown.nvim', 
+    config = {
+
+      default_minutes = 25, -- The default minutes to use when a countdown is started without minutes specified
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function(_, opts)
+
+      table.insert(opts.sections.lualine_x, {
+      function()
+        return require("countdown").get_time()
+      end
+      })
+    end,
+  },
 }
