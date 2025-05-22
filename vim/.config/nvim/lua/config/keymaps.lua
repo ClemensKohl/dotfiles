@@ -41,9 +41,9 @@ if not vim.g.vscode then
   vim.keymap.set("n", "<leader>uu", "<cmd>lua Toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
   -- vim.keymap.set("n", "<leader>zo", "<cmd>lua Toggle_diagnostics()<cr>", { desc = "Toggle diagnostics (custom)" })
   -- vim.keymap.set("n", "<leader>zf", "<cmd>lua Turnoff_diagnostics()<cr>", { desc = "Turn off diagnostics (custom)" })
-  vim.keymap.set("n", "<leader>ux", "<cmd>lua Toggle_curl()<cr>", { desc = "Toggle diagnostic curl" })
-  vim.keymap.set("n", "<leader>uv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
-  vim.keymap.set("n", "<leader>uS", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle ltex-ls" })
+  vim.keymap.set("n", "<leader>zx", "<cmd>lua Toggle_curl()<cr>", { desc = "Toggle diagnostic curl" })
+  vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
+  vim.keymap.set("n", "<leader>zL", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle ltex-ls" })
 
   -- Todo_hl = vim.api.nvim_get_hl_id_by_name("Todo")
   -- TODO: Doesnt work yet.
