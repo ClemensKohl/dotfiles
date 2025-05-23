@@ -19,122 +19,67 @@ if [[ $1 = "-bu" ]]; then
     rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
     rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
 
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
+
   else
-    echo "/media/clemens/Foto3/ is not not mounted"
+    echo "$TARGET is not not mounted"
   fi
 
 fi
 
+if [[ $1 = "-tof2" ]]; then
 
-#####################
-### Foto3 to Foto2 ##
-#####################
-#
-#if [[ $1 = "-f3tof2" ]]; then
-#
-#  today=$(date +'%Y%m%d')
-#  LOGDIR=/media/clemens/Foto3/logs/${today}
-#
-#  if mountpoint -q /media/clemens/Foto3/; then
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /home/clemens/digikam /media/clemens/Foto3/
-#  else
-#    echo "\n/media/clemens/Foto3/ is not not mounted"
-#  fi
-#
-#  if mountpoint -q /media/clemens/Foto3/ && mountpoint -q /media/clemens/Foto2/; then
-#
-#    mkdir -p $LOGDIR
-#    time=$(date +'%H%M')
-#
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto2/digikam/ &>$LOGDIR/${time}_digikam.log
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto2/vaults/ &>$LOGDIR/${time}_vaults.log
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto2/Pictures/ &>$LOGDIR/${time}_Pictures.log
-#
-#    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto2/digikam/ &> $LOGDIR/${time}_digikam.log
-#    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto2/vaults/ &> $LOGDIR/${time}_vaults.log
-#    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto2/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto2/Pictures/ &> $LOGDIR/${time}_Pictures.log
-#
-#  else
-#    echo "\nOne of the drives is not mounted."
-#  fi
-#
-#fi
-#
-#####################
-### Foto3 to Foto1 ##
-#####################
-## TODO: reformat foto 1
-#
-#if [[ $1 = "-f3tof1" ]]; then
-#
-#  today=$(date +'%Y%m%d')
-#  LOGDIR=/media/clemens/Foto3/logs/${today}
-#
-#  if mountpoint -q /media/clemens/Foto3/; then
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto3/Deleted /home/clemens/digikam /media/clemens/Foto3/
-#  else
-#    echo "/media/clemens/Foto3/ is not not mounted"
-#  fi
-#
-#  if mountpoint -q /media/clemens/Foto3/ && mountpoint -q /media/clemens/Foto1/; then
-#
-#    mkdir -p $LOGDIR
-#    time=$(date +'%H%M')
-#
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto1/digikam/ &>$LOGDIR/${time}_digikam.log
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto1/vaults/ &>$LOGDIR/${time}_vaults.log
-#    rsync -abv --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto1/Pictures/ &>$LOGDIR/${time}_Pictures.log
-#
-#    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/digikam/ /media/clemens/Foto1/digikam/ &> $LOGDIR/${time}_digikam.log
-#    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/vaults/ /media/clemens/Foto1/vaults/ &> $LOGDIR/${time}_vaults.log
-#    #rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto1/Deleted /media/clemens/Foto3/Pictures/ /media/clemens/Foto1/Pictures/ &> $LOGDIR/${time}_Pictures.log
-#
-#  else
-#    echo "One of the drives is not mounted."
-#  fi
-#
-#fi
-#
-#####################
-### Foto2 to Foto3 ##
-#####################
-#
-#if [[ $1 = "-f2tof3" ]]; then
-#
-#  today=$(date +'%Y%m%d')
-#  LOGDIR=/media/clemens/Foto2/logs/${today}
-#
-#  read -p "Transfering from Foto2 to Foto3. Continue? (y/n)   " choice
-#  case "$choice" in
-#  y | Y | yes | Yes) echo "yes" ;;
-#  n | N | no | No)
-#    echo "no"
-#    exit 1
-#    ;;
-#  *)
-#    echo "invalid"
-#    exit 1
-#    ;;
-#  esac
-#
-#  if mountpoint -q /media/clemens/Foto3/ && mountpoint -q /media/clemens/Foto2/; then
-#
-#    mkdir -p $LOGDIR
-#    time=$(date +'%H%M')
-#
-#    rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/digikam/ /media/clemens/Foto3/digikam/ &>$LOGDIR/${time}_digikam.log
-#    rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/vaults/ /media/clemens/Foto3/vaults/ &>$LOGDIR/${time}_vaults.log
-#    rsync -abv --dry-run --delete --backup-dir=/media/clemens/Foto3/Deleted /media/clemens/Foto2/Pictures/ /media/clemens/Foto3/Pictures/ &>$LOGDIR/${time}_Pictures.log
-#
-#  else
-#    echo "One of the drives is not mounted."
-#  fi
-#fi
-#
+  today=$(date +'%Y%m%d')
+  LOGDIR=$HOME/Pictures/logs/${today}
+  TARGET=/run/media/clemens/Foto2/
+  SOURCE=/home/clemens/Pictures/
+  if mountpoint -q $TARGET; then
+
+    mkdir -p $LOGDIR
+    time=$(date +'%H%M')
+
+    rsync -abv --delete --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
+    rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
+    rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
+
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
+
+  else
+    echo "$TARGET is not not mounted"
+  fi
+fi
+
+if [[ $1 = "-tof1" ]]; then
+
+  today=$(date +'%Y%m%d')
+  LOGDIR=$HOME/Pictures/logs/${today}
+  TARGET=/run/media/clemens/Foto1/
+  SOURCE=/home/clemens/Pictures/
+  if mountpoint -q $TARGET; then
+
+    mkdir -p $LOGDIR
+    time=$(date +'%H%M')
+
+    rsync -abv --delete --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
+    rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
+    rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
+
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
+    # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
+
+  else
+    echo "$TARGET is not not mounted"
+  fi
+fi
+
 #####################
 ### Foto2 to Foto1 ##
 #####################
-## TODO: update the below.
 #if [[ $1 = "-f2tof1" ]]; then
 #
 #  today=$(date +'%Y%m%d')
