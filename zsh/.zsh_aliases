@@ -11,6 +11,21 @@ alias rdevim="R_LIBS=$HOME/R-devel/library  PATH='$HOME/R-devel/bin/:$PATH' nvim
 ## Privat ##
 ############
 
+goto_git() {
+  local base="$HOME/gits/ClemensKohl"
+  local target="$base"
+
+  if [ -n "$1" ]; then
+    target="$base/$1"
+  fi
+
+  if [ -d "$target" ]; then
+    cd "$target" || echo "Failed to cd into $target"
+  else
+    echo "Directory does not exist: $target"
+  fi
+}
+
 # Path to dot files on personal computers.
 if [ -d ~/gits/ClemensKohl/dotfiles ];
 then
@@ -20,7 +35,7 @@ fi
 # aliases for git repos.
 if [ -d ~/gits/ClemensKohl/ ];
 then
-  alias cgit="cd ~/gits/ClemensKohl/"
+  alias cgit="goto_git"
 fi
 
 if [ -d ~/gits/VingronLab/ ];
@@ -78,15 +93,23 @@ then
   alias analyse="cd /project/kohl_analysis/analysis/"
 fi
 
+goto_analyse() {
+  local base="/project/kohl_analysis/analysis"
+  local target="$base"
+
+  if [ -n "$1" ]; then
+    target="$base/$1"
+  fi
+
+  if [ -d "$target" ]; then
+    cd "$target" || echo "Failed to cd into $target"
+  else
+    echo "Directory does not exist: $target"
+  fi
+}
 if [ -d /project/kohl_data/ ];
 then
-  alias datalyse="cd /project/kohl_data/"
-fi
-
-# quick aliases for git repos
-if [ -d ~/PhD/gits/ClemensKohl/ ];
-then
-  alias cgit="cd ~/PhD/gits/ClemensKohl/"
+  alias datalyse="goto_analyse"
 fi
 
 if [ -d ~/PhD/gits/VingronLab/ ];
