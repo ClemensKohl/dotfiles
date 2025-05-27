@@ -19,6 +19,10 @@ vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" 
 -- allow movement to the right in insert mode
 vim.keymap.set("i", "<C-l>", "<Esc>la")
 
+-- definitions in splits
+vim.keymap.set("n", "gzv", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Goto definition in vsplit" })
+vim.keymap.set("n", "gzs", ":split | lua vim.lsp.buf.definition()<CR>", { desc = "Goto definition in split" })
+
 -- Buffers/tabs with telescope
 -- vim.keymap.set("n", "<leader>bf", ":Telescope buffers show_all_buffers=true<CR>", { desc = "Show All Buffers" })
 -- vim.keymap.set("n", "<leader><Tab>t", ":Telescope telescope-tabs list_tabs<CR>", { desc = "Show All Tabs" })
@@ -69,7 +73,6 @@ if not vim.g.vscode then
     -- { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
     -- { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     -- { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
-    { "<leader>zv", ":vsplit | lua vim.lsp.buf.definition()<CR>", desc = "Goto definition in split" },
     { "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", desc = "Toggle Colors Highlighting" },
   })
 
