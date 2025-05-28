@@ -91,6 +91,10 @@ end
 -- vim.g.vimtex_quickfix_ignore_filters = { "Underfull", "Overfull" }
 vim.g.vimtex_quickfix_open_on_warning = 0
 
+--Move aux files into subdirectory
+vim.g.vimtex_compiler_latexmk = {
+  aux_dir = "aux", -- create a directory called aux that will contain all the auxiliary files
+}
 ---------------
 -- Thesaurus --
 ---------------
