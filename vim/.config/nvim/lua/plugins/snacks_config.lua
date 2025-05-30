@@ -36,7 +36,7 @@ return {
       image = { enabled = false },
       terminal = { enabled = true },
       picker = {
-        layout = { preset = "ivy" },
+        -- layout = { preset = "ivy" },
         sources = {
           explorer = {
             auto_close = false,
