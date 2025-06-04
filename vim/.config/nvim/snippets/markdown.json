@@ -72,7 +72,7 @@
   },
   "rcode": {
     "prefix": ["rco"],
-    "body": ["```{r} ", "$1", "```"]
+    "body": ["```{r}", "$0", "```"]
   },
   "bashcode": {
     "prefix": ["bco"],

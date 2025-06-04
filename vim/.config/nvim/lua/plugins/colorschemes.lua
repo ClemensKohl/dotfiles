@@ -4,6 +4,11 @@ return {
   -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
   {
+    "webhooked/kanso.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
