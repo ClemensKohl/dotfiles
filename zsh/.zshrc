@@ -236,3 +236,5 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/PhD/gits/ClemensKohl/dotfiles/zsh/.p10k.zsh.
 [[ ! -f ~/PhD/gits/ClemensKohl/dotfiles/zsh/.p10k.zsh ]] || source ~/PhD/gits/ClemensKohl/dotfiles/zsh/.p10k.zsh
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
