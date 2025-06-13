@@ -28,6 +28,9 @@ vim.opt.shell = "zsh"
 --Markdown settings:
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
 
+-- Copilot
+-- vim.g.ai_cmp = false
+
 -------------
 -- LazyVim --
 -------------
