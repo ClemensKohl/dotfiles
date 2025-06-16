@@ -12,7 +12,7 @@
   "dial.nvim": { "branch": "master", "commit": "2c7e2750372918f072a20f3cf754d845e143d7c9" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "gitsigns.nvim": { "branch": "main", "commit": "731b581428ec6c1ccb451b95190ebbc6d7006db7" },
+  "gitsigns.nvim": { "branch": "main", "commit": "88205953bd748322b49b26e1dfb0389932520dc9" },
   "goto-preview": { "branch": "main", "commit": "d1faf6ea992b5bcaaaf2c682e1aba3131a01143e" },
   "grug-far.nvim": { "branch": "main", "commit": "1a85fba510c6086b396be5a3c7c77ab32829d7df" },
   "gruvbox-material": { "branch": "master", "commit": "f5f912fbc7cf2d45da6928b792d554f85c7aa89a" },
@@ -59,7 +59,7 @@
   "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" },
   "typr": { "branch": "main", "commit": "bdd9ef7143702851edd1dac85101e0a537056d2f" },
   "vim-slime": { "branch": "main", "commit": "507107dd24c9b85721fa589462fd5068e0f70266" },
-  "vimtex": { "branch": "master", "commit": "8f2bcf3ff482ecb735b081ea03c52d2409ba474d" },
+  "vimtex": { "branch": "master", "commit": "e10525a5aa65e2544f11e680dd81c77fba800248" },
   "volt": { "branch": "main", "commit": "7b8c5e790120d9f08c8487dcb80692db6d2087a1" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yanky.nvim": { "branch": "main", "commit": "04775cc6e10ef038c397c407bc17f00a2f52b378" }
