@@ -1,0 +1,36 @@
+#!/bin/bash
+
+today=$(date +'%Y%m%d')
+time=$(date +'%H%M')
+
+LOGDIR=$HOME/Pictures/logs/${today}
+mkdir -p $LOGDIR
+
+if [[ $1 = "-home" ]]; then
+
+  TARGET=/run/media/clemens/Foto3/
+  SOURCE=$HOME/Pictures/
+
+  if mountpoint -q $TARGET; then
+    rsync -abv --delete --dry-run --backup-dir="${TARGET}/Deleted" "${SOURCE}/digikam/" "${TARGET}/digikam/" &>"${LOGDIR}/${time}_digikam.log"
+    rsync -abv --delete --dry-run --backup-dir="${TARGET}/Deleted" "${SOURCE}/vaults/" "${TARGET}/vaults/" &>"${LOGDIR}/${time}_vaults.log"
+    rsync -abv --delete --dry-run --backup-dir="${TARGET}/Deleted" "${SOURCE}/Pictures/" "${TARGET}/Photos/" &>"${LOGDIR}/${time}_Photos.log"
+
+  else
+    echo "\nOne of the drives is not mounted."
+  fi
+fi
+
+if [[ $1 = "-data" ]]; then
+  TARGET=$HOME/Data/
+  SOURCE=$HOME/Pictures/
+  if mountpoint -q "$TARGET"; then
+
+    rsync -abv --delete --dry-run --backup-dir="${TARGET}/Deleted" "${SOURCE}/vaults/" "${TARGET}/Pictures/vaults/" &>"${LOGDIR}/${time}_vaults.log"
+    rsync -abv --delete --dry-run --backup-dir="${TARGET}/Deleted" "${SOURCE}/Photos/" "${TARGET}/Pictures/Photos/" &>"${LOGDIR}/${time}_Pictures.log"
+
+  else
+    echo "$TARGET is not not mounted"
+  fi
+
+fi
