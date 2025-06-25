@@ -46,6 +46,12 @@ vim.g.lazyvim_picker = "snacks"
 -- Set to false to disable.
 vim.g.lazygit_config = true
 
+-- LazyVim completion engine to use.
+-- Can be one of: nvim-cmp, blink.cmp
+-- Leave it to "auto" to automatically use the completion engine
+-- enabled with `:LazyExtras`
+vim.g.lazyvim_cmp = "auto"
+
 -- Set to `false` to prevent "non-lsp snippets"" from appearing inside completion windows
 -- Motivation: Less clutter in completion windows and a more direct usage of snippits
 vim.g.lazyvim_mini_snippets_in_completion = true
