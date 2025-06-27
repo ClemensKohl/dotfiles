@@ -41,7 +41,7 @@ return {
             auto_close = true,
             cycle = true,
             -- layout = { preset = "sidebar", preview = false},
-            layout = { preset = "ivy_split" },
+            -- layout = { preset = "ivy_split" },
             -- layout = { preview = "main" },
           },
         },
