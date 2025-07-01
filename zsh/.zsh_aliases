@@ -52,7 +52,8 @@ fi
 
 # First connect via VPN
 alias remote_windows='rdesktop -u kohl -d wis-net -f winter'
-alias remote_windows_res='rdesktop -u kohl -d wis-net -g 1920x1280 winter'
+alias remote_windows_HD='rdesktop -u kohl -d wis-net -g 1920x1280 winter'
+alias remote_windows_4k='rdesktop -u kohl -d wis-net -g 3840x2160 winter'
 
 if [[ "$(whoami)" == "kohl" ]]; then
 
