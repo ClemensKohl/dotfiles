@@ -25,6 +25,22 @@ return {
         severity_sort = true,
       },
       servers = {
+        air = {
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format()
+              end,
+            })
+          end,
+        },
+        r_language_server = {
+          on_attach = function(client, _)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
+        },
         ltex = {
           --   use_spellfile = false,
           autostart = false,
@@ -56,6 +72,18 @@ return {
             },
           },
         },
+      },
+    },
+  },
+
+  -- Very basic conform setup
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        quarto = { "injected" },
+        rmd = { "injected" },
+        r = { "air" },
       },
     },
   },
