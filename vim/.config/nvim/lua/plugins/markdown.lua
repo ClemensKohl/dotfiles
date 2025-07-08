@@ -7,8 +7,14 @@ return {
         -- Turn on / off code block & inline code rendering
         enabled = true,
         sign = false,
-        width = "block",
+        position = "left",
+        language_icon = true,
+        language_pad = 0,
+        language_name = false,
+        language_info = false,
+        width = "full",
         right_pad = 1,
+        border = "thick",
       },
       heading = {
         sign = false,

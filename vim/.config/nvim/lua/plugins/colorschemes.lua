@@ -12,7 +12,18 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    opts = { style = "moon" },
+    opts = {
+      style = "moon",
+      -- plugins = { markdown = true },
+      -- on_highlights = function(hl, c)
+      --   hl.RenderMarkdownCode = {
+      --     bg = c.orange,
+      --   }
+      -- hl.RenderMarkdownCodeBorder = {
+      --   bg = c.none,
+      -- }
+      -- end,
+    },
   },
   -- gruvbox but with softer contrast.
   {
@@ -121,9 +132,9 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "tokyonight-moon",
+      colorscheme = "tokyonight-moon",
       -- colorscheme = "gruvbox-material",
-      colorscheme = "catppuccin-frappe",
+      -- colorscheme = "catppuccin-frappe",
       -- colorscheme = "rose-pine-dawn",
       gruvbox_material_background = "medium",
       gruvbox_material_better_performance = 1,
