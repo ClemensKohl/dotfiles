@@ -3,6 +3,7 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
+      render_modes = { "n", "c", "t" },
       code = {
         -- Turn on / off code block & inline code rendering
         enabled = true,
@@ -15,6 +16,7 @@ return {
         width = "full",
         right_pad = 1,
         border = "thick",
+        render_modes = { "n", "i", "v", "V" },
       },
       heading = {
         sign = false,

@@ -16,8 +16,8 @@ return {
       style = "moon",
       -- plugins = { markdown = true },
       -- on_highlights = function(hl, c)
-      --   hl.RenderMarkdownCode = {
-      --     bg = c.orange,
+      --   hl.RCodeBlock = {
+      --     bg = c.bg_dark,
       --   }
       -- hl.RenderMarkdownCodeBorder = {
       --   bg = c.none,

@@ -19,6 +19,13 @@ return {
         vim.keymap.set("i", "<<", "<Plug>RInsertAssign" ),
         -- vim.keymap.set("i", "<M-b>", "<Plug>RmdInsertChunk", { buffer = true })
       },
+      quarto_chunk_hl = {
+        highlight = false,               -- Highlight code blocks?
+        yaml_hl = false,                 -- Highlight YAML comments?
+        virtual_title = false,           -- Add language as virtual text?
+        bg = "#003010",                  -- Use a different background color
+        events = "BufEnter,TextChanged", -- Update the highlighting more often
+      },
       -- R_hl_term = 0,
       -- R_bracketed_paste = 1,
     },
