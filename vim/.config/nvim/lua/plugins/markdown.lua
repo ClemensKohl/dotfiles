@@ -23,6 +23,7 @@ return {
       checkbox = {
         enabled = true,
       },
+      win_options = { conceallevel = { default = 0 } },
     },
     ft = { "markdown", "norg", "rmd", "org", "quarto" },
   },
