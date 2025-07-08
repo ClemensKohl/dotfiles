@@ -136,39 +136,45 @@ return {
         enable = true, -- false will disable the whole extension
         disable = { "latex", "tex" }, -- list of language that will be disabled
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn",
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
+        },
+      },
       textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+          },
+        },
         move = {
           enable = true,
-          set_jumps = true, -- you can change this if you want.
+          set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
-            -- ["]m"] = "@function.outer",
+            ["]m"] = "@function.outer",
             ["]]"] = "@class.inner",
           },
           goto_next_end = {
-            --   ["]M"] = "@function.outer",
+            ["]M"] = "@function.outer",
             ["]["] = "@class.outer",
           },
           goto_previous_start = {
-            -- ["[m"] = "@function.outer",
+            ["[m"] = "@function.outer",
             ["[["] = "@class.inner",
           },
           goto_previous_end = {
-            --   ["[M"] = "@function.outer",
+            ["[M"] = "@function.outer",
             ["[]"] = "@class.outer",
-          },
-        },
-        select = {
-          enable = true,
-          lookahead = true, -- you can change this if you want
-          keymaps = {
-            --- ... other keymaps
-            -- You can use the capture groups defined in textobjects.scm
-            -- ["iC"] = { query = "@code_cell.inner", desc = "in block" },
-            -- ["aC"] = { query = "@code_cell.outer", desc = "around block" },
-            -- ["af"] = "@function.outer",
-            -- ["if"] = "@function.inner",
-            -- ["ac"] = "@class.outer",
-            -- ["ic"] = "@class.inner",
           },
         },
       },

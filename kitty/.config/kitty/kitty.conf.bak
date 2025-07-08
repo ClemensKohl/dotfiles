@@ -7,12 +7,12 @@ shell zsh
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      JetBrainsMono NFM Regular
-bold_font        JetBrainsMono NFM Bold
-italic_font      JetBrainsMono NFM Italic
-bold_italic_font JetBrainsMono NFM Bold Italic
+font_family      JetBrainsMono NF Regular
+bold_font        JetBrainsMono NF ExtraBold
+italic_font      JetBrainsMono NF Italic
+bold_italic_font JetBrainsMono NF ExtraBold Italic
 
-# font_family      JetBrainsMono NFM Regular
+# font_family      JetBrainsMono NF Medium
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -21,7 +21,7 @@ font_size 12.0
 
 #https://sw.kovidgoyal.net/kitty/faq/#kitty-is-not-able-to-use-my-favorite-font
 # Nerd Fonts v2.3.3
-symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
+# symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
 
 # font_family      monospace
 # bold_font        auto
@@ -183,7 +183,7 @@ symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0
 #: font glyph is rendered and the baseline at which the glyph is
 #: placed in the cell. For example::
 
-#:     modify_font cell_width 80%
+#:     modify_font cell_width 95%
 #:     modify_font cell_height -2px
 #:     modify_font baseline 3
 
@@ -314,6 +314,11 @@ symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0
 #: Stop blinking cursor after the specified number of seconds of
 #: keyboard inactivity. Set to zero to never stop blinking.
 
+#: Enable cursor trail
+cursor_trail 3 
+cursor_trail_decay 0.1 0.4
+cursor_trail_start_threshold 2
+
 #: }}}
 
 #: Scrollback {{{
@@ -329,7 +334,8 @@ symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0
 #: is changed it will only affect newly created windows, not existing
 #: ones.
 
-# scrollback_pager less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
+scrollback_pager less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
+# scrollback_pager vim
 
 #: Program with which to view scrollback in a new window. The
 #: scrollback buffer is passed as STDIN to this program. If you change
@@ -449,7 +455,7 @@ underline_hyperlinks hover
 #: value to/from always will only affect text subsequently received by
 #: kitty.
 
-copy_on_select no
+copy_on_select yes
 
 #: Copy to clipboard or a private buffer on select. With this set to
 #: clipboard, selecting text with the mouse will cause the text to be
@@ -1375,6 +1381,8 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 #: control/#rc-custom-auth> for details.
 
 # allow_remote_control no
+# NOTE: needed for kitty-scrollback.nvim mode in neovim!
+allow_remote_control socket-only
 
 #: Allow other programs to control kitty. If you turn this on, other
 #: programs can control all aspects of kitty, including sending text
@@ -1404,6 +1412,8 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 #:     Remote control requests are always accepted.
 
 # listen_on none
+# NOTE: needed for kitty-scrollback.nvim mode in neovim!
+listen_on unix:/tmp/kitty
 
 #: Listen to the specified socket for remote control connections. Note
 #: that this will apply to all kitty instances. It can be overridden
@@ -1483,6 +1493,7 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 #: config is not supported.
 
 # clipboard_control write-clipboard write-primary read-clipboard-ask read-primary-ask
+clipboard_control write-clipboard write-primary read-clipboard read-primary
 
 #: Allow programs running in kitty to read and write from the
 #: clipboard. You can control exactly which actions are allowed. The
@@ -1520,7 +1531,7 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 #: special value of ask means that kitty will ask before opening the
 #: link when clicked.
 
-# shell_integration enabled
+shell_integration enabled
 
 #: Enable shell integration on supported shells. This enables features
 #: such as jumping to previous prompts, browsing the output of the
@@ -1902,7 +1913,7 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 
 #: Scroll to previous shell prompt
 
-# map kitty_mod+z scroll_to_prompt -1
+map kitty_mod+z scroll_to_prompt -1
 
 #::  Use a parameter of 0 for scroll_to_prompt to scroll to the last
 #::  jumped to or the last clicked position. Requires shell
@@ -1911,11 +1922,11 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 
 #: Scroll to next shell prompt
 
-# map kitty_mod+x scroll_to_prompt 1
+map kitty_mod+x scroll_to_prompt 1
 
 #: Browse scrollback buffer in pager
 
-# map kitty_mod+h show_scrollback
+map kitty_mod+h show_scrollback
 
 #::  You can pipe the contents of the current screen and history
 #::  buffer as STDIN to an arbitrary program using launch --stdin-
@@ -1929,7 +1940,7 @@ tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows >
 
 #: Browse output of the last shell command in pager
 
-# map kitty_mod+g show_last_command_output
+map kitty_mod+g show_last_command_output
 
 #::  You can also define additional shortcuts to get the command
 #::  output. For example, to get the first command output on screen::
@@ -2171,10 +2182,18 @@ map f1 new_window_with_cwd
 #: }}}
 
 #: Layout management {{{
+enabled_layouts tall:bias=50;full_size=1;mirrored=false,fat:bias=50;full_size=1;mirrored=false,horizontal,vertical
+
+# Custom settings:
+map ctrl+[ layout_action decrease_num_full_size_windows
+map ctrl+] layout_action increase_num_full_size_windows
+map ctrl+` layout_action mirror toggle
+map ctrl+y layout_action mirror true
+map ctrl+n layout_action mirror false
 
 #: Next layout
 
-# map kitty_mod+l next_layout
+map kitty_mod+l next_layout
 
 
 #: You can also create shortcuts to switch to specific layouts::
@@ -2486,14 +2505,24 @@ map f1 new_window_with_cwd
 
 #: Quit kitty
 
-# map cmd+q quit
+map cmd+q quit
 
 #: }}}
 
 #: }}}
 
+# NOTE: CUSTOM KEYMAPS AND ALIASES
+
+# kitty-scrollback.nvim Kitten alias
+action_alias kitty_scrollback_nvim kitten $HOME/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
+# Browse scrollback buffer in nvim
+map kitty_mod+h kitty_scrollback_nvim
+# Browse output of the last shell command in nvim
+map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+# Show clicked command output in nvim
+mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
 
 # BEGIN_KITTY_THEME
-# Rosé Pine Moon
+# Catppuccin-Frappe
 include current-theme.conf
 # END_KITTY_THEME
