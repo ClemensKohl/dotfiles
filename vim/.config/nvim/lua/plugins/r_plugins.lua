@@ -23,7 +23,7 @@ return {
         highlight = false,               -- Highlight code blocks?
         yaml_hl = false,                 -- Highlight YAML comments?
         virtual_title = false,           -- Add language as virtual text?
-        bg = "#003010",                  -- Use a different background color
+        -- bg = "#003010",                  -- Use a different background color
         events = "BufEnter,TextChanged", -- Update the highlighting more often
       },
       -- R_hl_term = 0,
