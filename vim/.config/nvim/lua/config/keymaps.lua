@@ -110,9 +110,9 @@ if not vim.g.vscode then
   -- Copilot --
   -------------
 
-  wk.add({
-    { "<leader>at", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
-  })
+  -- wk.add({
+  --   { "<leader>at", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
+  -- })
 end
 
 -------------

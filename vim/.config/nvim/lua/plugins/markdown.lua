@@ -16,7 +16,7 @@ return {
         width = "block",
         right_pad = 3,
         border = "thick",
-        render_modes = { "n", "i", "v", "V" },
+        render_modes = { "n", "i", "v", "V", "t" },
       },
       heading = {
         sign = false,
@@ -27,6 +27,6 @@ return {
       },
       -- win_options = { conceallevel = { default = 0 } },
     },
-    ft = { "markdown", "norg", "rmd", "org", "quarto" },
+    ft = { "markdown", "norg", "rmd", "org", "quarto", "ipynb" },
   },
 }
