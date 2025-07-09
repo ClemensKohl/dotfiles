@@ -9,7 +9,7 @@
 -- Switch splits with tab.
 vim.keymap.set("n", "<tab>", "<C-w><C-w>", { desc = "Switch pane." })
 -- Exit terminal mode with Esc.
-vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { noremap = true, desc = "Leave terminal mode" })
+-- vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { noremap = true, desc = "Leave terminal mode" })
 --TODO: Add as many as possible directly to plugin config.
 --This way you can easily disable both the plugin and the keymaps.
 
@@ -18,6 +18,7 @@ vim.keymap.set("n", "Q", vim.diagnostic.open_float, { desc = "Line Diagnostics" 
 
 -- allow movement to the right in insert mode
 vim.keymap.set("i", "<C-l>", "<Esc>la")
+vim.keymap.set("i", "<C-h>", "<Esc>ha")
 
 -- definitions in splits
 vim.keymap.set("n", "gzv", ":vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Goto definition in vsplit" })
