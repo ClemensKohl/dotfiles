@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "quarto" },
   callback = function(ev)
     require("treesitter-context").disable()
-    require("MiniHipatterns").disable()
+    require("mini.hipatterns").disable()
   end,
 })
 
