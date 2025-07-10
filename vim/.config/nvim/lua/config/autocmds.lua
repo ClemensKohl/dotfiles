@@ -56,12 +56,18 @@ vim.api.nvim_create_autocmd("FileType", {
     require("treesitter-context").disable()
   end,
 })
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "latex" },
   callback = function()
     vim.fn.setreg("s", ")hr\r\27@s") -- split paragraph into sentences.
   end,
 })
+
+vim.api.nvim_create_autocmd(
+  { "FileType" },
+  { pattern = { "tex", "latex" }, command = "lua vim.lsp.inlay_hint.enable(false)" }
+)
 
 -- Turns off treesitter highlights for latex files.
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
@@ -79,4 +85,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, comm
 -- vim.api.nvim_create_autocmd(
 --   { "FileType" },
 --   { pattern = { "tex", "latex" }, command = "lua vim.api.nvim_set_hl(0, 'Todo', {})" }
--- )
