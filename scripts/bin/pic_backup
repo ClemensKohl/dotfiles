@@ -42,7 +42,7 @@ if [[ $1 = "-tof2" ]]; then
 
     rsync -abv --delete --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
     rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
-    rsync -abv --delete --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
+    rsync -abv --delete --ignore-errors --backup-dir=${TARGET}/Deleted $SOURCE/Photos/ $TARGET/Pictures/ &>$LOGDIR/${time}_Pictures.log
 
     # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $HOME/.digikam/ $TARGET/digikam/ &>$LOGDIR/${time}_digikam.log
     # rsync -abv --delete --dry-run --backup-dir=${TARGET}/Deleted $SOURCE/vaults/ $TARGET/vaults/ &>$LOGDIR/${time}_vaults.log
