@@ -114,6 +114,11 @@ if not vim.g.vscode then
   -- wk.add({
   --   { "<leader>at", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
   -- })
+
+  ------------
+  -- Claude --
+  ------------
+  vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode<CR>", { desc = "Toggle Claude Code" })
 end
 
 -------------
