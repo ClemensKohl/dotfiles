@@ -19,6 +19,7 @@ local function set_terminal_keymaps()
   vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 end
 
+-- Some settings for terminals.
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
   pattern = { "*" },
   callback = function(_)
@@ -36,12 +37,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+------------
+-- Quarto --
+------------
+
+-- Disable treesitter-context for quarto files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "quarto" },
   callback = function(ev)
     require("treesitter-context").disable()
   end,
 })
+
+-- Disable color highlighting for quarto files.
+-- Interferes with code background.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "quarto" },
   callback = function(ev)
@@ -49,7 +58,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Latex
+-----------
+-- Latex --
+-----------
+
+-- Disable treesitter-context for Latex
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "latex" },
   callback = function()
@@ -57,6 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Save macro to split lines for md and latex.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "latex" },
   callback = function()
@@ -64,10 +78,42 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd(
-  { "FileType" },
-  { pattern = { "tex", "latex" }, command = "lua vim.lsp.inlay_hint.enable(false)" }
-)
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    local bufnr = event.buf
+    local filetype = vim.bo[bufnr].filetype
+    print("LSP attached to buffer " .. bufnr .. " with filetype: " .. filetype)
+
+    if filetype == "tex" or filetype == "latex" then
+      print("Attempting to disable inlay hints for LaTeX")
+      local success = pcall(vim.lsp.inlay_hint.enable, false, { bufnr = bufnr })
+      print("Inlay hint disable success: " .. tostring(success))
+    end
+  end,
+})
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "tex", "latex" },
+--   callback = function()
+--     vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+--   end,
+-- })
+
+-- Set colorscheme for Latex files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.cmd("colorscheme kanso-ink")
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  callback = function()
+    if vim.bo.filetype == "tex" then
+      vim.cmd("colorscheme " .. (vim.g.default_colorscheme or "default"))
+    end
+  end,
+})
 
 -- Turns off treesitter highlights for latex files.
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
@@ -77,11 +123,3 @@ Todo_hl_settings = vim.api.nvim_get_hl(0, { name = "Todo" })
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "highlight clear Todo" })
 -- Enable wrap for tex
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "set wrap" })
-
--- Set Light colorscheme for Latex.
--- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "set bg=light" })
--- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "colorscheme rose-pine-dawn" })
-
--- vim.api.nvim_create_autocmd(
---   { "FileType" },
---   { pattern = { "tex", "latex" }, command = "lua vim.api.nvim_set_hl(0, 'Todo', {})" }

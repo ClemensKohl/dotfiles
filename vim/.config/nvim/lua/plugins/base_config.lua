@@ -16,6 +16,10 @@ return {
         underline = true,
         update_in_insert = false,
         virtual_text = false,
+        inlay_hints = {
+          enabled = true,
+          exclude = { "tex", "latex" }, -- filetypes for which you don't want to enable inlay hints
+        },
         float = {
           show_header = true,
           source = "if_many",
@@ -40,6 +44,11 @@ return {
             client.server_capabilities.documentFormattingProvider = false
             client.server_capabilities.documentRangeFormattingProvider = false
           end,
+        },
+        texlab = {
+          inlayHints = {
+            maxLength = 10,
+          },
         },
         ltex = {
           --   use_spellfile = false,
