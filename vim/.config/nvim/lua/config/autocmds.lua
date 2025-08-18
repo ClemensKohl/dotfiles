@@ -78,32 +78,32 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(event)
-    local bufnr = event.buf
-    local filetype = vim.bo[bufnr].filetype
-    print("LSP attached to buffer " .. bufnr .. " with filetype: " .. filetype)
-
-    if filetype == "tex" or filetype == "latex" then
-      print("Attempting to disable inlay hints for LaTeX")
-      local success = pcall(vim.lsp.inlay_hint.enable, false, { bufnr = bufnr })
-      print("Inlay hint disable success: " .. tostring(success))
-    end
-  end,
-})
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = { "tex", "latex" },
---   callback = function()
---     vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function(event)
+--     local bufnr = event.buf
+--     local filetype = vim.bo[bufnr].filetype
+--     print("LSP attached to buffer " .. bufnr .. " with filetype: " .. filetype)
+--
+--     if filetype == "tex" or filetype == "latex" then
+--       print("Attempting to disable inlay hints for LaTeX")
+--       local success = pcall(vim.lsp.inlay_hint.enable, false, { bufnr = bufnr })
+--       print("Inlay hint disable success: " .. tostring(success))
+--     end
 --   end,
 -- })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "tex", "latex" },
+  callback = function()
+    vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+  end,
+})
 
 -- Set colorscheme for Latex files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
-    vim.cmd("colorscheme kanso-ink")
+    vim.cmd("colorscheme catppuccin-mocha")
   end,
 })
 
