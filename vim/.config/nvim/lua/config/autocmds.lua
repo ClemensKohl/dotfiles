@@ -78,20 +78,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function(event)
---     local bufnr = event.buf
---     local filetype = vim.bo[bufnr].filetype
---     print("LSP attached to buffer " .. bufnr .. " with filetype: " .. filetype)
---
---     if filetype == "tex" or filetype == "latex" then
---       print("Attempting to disable inlay hints for LaTeX")
---       local success = pcall(vim.lsp.inlay_hint.enable, false, { bufnr = bufnr })
---       print("Inlay hint disable success: " .. tostring(success))
---     end
---   end,
--- })
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "latex" },
   callback = function()
@@ -100,20 +86,20 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Set colorscheme for Latex files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "tex",
-  callback = function()
-    vim.cmd("colorscheme catppuccin-mocha")
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufLeave", {
-  callback = function()
-    if vim.bo.filetype == "tex" then
-      vim.cmd("colorscheme " .. (vim.g.default_colorscheme or "default"))
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "tex",
+--   callback = function()
+--     vim.cmd("colorscheme catppuccin")
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufLeave", {
+--   callback = function()
+--     if vim.bo.filetype == "tex" then
+--       vim.cmd("colorscheme " .. (vim.g.default_colorscheme or "default"))
+--     end
+--   end,
+-- })
 
 -- Turns off treesitter highlights for latex files.
 vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
