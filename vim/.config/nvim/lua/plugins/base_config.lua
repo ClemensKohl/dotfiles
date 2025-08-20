@@ -288,5 +288,5 @@ return {
       })
     end,
   },
-  { "echasnovski/mini.align", version = "*" },
+  { "echasnovski/mini.align", version = "*", opts = {} },
 }
