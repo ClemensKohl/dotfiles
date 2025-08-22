@@ -12,7 +12,7 @@
 [core]
   editor = nvim
 [diff]
-  tool = nvimdiff
+	tool = vimdiff
   ; tool = diffview
 [mergetool "nvimdiff"]
   layout = LOCAL,MERGED,REMOTE
