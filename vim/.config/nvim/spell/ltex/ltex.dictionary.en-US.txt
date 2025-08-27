@@ -1,5 +1,0 @@
-CAbiNetBIP
-CAbiNet
-biMAP
-biMAPs
-Organoids

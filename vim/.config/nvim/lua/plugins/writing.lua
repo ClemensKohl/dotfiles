@@ -19,7 +19,8 @@ return {
     opts = {
       load_langs = { "en-US" }, -- en-US as default
       log_level = "none",
-      path = vim.fn.expand("~") .. "/.config/nvim/spell/ltex", -- project root or current working directory
+      -- path = vim.fn.expand("~") .. "/.config/nvim/spell/ltex", -- project root or current working directory
+      path = ".ltex", -- project root or current working directory
     },
   },
 }
