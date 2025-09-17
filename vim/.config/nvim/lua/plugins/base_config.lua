@@ -5,6 +5,7 @@ return {
   -- I don't like it.
   -- { "echasnovski/mini.pairs", enabled = false },
 
+  -- FIXME: Migrate to native neovim LSP config.
   -- Configure LSP
   {
     "neovim/nvim-lspconfig",
@@ -288,5 +289,5 @@ return {
       })
     end,
   },
-  { "echasnovski/mini.align", version = "*", opts = {} },
+  { "nvim-mini/mini.align", version = "*", opts = {} },
 }
