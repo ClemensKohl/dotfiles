@@ -60,7 +60,7 @@ vim.g.lazyvim_mini_snippets_in_completion = true
 -- NEOVIDE --
 -------------
 -- Set gui font and size for GUI editors.
-vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h12"
+vim.o.guifont = "JetBrainsMono_NF,Noto_Color_Emoji:style=Regular:h13"
 vim.g.neovide_font_hinting = "none"
 -- vim.g.neovide_font_edging = "antialias"
 -- vim.g.neovide_font_edging = "subpixelantialias"
