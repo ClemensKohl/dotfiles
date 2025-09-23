@@ -70,6 +70,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Disable treesitter highlights.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "tex", "latex" },
+  callback = function()
+    vim.defer_fn(function()
+      vim.treesitter.stop()
+    end, 10)
+  end,
+})
+
 -- Save macro to split lines for md and latex.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "latex" },
@@ -81,9 +91,13 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex", "latex" },
   callback = function()
-    vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+    vim.defer_fn(function()
+      vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+    end, 500)
   end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "set wrap" })
 
 -- Set colorscheme for Latex files
 -- vim.api.nvim_create_autocmd("FileType", {
@@ -102,10 +116,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 
 -- Turns off treesitter highlights for latex files.
-vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "TSBufDisable highlight" })
+-- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "lua vim.treesitter.stop()" })
 
 -- Solves vimtex and todo-comment both coloring the todos/notes...
-Todo_hl_settings = vim.api.nvim_get_hl(0, { name = "Todo" })
-vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "highlight clear Todo" })
+-- Todo_hl_settings = vim.api.nvim_get_hl(0, { name = "Todo" })
+-- vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "highlight clear Todo" })
 -- Enable wrap for tex
-vim.api.nvim_create_autocmd({ "FileType" }, { pattern = { "tex", "latex" }, command = "set wrap" })
