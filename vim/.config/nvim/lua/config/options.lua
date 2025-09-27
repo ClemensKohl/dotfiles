@@ -257,7 +257,7 @@ local function open_thesaurus_picker_under_cursor()
 end
 
 -- optional mapping
-vim.keymap.set("n", "<leader>t", open_thesaurus_picker_under_cursor, {
+vim.keymap.set("n", "<leader>zt", open_thesaurus_picker_under_cursor, {
   desc = "Thesaurus: pick synonym for word under cursor",
 })
 
