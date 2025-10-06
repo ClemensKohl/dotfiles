@@ -118,15 +118,15 @@ Toggle_ltex = function()
   local lsp_clients = vim.lsp.get_clients()
 
   for _, client in pairs(lsp_clients) do
-    if client.name == "ltex" then
+    if client.name == "ltex_plus" then
       vim.lsp.stop_client(client.id)
       return
     end
   end
 
   vim.lsp.start({
-    name = "ltex",
-    cmd = { "ltex-ls" },
+    name = "ltex_plus",
+    cmd = { "ltex-ls-plus" },
   })
 end
 
