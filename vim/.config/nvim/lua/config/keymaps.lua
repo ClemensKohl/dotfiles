@@ -115,10 +115,15 @@ if not vim.g.vscode then
   --   { "<leader>at", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
   -- })
 
-  ------------
-  -- Claude --
-  ------------
-  vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode<CR>", { desc = "Toggle Claude Code" })
+  ------------------
+  -- Copilot Chat --
+  ------------------
+  -- vim.keymap.set({ "n", "x" }, "<leader>ac", function()
+  --   return require("CopilotChat").toggle()
+  -- end, { desc = "Toggle (CopilotChat)" })
+  -- vim.keymap.set({ "n", "x" }, "<leader>aP", function()
+  --   require("CopilotChat").select_prompt()
+  -- end, { desc = "Prompt Actions (CopilotChat)" })
 end
 
 -------------
