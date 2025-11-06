@@ -16,6 +16,11 @@ fi
 if [ -d "/opt/nvim-linux-x86_64" ]; then
 	export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 fi
+
+if [ -d "$HOME/.nix-profile/bin" ]; then
+	export PATH="$PATH:$HOME/.nix-profile/bin"
+fi
+
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 
