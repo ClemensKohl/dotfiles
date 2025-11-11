@@ -38,11 +38,14 @@ return {
       picker = {
         sources = {
           explorer = {
-            auto_close = true,
+            auto_close = false,
             cycle = true,
-            -- layout = { preset = "sidebar", preview = false},
-            -- layout = { preset = "ivy_split" },
-            -- layout = { preview = "main" },
+            preview_enabled = false,
+            layout = { preset = "sidebar", preview = "main" },
+            include = { ".*", "hidden", "ignored" },
+          },
+          files = {
+            layout = { preset = "ivy_split" },
           },
         },
       },
