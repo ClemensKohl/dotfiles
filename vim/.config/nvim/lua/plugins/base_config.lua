@@ -202,6 +202,8 @@ return {
         "rust-analyzer",
         "ltex-ls-plus",
         "markdownlint",
+        "nil",
+        "nixfmt",
       },
     },
   },
