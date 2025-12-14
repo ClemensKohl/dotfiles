@@ -46,6 +46,7 @@ return {
           },
           files = {
             layout = { preset = "ivy_split" },
+            exclude = { "*.pdf" },
           },
         },
       },
