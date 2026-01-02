@@ -4,7 +4,7 @@
 ## PC to Foto3 ##
 #################
 
-if [[ $1 = "-bu" ]]; then
+if [[ $1 = "-tof3" ]] || [[ $1 = "-bu" ]]; then
 
   today=$(date +'%Y%m%d')
   LOGDIR=$HOME/Pictures/logs/${today}
