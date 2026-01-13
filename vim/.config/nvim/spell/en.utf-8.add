@@ -88,3 +88,6 @@ eigengap
 MNN
 denoise
 heatmaps
+VAEs
+AEs
+denoising
