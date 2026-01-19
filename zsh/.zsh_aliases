@@ -48,6 +48,7 @@ fi
 if [[ "$(whoami)" == "clemens" ]]; then
   alias r42vim="PATH='/opt/R/4.2.2/bin/:$PATH' nvim"
 fi
+
 ##########
 ## Work ##
 ##########
@@ -110,6 +111,7 @@ goto_analyse() {
     echo "Directory does not exist: $target"
   fi
 }
+
 if [ -d /project/kohl_data/ ];
 then
   alias datalyse="goto_analyse"

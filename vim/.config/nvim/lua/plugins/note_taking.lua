@@ -37,6 +37,10 @@ return {
         name = "PhD",
         path = vim.fn.expand("~") .. "/Obsidian/PhD",
       },
+      {
+        name = "CeMM",
+        path = vim.fn.expand("~") .. "/Obsidian/CeMM",
+      },
     },
 
     -- see below for full list of options 👇
