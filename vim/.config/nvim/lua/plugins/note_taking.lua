@@ -18,6 +18,8 @@ return {
     "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/PhD/*.md",
     "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/Privat/*.md",
     "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/Privat/*.md",
+    "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/CeMM/*.md",
+    "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/CeMM/*.md",
   },
   dependencies = {
     -- Required.

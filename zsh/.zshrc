@@ -5,6 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
+if [ -f "$HOME/.zprofile" ]; then
+	source $HOME/.zprofile
+fi
+
 if [ -d "$HOME/.npm-global/bin" ]; then
   export PATH="$PATH:$HOME/.npm-global/bin"
 fi
