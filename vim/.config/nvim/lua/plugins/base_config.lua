@@ -204,6 +204,7 @@ return {
         "markdownlint",
         "nil",
         "nixfmt",
+        "pyright",
       },
     },
   },

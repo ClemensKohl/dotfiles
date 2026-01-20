@@ -81,11 +81,15 @@ if vim.g.neovide == true then
 end
 
 ------------
--- Nvim.R --
+-- R.nvim --
 ------------
 
 vim.g.rout_follow_colorscheme = 1 -- highlight R commands in colorscheme
 vim.g.Rout_more_colors = 1
+
+-- NOTE: disable R.nvim for quarto files, as otter is handling them.
+-- vim.g.R_filetypes = { "r", "rmd", "rnoweb", "quarto", "rhelp" }
+-- vim.g.R_filetypes = { "r", "rmd", "rnoweb", "rhelp" }
 
 ------------
 -- Vimtex --

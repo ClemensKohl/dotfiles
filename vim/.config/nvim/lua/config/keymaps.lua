@@ -107,6 +107,53 @@ if not vim.g.vscode then
   --   { "<leader>zdu", "<cmd>TransferUpload<cr>", desc = "Upload to remote server (scp)" },
   -- })
 
+  ------------
+  -- Python --
+  ------------
+
+  wk.add({
+    { "<localleader>a", group = "Iron", icon = MiniIcons.get("filetype", "json") },
+    { "<localleader>as", "<cmd>IronRepl<cr>", desc = "Start Iron" },
+    { "<localleader>ar", "<cmd>IronRestart<cr>", desc = "Restart Iron" },
+    { "<localleader>af", "<cmd>IronFocus<cr>", desc = "Focus on Iron" },
+    { "<localleader>ah", "<cmd>IronHide<cr>", desc = "Hide Iron" },
+  })
+
+  ------------
+  -- R.nvim --
+  ------------
+  --NOTE: DOES NOT WORK
+  -- if wanted, start R.nvim for quarto (or other) files.
+  -- Function to manually attach R.nvim to current quarto buffer
+  -- local function attach_r_nvim()
+  --   local bufnr = vim.api.nvim_get_current_buf()
+  --   local ft = vim.bo[bufnr].filetype
+  --
+  --   if ft ~= "quarto" then
+  --     print("Not a quarto buffer")
+  --     return
+  --   end
+  --
+  --   -- Enable R.nvim for this buffer
+  --   vim.b[bufnr].disable_r_nvim = nil
+  --   vim.b[bufnr].IsInRCode = 1
+  --
+  --   -- Manually start R console
+  --   -- vim.cmd("RStart")
+  --
+  --   -- Manually attach R LSP if needed
+  --   local r_lsp_config = require("lspconfig").r_language_server
+  --   -- if r_lsp_config then
+  --   --   r_lsp_config.manager:try_add_wrapper(bufnr)
+  --   -- end
+  --
+  --   print("R.nvim attached to buffer")
+  -- end
+  --
+  -- vim.keymap.set("n", "<leader>rs", attach_r_nvim, {
+  --   desc = "Attach R.nvim to current buffer",
+  -- })
+
   -------------
   -- Copilot --
   -------------

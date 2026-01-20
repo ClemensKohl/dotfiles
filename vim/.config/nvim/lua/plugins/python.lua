@@ -55,10 +55,10 @@ return {
       })
 
       -- iron also has a list of commands, see :h iron-commands for all available commands
-      vim.keymap.set("n", "<localleader>rs", "<cmd>IronRepl<cr>")
-      vim.keymap.set("n", "<localleader>rr", "<cmd>IronRestart<cr>")
-      vim.keymap.set("n", "<localleader>rf", "<cmd>IronFocus<cr>")
-      vim.keymap.set("n", "<localleader>rh", "<cmd>IronHide<cr>")
+      -- vim.keymap.set("n", "<localleader>is", "<cmd>IronRepl<cr>")
+      -- vim.keymap.set("n", "<localleader>ir", "<cmd>IronRestart<cr>")
+      -- vim.keymap.set("n", "<localleader>if", "<cmd>IronFocus<cr>")
+      -- vim.keymap.set("n", "<localleader>ih", "<cmd>IronHide<cr>")
     end,
   },
 }

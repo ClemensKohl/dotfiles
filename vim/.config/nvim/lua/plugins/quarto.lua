@@ -153,7 +153,7 @@ return {
         -- if set to true, the filetype of the otterbuffers will be set.
         -- otherwise only the autocommand of lspconfig that attaches
         -- the language server will be executed without setting the filetype
-        set_filetype = false,
+        set_filetype = true,
       },
     },
   },
