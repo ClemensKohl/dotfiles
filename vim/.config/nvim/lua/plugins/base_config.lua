@@ -30,6 +30,28 @@ return {
         severity_sort = true,
       },
       servers = {
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                -- typeCheckingMode = "recommended",
+                -- autoSearchPaths = true,
+                -- diagnosticMode = "openFilesOnly",
+                -- useLibraryCodeForTypes = true,
+                -- diagnosticSeverityOverrides = {
+                --   reportAny = false,
+                --   reportMissingTypeArgument = false,
+                --   reportMissingTypeStubs = false,
+                --   reportUnknownArgumentType = false,
+                --   reportUnknownMemberType = false,
+                --   reportUnknownParameterType = false,
+                --   reportUnknownVariableType = false,
+                --   reportUnusedCallResult = false,
+                -- },
+              },
+            },
+          },
+        },
         air = {
           on_attach = function(_, bufnr)
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -202,9 +224,7 @@ return {
         "rust-analyzer",
         "ltex-ls-plus",
         "markdownlint",
-        "nil",
-        "nixfmt",
-        "pyright",
+        "basedpyright",
       },
     },
   },

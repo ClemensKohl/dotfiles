@@ -28,9 +28,12 @@ vim.opt.shell = "zsh"
 --Markdown settings:
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
 
--- Copilot
+-------------
+-- Copilot --
+-------------
 -- vim.g.ai_cmp = false
 vim.g.copilot_enabled = false
+
 -------------
 -- LazyVim --
 -------------
@@ -55,6 +58,13 @@ vim.g.lazyvim_cmp = "auto"
 -- Set to `false` to prevent "non-lsp snippets"" from appearing inside completion windows
 -- Motivation: Less clutter in completion windows and a more direct usage of snippits
 vim.g.lazyvim_mini_snippets_in_completion = true
+
+-- LSP Server to use for Python.
+-- Set to "basedpyright" to use basedpyright instead of pyright.
+vim.g.lazyvim_python_lsp = "basedpyright"
+
+-- Set to "ruff_lsp" to use the old LSP implementation version.
+vim.g.lazyvim_python_ruff = "ruff"
 
 -------------
 -- NEOVIDE --
