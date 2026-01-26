@@ -1,0 +1,9 @@
+{   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "workbench.colorTheme": "Catppuccin Frappé",
+    "workbench.iconTheme": "catppuccin-frappe",
+    "git.confirmSync": false,
+    "jupyter.askForKernelRestart": false,
+    "terminal.integrated.inheritEnv": false,
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3"
+}

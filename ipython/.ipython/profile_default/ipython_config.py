@@ -1,11 +1,23 @@
 # Configuration file for ipython.
 
+# Source - https://stackoverflow.com/a
+# Posted by Evan Grim
+# Retrieved 2026-01-26, License - CC BY-SA 4.0
+try:
+    from IPython.core import ultratb
+
+    ultratb.VerboseTB.tb_highlight = "bg:ansired"
+except Exception:
+    print(
+        "Error patching background color for tracebacks, they'll be the ugly default instead"
+    )
+
 c = get_config()  # noqa
 
 # Catpuccin theme
 c.TerminalInteractiveShell.true_color = True
 # c.TerminalInteractiveShell.highlighting_style = "catppuccin-frappe"
-c.TerminalInteractiveShell.highlighting_style = "monokai"
+# c.TerminalInteractiveShell.highlighting_style = "monokai"
 
 # ------------------------------------------------------------------------------
 # InteractiveShellApp(Configurable) configuration

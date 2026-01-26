@@ -34,20 +34,20 @@ return {
           settings = {
             basedpyright = {
               analysis = {
-                -- typeCheckingMode = "recommended",
+                typeCheckingMode = "basic",
                 -- autoSearchPaths = true,
                 -- diagnosticMode = "openFilesOnly",
                 -- useLibraryCodeForTypes = true,
-                -- diagnosticSeverityOverrides = {
-                --   reportAny = false,
-                --   reportMissingTypeArgument = false,
-                --   reportMissingTypeStubs = false,
-                --   reportUnknownArgumentType = false,
-                --   reportUnknownMemberType = false,
-                --   reportUnknownParameterType = false,
-                --   reportUnknownVariableType = false,
-                --   reportUnusedCallResult = false,
-                -- },
+                diagnosticSeverityOverrides = {
+                  -- reportAny = false,
+                  -- reportMissingTypeArgument = false,
+                  -- reportMissingTypeStubs = false,
+                  -- reportUnknownArgumentType = false,
+                  reportUnknownMemberType = false,
+                  -- reportUnknownParameterType = false,
+                  -- reportUnknownVariableType = false,
+                  reportUnusedCallResult = false,
+                },
               },
             },
           },

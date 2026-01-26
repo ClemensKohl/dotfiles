@@ -1,0 +1,51 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "shift+n",
+        "command": "notebook.toggleLineNumbers",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "shift+l",
+        "command": "-notebook.toggleLineNumbers",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "alt+n",
+        "command": "notebook.cell.toggleLineNumbers",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "l",
+        "command": "-notebook.cell.toggleLineNumbers",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    // {
+    //     "key": "shift+h", // the key sequence to activate the binding
+    //     "command": "vscode-neovim.send",
+    //     "when": "editorTextFocus && neovim.mode != insert", // don't activate during insert mode
+    //     "args": "<S-h>" // the input to send to neovim
+    // },
+    // {
+    //     "key": "shift+l", // the key sequence to activate the binding
+    //     "command": "vscode-neovim.send",
+    //     "when": "editorTextFocus && neovim.mode != insert", // don't activate during insert mode
+    //     "args": "<S-l>" // the input to send to neovim
+    // },
+]
