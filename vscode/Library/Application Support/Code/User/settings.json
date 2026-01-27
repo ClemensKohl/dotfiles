@@ -5,5 +5,8 @@
     "jupyter.askForKernelRestart": false,
     "terminal.integrated.inheritEnv": false,
     "jupyter.interactiveWindow.textEditor.executeSelection": true,
-    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3"
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
 }
