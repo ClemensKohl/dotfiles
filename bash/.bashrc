@@ -8,6 +8,7 @@ case $- in
 *) return ;;
 esac
 
+export TERM=xterm
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -40,8 +41,8 @@ if [ -d "$HOME/.local/bin" ]; then
 	PATH="$PATH:$HOME/.local/bin"
 fi
 
-PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
-PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
+# PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
+# PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
 
 export PATH
 
@@ -199,14 +200,14 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/kohl/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/kohl/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/kohl/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/kohl/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
