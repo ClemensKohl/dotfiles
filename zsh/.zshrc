@@ -29,6 +29,8 @@ fi
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 
+export LC_CTYPE=en_us.UTF-8
+
 # Download and install .zsh if not present.
 # [[ -x $HOME/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
