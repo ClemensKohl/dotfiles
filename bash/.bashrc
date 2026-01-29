@@ -8,6 +8,10 @@ case $- in
 *) return ;;
 esac
 
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -27,6 +31,7 @@ export TMUX_SHELL=$(which bash)
 
 # PATH="$PATH:/bin:/usr/bin:/usr/sbin:/usr/local/package/bin:/usr/local/bin:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
 # PATH="$PATH:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
+
 
 export SSH_DEFAULT_USER=$USER
 
@@ -212,6 +217,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-. "$HOME/.cargo/env"
+if [ -d "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
