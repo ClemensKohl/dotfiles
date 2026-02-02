@@ -1,6 +1,6 @@
 -- all the modules can easily be turned off:
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
 
 if vim.g.neovide then -- Put anything you want to happen only in Neovide here
   if true then return {} end

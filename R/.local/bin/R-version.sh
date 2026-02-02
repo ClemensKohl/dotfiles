@@ -34,4 +34,6 @@ fi
 
 #mkdir -p $lib_dir
 #export R_LIBS=$lib_dir
-echo $OS
+os_ver="${OS}_${VER}"
+os_ver="${os_ver// /_}"
+echo $os_ver

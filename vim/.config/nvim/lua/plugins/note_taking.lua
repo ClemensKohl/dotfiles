@@ -1,6 +1,6 @@
 -- Plugins for note taking. 
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
 
 return {
   "obsidian-nvim/obsidian.nvim",

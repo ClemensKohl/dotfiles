@@ -12,14 +12,14 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-export TERM=xterm
-export EDITOR="nvim"
-export VISUAL="nvim"
+# export TERM=xterm
+export EDITOR="vim"
+export VISUAL="vim"
 
 # set shorter prompt and make sure that we get a nice color terminal
 PS1='\u@\h:\w \$'
 PROMPT_DIRTRIM=2
-if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
+# if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 export PS1
 
 
@@ -38,12 +38,12 @@ export SSH_DEFAULT_USER=$USER
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
-	PATH="$PATH:$HOME/bin"
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
-	PATH="$PATH:$HOME/.local/bin"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
 # PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
@@ -135,8 +135,32 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
+
+if [ -d ~/gits/ClemensKohl/dotfiles ];
+then
+  DOTFILES=~/gits/ClemensKohl/dotfiles
+fi
+
+
+# Path to dot files on personal computers.
+if [ -d ~/gits/ClemensKohl/dotfiles ];
+then
+  alias dfiles="cd ~/gits/ClemensKohl/dotfiles"
+fi
+
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Yazi file explorer 
+# Allows to change directory
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # some more ls aliases
 alias ll='ls -hlF'
@@ -146,12 +170,10 @@ alias lt='ls -ht'
 alias tmux='tmux -u'
 alias ssh='ssh -X'
 
+alias lg="lazygit"
 # Aliases for my Neovim configs
 alias dv='NVIM_APPNAME=nvim.bak nvim'           # default neovim
 alias dvim='NVIM_APPNAME=nvim.bak nvim'         # default neovim
-
-alias lv='lvim'                                 # Lunar Vim
-alias lvim='lvim'                               # Lunar Vim
 
 # nvim by default also opens neovim with lazyvim.
 alias vv='NVIM_APPNAME=nvim nvim'               # lazy vim
@@ -160,17 +182,8 @@ alias vvim='NVIM_APPNAME=nvim nvim'             # lazy vim
 alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
-# Path to dot files on personal computers.
-if [ -d ~/gits/ClemensKohl/dot_files ];
-then
-  alias dfiles="cd ~/gits/ClemensKohl/dot_files"
-
-# Path to dot files on work computer
-elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
-then
-  alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
-fi
-
+alias load_R='module load bio/R-bundle-Bioconductor/3.18-foss-2023a-R-4.3.2'
+alias busslinger='cd /research/lab_busslinger/'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -199,27 +212,17 @@ fi
 # Vim mode
 set -o vi
 
-# Deactivate auto-activation of base environment
-export CONDA_AUTO_ACTIVATE_BASE=false
 
+# NOTE: Load modules
+# module load R-bundle-Bioconductor/3.18-foss-2023a-R-4.3.2
+# module load Python/3.11.5-GCCcore-13.2.0
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-if [ -d "$HOME/.cargo/env" ]; then
-  . "$HOME/.cargo/env"
-fi
+. "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+

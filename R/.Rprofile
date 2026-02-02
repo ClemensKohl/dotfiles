@@ -20,7 +20,7 @@
 #options(graphics.record=TRUE)
 
 new_lib <- function() {
-  os_name <- system("bash ~/bin/R-version.sh", intern = TRUE)
+  os_name <- system("bash ~/.local/bin/R-version.sh", intern = TRUE)
   home <- system("echo $HOME", intern = TRUE)
 
   if (R.Version()$status != "Under development (unstable)") {
