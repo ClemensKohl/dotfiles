@@ -34,15 +34,18 @@ new_lib <- function() {
     system(paste0("mkdir -p ", lib_dir))
   }
   return(lib_dir)
-
 }
-assign(".First", function() {
-  lib_dir <- new_lib()
-  .libPaths(lib_dir, include = TRUE)
-}, envir = globalenv())
+assign(
+  ".First",
+  function() {
+    lib_dir <- new_lib()
+    .libPaths(lib_dir, include = TRUE)
+  },
+  envir = globalenv()
+)
 
 
-# Colorout setup 
+# Colorout setup
 
 #' Helper for generating ansi color codes with hex color codes.
 #'
@@ -51,7 +54,7 @@ assign(".First", function() {
 #' @param fg Foreground color in hex format (ie '#000000'). Leave blank for default.
 #' @param bg Background color in hex format (ie '#000000'). Leave blank for default.
 #' @param fo Formatting (see details)
-#' 
+#'
 #' @details
 #' Value	Formating
 #' 0	No formating
@@ -82,7 +85,6 @@ assign(".First", function() {
 # }
 # General ----------------------------------------
 if (require("colorout", quietly = TRUE, lib.loc = new_lib())) {
-
   colorout::setOutputColors(
     index = "\x1b[38;2;115;121;148m", #' \x1b[38;2;76;86;106m',
     normal = "\x1b[38;2;140;170;238m", # "\x1b[38;2;198;208;245m", #'\x1b[38;2;216;222;233m',
@@ -139,10 +141,11 @@ if (require("colorout", quietly = TRUE, lib.loc = new_lib())) {
   colorout::addPattern("* [A-z]*:", "\x1b[38;2;235;203;139m")
   colorout::addPattern("* [A-z]* [A-z]*:", "\x1b[38;2;235;203;139m")
   colorout::addPattern("* [A-z]* [A-z]* [A-z]*:", "\x1b[38;2;235;203;139m")
-  colorout::addPattern("* [A-z]* [A-z]* [A-z]* [A-z]*:", "\x1b[38;2;235;203;139m")
+  colorout::addPattern(
+    "* [A-z]* [A-z]* [A-z]* [A-z]*:",
+    "\x1b[38;2;235;203;139m"
+  )
   # So on...
 
   #############
 }
-
-
