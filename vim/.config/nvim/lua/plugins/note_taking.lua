@@ -1,6 +1,6 @@
 -- Plugins for note taking. 
 -- stylua: ignore
--- if true then return {} end
+if true then return {} end
 
 return {
   "obsidian-nvim/obsidian.nvim",
@@ -28,7 +28,9 @@ return {
     -- see below for full list of optional dependencies 👇
   },
   opts = {
-    workspaces = {
+    workspaces = vim.tbl_filter(function(w)
+      return vim.fn.isdirectory(w.path) == 1
+    end, {
       {
         name = "Privat",
         path = vim.fn.expand("~") .. "/Obsidian/Privat",
@@ -41,7 +43,7 @@ return {
         name = "CeMM",
         path = vim.fn.expand("~") .. "/Obsidian/CeMM",
       },
-    },
+    }),
 
     -- see below for full list of options 👇
   },
