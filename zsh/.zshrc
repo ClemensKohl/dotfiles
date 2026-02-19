@@ -26,6 +26,10 @@ if [ -d "$HOME/.nix-profile/bin" ]; then
 	export PATH="$PATH:$HOME/.nix-profile/bin"
 fi
 
+if [ -d "/opt/homebrew/bin/" ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+fi
+
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 
