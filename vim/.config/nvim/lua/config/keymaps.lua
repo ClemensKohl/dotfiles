@@ -158,19 +158,21 @@ if not vim.g.vscode then
   -- Copilot --
   -------------
 
-  -- wk.add({
-  --   { "<leader>at", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
-  -- })
+  wk.add({
+    { "<leader>aC", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
+    { "<leader>aD", "<cmd>Copilot disable<cr>", desc = "disable Copilot" },
+    { "<leader>aE", "<cmd>Copilot enable<cr>", desc = "enable Copilot" },
+  })
 
   ------------------
   -- Copilot Chat --
   ------------------
-  -- vim.keymap.set({ "n", "x" }, "<leader>ac", function()
-  --   return require("CopilotChat").toggle()
-  -- end, { desc = "Toggle (CopilotChat)" })
-  -- vim.keymap.set({ "n", "x" }, "<leader>aP", function()
-  --   require("CopilotChat").select_prompt()
-  -- end, { desc = "Prompt Actions (CopilotChat)" })
+  vim.keymap.set({ "n", "x" }, "<leader>ac", function()
+    return require("CopilotChat").toggle()
+  end, { desc = "Toggle (CopilotChat)" })
+  vim.keymap.set({ "n", "x" }, "<leader>aP", function()
+    require("CopilotChat").select_prompt()
+  end, { desc = "Prompt Actions (CopilotChat)" })
 end
 
 -------------

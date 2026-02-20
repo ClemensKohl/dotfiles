@@ -10,6 +10,10 @@ if [ -f "$HOME/.zprofile" ]; then
 	source $HOME/.zprofile
 fi
 
+if [ -f "$HOME/.api_keys" ]; then
+	source $HOME/.api_keys
+fi
+
 if [ -d "$HOME/.npm-global/bin" ]; then
   export PATH="$PATH:$HOME/.npm-global/bin"
 fi
@@ -26,9 +30,27 @@ if [ -d "$HOME/.nix-profile/bin" ]; then
 	export PATH="$PATH:$HOME/.nix-profile/bin"
 fi
 
+# MacOS
 if [ -d "/opt/homebrew/bin/" ]; then
 	eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 fi
+
+if [ -d "/opt/podman/bin/" ]; then
+	export PATH="$PATH:/opt/podman/bin"
+fi
+
+# If you come from bash you might have to change your $PATH.
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+	PATH=$HOME/bin:$PATH
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ]; then
+	PATH=$HOME/.local/bin:$PATH
+fi
+
+export PATH=$PATH:/usr/local/bin:/usr/local/package/bin
 
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
@@ -56,17 +78,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # set ZSH_CUSTOM to dotfiles folder.
 export ZSH_CUSTOM=$DOTFILES/zsh/.oh-my-zsh/custom
 
-# If you come from bash you might have to change your $PATH.
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-	PATH=$HOME/bin:$PATH
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ]; then
-	PATH=$HOME/.local/bin:$PATH
-fi
-export PATH=$PATH:/usr/local/bin:/usr/local/package/bin
 
 # Set SSH User
 export SSH_DEFAULT_USER=$USER
@@ -254,3 +265,6 @@ unset __conda_setup
 [[ ! -f ~/PhD/gits/ClemensKohl/dotfiles/zsh/.p10k.zsh ]] || source ~/PhD/gits/ClemensKohl/dotfiles/zsh/.p10k.zsh
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# opencode
+export PATH=/Users/ckohl/.opencode/bin:$PATH
