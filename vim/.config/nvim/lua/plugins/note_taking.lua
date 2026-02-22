@@ -45,6 +45,8 @@ return {
       },
     }),
 
+    legacy_commands = false,
+
     -- see below for full list of options 👇
   },
 }
