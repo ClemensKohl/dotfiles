@@ -16,12 +16,23 @@ return {
               -- returns a table (see below)
               command = { "zsh" },
             },
+            python = {
+              command = { "ipython", "--no-autoindent" },
+              format = require("iron.fts.common").bracketed_paste_python,
+              block_dividers = { "# %%", "#%%" },
+              env = { PYTHON_BASIC_REPL = "1" }, --this is needed for python3.13 and up.
+            },
           },
-          python = {
-            command = { "ipython" }, -- or { "python3", "--no-autoindent" }
-            format = require("iron.fts.common").bracketed_paste_python,
-            block_deviders = { "# %%", "#%%", "```" },
-          },
+          -- set the file type of the newly created repl to ft
+          -- bufnr is the buffer id of the REPL and ft is the filetype of the
+          -- language being used for the REPL.
+          repl_filetype = function(bufnr, ft)
+            return ft
+            -- or return a string name such as the following
+            -- return "iron"
+          end,
+          -- Send selections to the DAP repl if an nvim-dap session is running.
+          dap_integration = true,
           -- How the repl window will be displayed
           -- See below for more information
           repl_open_cmd = require("iron.view").split.vertical.botright("30%"),

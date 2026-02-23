@@ -112,11 +112,11 @@ if not vim.g.vscode then
   ------------
 
   wk.add({
-    { "<localleader>a", group = "Iron", icon = MiniIcons.get("filetype", "json") },
-    { "<localleader>as", "<cmd>IronRepl<cr>", desc = "Start Iron" },
-    { "<localleader>ar", "<cmd>IronRestart<cr>", desc = "Restart Iron" },
-    { "<localleader>af", "<cmd>IronFocus<cr>", desc = "Focus on Iron" },
-    { "<localleader>ah", "<cmd>IronHide<cr>", desc = "Hide Iron" },
+    { "<localleader>I", group = "Iron", icon = MiniIcons.get("filetype", "json") },
+    { "<localleader>Is", "<cmd>IronRepl<cr>", desc = "Start Iron" },
+    { "<localleader>Ir", "<cmd>IronRestart<cr>", desc = "Restart Iron" },
+    { "<localleader>If", "<cmd>IronFocus<cr>", desc = "Focus on Iron" },
+    { "<localleader>Ih", "<cmd>IronHide<cr>", desc = "Hide Iron" },
   })
 
   ------------
