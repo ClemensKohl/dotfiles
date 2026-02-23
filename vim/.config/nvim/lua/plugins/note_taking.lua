@@ -1,50 +1,77 @@
 -- Plugins for note taking. 
 -- stylua: ignore
-if true then return {} end
+-- if true then return {} end
+
+-- return {
+--   "obsidian-nvim/obsidian.nvim",
+--   version = "*", -- recommended, use latest release instead of latest commit
+--   lazy = false,
+--   -- ft = "markdown",
+--   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+--   event = {
+--     -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+--     -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+--     -- refer to `:h file-pattern` for more examples
+--     "BufReadPre "
+--       .. vim.fn.expand("~")
+--       .. "/Obsidian/PhD/*.md",
+--     "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/PhD/*.md",
+--     "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/Privat/*.md",
+--     "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/Privat/*.md",
+--     "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/CeMM/*.md",
+--     "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/CeMM/*.md",
+--   },
+--   dependencies = {
+--     -- Required.
+--     "nvim-lua/plenary.nvim",
+--
+--     -- see below for full list of optional dependencies 👇
+--   },
+--   opts = {
+--     workspaces = vim.tbl_filter(function(w)
+--       return vim.fn.isdirectory(w.path) == 1
+--     end, {
+--       {
+--         name = "Privat",
+--         path = vim.fn.expand("~") .. "/Obsidian/Privat",
+--       },
+--       {
+--         name = "PhD",
+--         path = vim.fn.expand("~") .. "/Obsidian/PhD",
+--       },
+--       {
+--         name = "CeMM",
+--         path = vim.fn.expand("~") .. "/Obsidian/CeMM",
+--       },
+--     }),
+--
+--     legacy_commands = false,
+--
+--     -- see below for full list of options 👇
+--   },
+-- }
 
 return {
   "obsidian-nvim/obsidian.nvim",
-  version = "*", -- recommended, use latest release instead of latest commit
-  lazy = false,
-  -- ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  event = {
-    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-    -- refer to `:h file-pattern` for more examples
-    "BufReadPre "
-      .. vim.fn.expand("~")
-      .. "/Obsidian/PhD/*.md",
-    "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/PhD/*.md",
-    "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/Privat/*.md",
-    "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/Privat/*.md",
-    "BufReadPre " .. vim.fn.expand("~") .. "/Obsidian/CeMM/*.md",
-    "BufNewFile " .. vim.fn.expand("~") .. "/Obsidian/CeMM/*.md",
-  },
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
-  },
+  version = "*", -- use latest release, remove to use latest commit
+  ft = "markdown",
+  ---@module 'obsidian'
+  ---@type obsidian.config
   opts = {
-    workspaces = vim.tbl_filter(function(w)
-      return vim.fn.isdirectory(w.path) == 1
-    end, {
+    legacy_commands = false, -- this will be removed in the next major release
+    workspaces = {
       {
         name = "Privat",
-        path = vim.fn.expand("~") .. "/Obsidian/Privat",
+        path = "~/Obsidian/Privat",
       },
       {
         name = "PhD",
-        path = vim.fn.expand("~") .. "/Obsidian/PhD",
+        path = "~/Obsidian/PhD",
       },
       {
         name = "CeMM",
-        path = vim.fn.expand("~") .. "/Obsidian/CeMM",
+        path = "~/Obsidian/CeMM",
       },
-    }),
-
-    -- see below for full list of options 👇
+    },
   },
 }
