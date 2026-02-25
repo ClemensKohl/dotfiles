@@ -17,7 +17,7 @@ return {
               command = { "zsh" },
             },
             python = {
-              command = { "ipython", "--no-autoindent" },
+              command = { "ipython", "--no-autoindent", "--nosep" },
               format = require("iron.fts.common").bracketed_paste_python,
               block_dividers = { "# %%", "#%%" },
               env = { PYTHON_BASIC_REPL = "1" }, --this is needed for python3.13 and up.
