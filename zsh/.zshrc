@@ -55,6 +55,8 @@ export PATH=$PATH:/usr/local/bin:/usr/local/package/bin
 # Set the shell tmux should use.
 export TMUX_SHELL=$(which zsh)
 
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 # export LC_CTYPE=en_US.UTF-8
 
 # Download and install .zsh if not present.
@@ -165,8 +167,6 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
