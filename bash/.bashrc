@@ -38,12 +38,12 @@ export SSH_DEFAULT_USER=$USER
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
-	PATH="$PATH:$HOME/bin"
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
-	PATH="$PATH:$HOME/.local/bin"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
 # PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
@@ -161,15 +161,15 @@ alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
 alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
 # Path to dot files on personal computers.
-if [ -d ~/gits/ClemensKohl/dot_files ];
-then
-  alias dfiles="cd ~/gits/ClemensKohl/dot_files"
-
-# Path to dot files on work computer
-elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
-then
-  alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
-fi
+# if [ -d ~/gits/ClemensKohl/dotfiles ];
+# then
+#   alias dfiles="cd ~/gits/ClemensKohl/dotfiles"
+#
+# # Path to dot files on work computer
+# elif [ -d ~/PhD/gits/ClemensKohl/dotfiles ];
+# then
+#   alias dfiles="cd ~/PhD/gits/ClemensKohl/dotfiles"
+# fi
 
 
 # Add an "alert" alias for long running commands.  Use like so:
