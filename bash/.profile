@@ -24,36 +24,8 @@ if [[ "$(whoami)" == "kohl" ]]; then
 	PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
 
 	if [ -d "$HOME/.npm-global/bin" ]; then
-		PATH="$PATH:$HOME/.npm-global/bin"
+		export PATH="$PATH:$HOME/.npm-global/bin"
 	fi
 
-	if [ -d "$HOME/bin" ]; then
-		PATH=$HOME/bin:$PATH
-	fi
-
-	if [ -d "$HOME/.local/bin" ]; then
-		PATH=$HOME/.local/bin:$PATH
-	fi
-
-	export PATH
-
-	export R_PROFILE="$HOME/.Rprofile"
 fi
 
-if [[ "$(whoami)" == "clemens" ]]; then
-	export LOADED="BASH_PROFILE"
-
-	if [ -d "$HOME/bin" ]; then
-		PATH=$HOME/bin:$PATH
-	fi
-
-	if [ -d "$HOME/.local/bin" ]; then
-		PATH=$HOME/.local/bin:$PATH
-	fi
-
-	export PATH
-
-	export R_PROFILE="$HOME/.Rprofile"
-fi
-
-. "$HOME/.cargo/env"
