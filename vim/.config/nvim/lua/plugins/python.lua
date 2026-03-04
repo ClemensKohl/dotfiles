@@ -23,7 +23,7 @@ return {
             --   env = { PYTHON_BASIC_REPL = "1" }, --this is needed for python3.13 and up.
             -- },
             python = {
-              command = { "ipython" }, -- or { "python3", "--no-autoindent" }
+              command = { "ipython" , "--no-autoindent", "--nosep" }, -- or { "python3", "--no-autoindent" }
               format = require("iron.fts.common").bracketed_paste_python,
               block_deviders = { "# %%", "#%%", "```" },
             },
