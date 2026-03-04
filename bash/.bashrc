@@ -8,13 +8,28 @@ case $- in
 *) return ;;
 esac
 
+# Install ohmybash if not installed
+if [ ! -f ~/.oh-my-bash/oh-my-bash.sh ]; then
+  cp ~/.bashrc ~/.bashrc.bak && \
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended && \
+  mv ~/.bashrc.bak ~/.bashrc
+fi
+
+# Source system bashrc
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-export TERM=xterm
-export EDITOR="nvim"
-export VISUAL="nvim"
+# Set the shell tmux should use.
+export TMUX_SHELL=$(which bash)
+
+# Set default SSH user
+export SSH_DEFAULT_USER=$USER
+
+
+###########
+# OPTIONS #
+###########
 
 # set shorter prompt and make sure that we get a nice color terminal
 PS1='\u@\h:\w \$'
@@ -22,42 +37,10 @@ PROMPT_DIRTRIM=2
 if [[ $TERM == xterm ]]; then TERM=xterm-256color; fi
 export PS1
 
+export TERM=xterm
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-# Set the shell tmux should use.
-export TMUX_SHELL=$(which bash)
-
-# add to path
-# Commented out stuff is here in case something unexpectedly breaks.
-# Paths should be defined in .profile
-
-# PATH="$PATH:/bin:/usr/bin:/usr/sbin:/usr/local/package/bin:/usr/local/bin:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
-# PATH="$PATH:$HOME/bin:$HOME/.local/bin:/home/$USER/build/texlive/bin/x86_64-linux"
-
-
-export SSH_DEFAULT_USER=$USER
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-	PATH="$PATH:$HOME/bin"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ]; then
-	PATH="$PATH:$HOME/.local/bin"
-fi
-
-# PATH="$PATH:/usr/local/package/bin:/usr/local/bin"
-# PATH="$PATH:/home/$USER/build/texlive/bin/x86_64-linux:/home/$USER/.local/share/JetBrains/Toolbox/scripts"
-
-export PATH
-
-if [ -d "/opt/nvim-linux-x86_64" ]; then
-	export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-fi
-
-# Determine .Rprofile file:
-#export R_PROFILE="$HOME/R/Rprofile.site"
-export R_PROFILE="$HOME/.Rprofile"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -123,58 +106,8 @@ unset color_prompt force_color_prompt
 #     ;;
 # esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
-
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -hlF'
-alias la='ls -ahlF'
-alias lesss='less -S'
-alias lt='ls -ht'
-alias tmux='tmux -u'
-alias ssh='ssh -X'
-
-# Aliases for my Neovim configs
-alias dv='NVIM_APPNAME=nvim.bak nvim'           # default neovim
-alias dvim='NVIM_APPNAME=nvim.bak nvim'         # default neovim
-
-alias lv='lvim'                                 # Lunar Vim
-alias lvim='lvim'                               # Lunar Vim
-
-# nvim by default also opens neovim with lazyvim.
-alias vv='NVIM_APPNAME=nvim nvim'               # lazy vim
-alias vvim='NVIM_APPNAME=nvim nvim'             # lazy vim
-
-alias kv='NVIM_APPNAME=nvim-kickstart nvim'     # kickstart
-alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
-
-# Path to dot files on personal computers.
-if [ -d ~/gits/ClemensKohl/dot_files ];
-then
-  alias dfiles="cd ~/gits/ClemensKohl/dot_files"
-
-# Path to dot files on work computer
-elif [ -d ~/PhD/gits/ClemensKohl/dot_files ];
-then
-  alias dfiles="cd ~/PhD/gits/ClemensKohl/dot_files"
-fi
 
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -202,6 +135,218 @@ set -o vi
 # Deactivate auto-activation of base environment
 export CONDA_AUTO_ACTIVATE_BASE=false
 
+########
+# PATH #
+########
+
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+	export PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "/opt/nvim-linux-x86_64" ]; then
+	export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+fi
+
+# Determine .Rprofile file:
+#export R_PROFILE="$HOME/R/Rprofile.site"
+
+if [ -f "$HOME/.Rprofile" ]; then
+  export R_PROFILE="$HOME/.Rprofile"
+fi
+
+###########
+# ALIASES #
+###########
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+
+##############
+# OH MY BASH #
+##############
+
+# Path to your oh-my-bash installation.
+export OSH="${HOME}/.oh-my-bash"
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-bash is loaded.
+OSH_THEME="powerbash10k"
+
+# If you set OSH_THEME to "random", you can ignore themes you don't like.
+# OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
+# You can also specify the list from which a theme is randomly selected:
+# OMB_THEME_RANDOM_CANDIDATES=("font" "powerline-light" "minimal")
+
+# Uncomment the following line to use case-sensitive completion.
+# OMB_CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# OMB_HYPHEN_SENSITIVE="false"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_OSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you don't want the repository to be considered dirty
+# if there are untracked files.
+# SCM_GIT_DISABLE_UNTRACKED_DIRTY="true"
+
+# Uncomment the following line if you want to completely ignore the presence
+# of untracked files in the repository.
+# SCM_GIT_IGNORE_UNTRACKED="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.  One of the following values can
+# be used to specify the timestamp format.
+# * 'mm/dd/yyyy'     # mm/dd/yyyy + time
+# * 'dd.mm.yyyy'     # dd.mm.yyyy + time
+# * 'yyyy-mm-dd'     # yyyy-mm-dd + time
+# * '[mm/dd/yyyy]'   # [mm/dd/yyyy] + [time] with colors
+# * '[dd.mm.yyyy]'   # [dd.mm.yyyy] + [time] with colors
+# * '[yyyy-mm-dd]'   # [yyyy-mm-dd] + [time] with colors
+# If not set, the default value is 'yyyy-mm-dd'.
+# HIST_STAMPS='yyyy-mm-dd'
+
+# Uncomment the following line if you do not want OMB to overwrite the existing
+# aliases by the default OMB aliases defined in lib/*.sh
+# OMB_DEFAULT_ALIASES="check"
+
+# Would you like to use another custom folder than $OSH/custom?
+# OSH_CUSTOM=/path/to/new-custom-folder
+
+# To disable the uses of "sudo" by oh-my-bash, please set "false" to
+# this variable.  The default behavior for the empty value is "true".
+OMB_USE_SUDO=true
+
+# To enable/disable display of Python virtualenv and condaenv
+OMB_PROMPT_SHOW_PYTHON_VENV=true  # enable
+# OMB_PROMPT_SHOW_PYTHON_VENV=false # disable
+
+# To enable/disable Spack environment information
+# OMB_PROMPT_SHOW_SPACK_ENV=true  # enable
+# OMB_PROMPT_SHOW_SPACK_ENV=false # disable
+
+# Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
+# Custom completions may be added to ~/.oh-my-bash/custom/completions/
+# Example format: completions=(ssh git bundler gem pip pip3)
+# Add wisely, as too many completions slow down shell startup.
+completions=(
+  git
+  composer
+  ssh
+)
+
+# Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
+# Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
+# Example format: aliases=(vagrant composer git-avh)
+# Add wisely, as too many aliases slow down shell startup.
+aliases=(
+  general
+)
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
+# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  bashmarks
+)
+
+# Which plugins would you like to conditionally load? (plugins can be found in ~/.oh-my-bash/plugins/*)
+# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
+# Example format:
+#  if [ "$DISPLAY" ] || [ "$SSH" ]; then
+#      plugins+=(tmux-autoattach)
+#  fi
+
+# If you want to reduce the initialization cost of the "tput" command to
+# initialize color escape sequences, you can uncomment the following setting.
+# This disables the use of the "tput" command, and the escape sequences are
+# initialized to be the ANSI version:
+#
+#OMB_TERM_USE_TPUT=no
+
+source "$OSH"/oh-my-bash.sh
+
+# User configuration
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-bash libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-bash
+# users are encouraged to define aliases within the OSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias bashconfig="mate ~/.bashrc"
+# alias ohmybash="mate ~/.oh-my-bash"
+
+#########
+# OTHER #
+#########
+
+# NOTE: Load modules
+# module load R-bundle-Bioconductor/3.18-foss-2023a-R-4.3.2
+# module load Python/3.11.5-GCCcore-13.2.0
+
+
+if [ -d "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(uv generate-shell-completion bash)"
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -218,8 +363,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-if [ -d "$HOME/.cargo/env" ]; then
-  . "$HOME/.cargo/env"
-fi
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
