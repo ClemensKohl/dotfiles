@@ -30,14 +30,6 @@ if [ -d "$HOME/.nix-profile/bin" ]; then
 	export PATH="$PATH:$HOME/.nix-profile/bin"
 fi
 
-# MacOS
-if [ -d "/opt/homebrew/bin/" ]; then
-	eval "$(/opt/homebrew/bin/brew shellenv zsh)"
-fi
-
-if [ -d "/opt/podman/bin/" ]; then
-	export PATH="$PATH:/opt/podman/bin"
-fi
 
 # If you come from bash you might have to change your $PATH.
 # set PATH so it includes user's private bin if it exists
@@ -49,6 +41,20 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
 	PATH=$HOME/.local/bin:$PATH
 fi
+
+# MacOS specific PATH:
+if [ -d "/opt/homebrew/bin/" ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+fi
+
+if [ -d "/opt/podman/bin/" ]; then
+	export PATH="$PATH:/opt/podman/bin"
+fi
+
+if [ -d "/usr/local/texlive/2026/bin/universal-darwin/" ]; then
+	export PATH="$PATH:/usr/local/texlive/2026/bin/universal-darwin/"
+fi
+
 
 export PATH=$PATH:/usr/local/bin:/usr/local/package/bin
 
