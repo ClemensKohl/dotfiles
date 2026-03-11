@@ -218,7 +218,7 @@ return {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        "r-languageserver",
+        -- "r-languageserver",
         "bash-language-server",
         "clangd",
         "rust-analyzer",
