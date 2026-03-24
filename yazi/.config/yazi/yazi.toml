@@ -2,4 +2,6 @@
 edit = [{ run = 'nvim "$@"', block = true }]
 
 [mgr]
+sort_by = "mtime"
+sort_reverse = true
 linemode = "size_and_mtime"
