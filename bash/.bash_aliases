@@ -54,5 +54,37 @@ alias kvim='NVIM_APPNAME=nvim-kickstart nvim'   # kickstart
 
 
 alias load_R='module load bio/R-bundle-Bioconductor/3.18-foss-2023a-R-4.3.2'
-alias busslinger='cd /nobackup/lab_busslinger/ckohl'
-alias rendeiro='cd /nobackup/lab_rendeiro/projects'
+alias unload_R='module unload bio/R-bundle-Bioconductor/3.18-foss-2023a-R-4.3.2'
+alias busslinger='goto_busslinger'
+alias rendeiro='goto_rendeiro'
+
+
+goto_busslinger() {
+  local base="/nobackup/lab_busslinger/ckohl"
+  local target="$base"
+
+  if [ -n "$1" ]; then
+    target="$base/$1"
+  fi
+
+  if [ -d "$target" ]; then
+    cd "$target" || echo "Failed to cd into $target"
+  else
+    echo "Directory does not exist: $target"
+  fi
+}
+
+goto_rendeiro() {
+  local base="/nobackup/lab_rendeiro/projects"
+  local target="$base"
+
+  if [ -n "$1" ]; then
+    target="$base/$1"
+  fi
+
+  if [ -d "$target" ]; then
+    cd "$target" || echo "Failed to cd into $target"
+  else
+    echo "Directory does not exist: $target"
+  fi
+}
