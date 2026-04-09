@@ -55,6 +55,18 @@ if [ -d "/usr/local/texlive/2026/bin/universal-darwin/" ]; then
 	export PATH="$PATH:/usr/local/texlive/2026/bin/universal-darwin/"
 fi
 
+# opencode
+if [ -d "/Users/ckohl/.opencode/bin" ]; then
+  export PATH=/Users/ckohl/.opencode/bin:$PATH
+fi
+
+if [ -d "/opt/homebrew/opt/chruby/" ]; then
+  source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+  source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+  chruby ruby-3.4.1
+fi
+
+
 
 export PATH=$PATH:/usr/local/bin:/usr/local/package/bin
 
@@ -272,5 +284,3 @@ unset __conda_setup
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
-# opencode
-export PATH=/Users/ckohl/.opencode/bin:$PATH
