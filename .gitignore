@@ -2,3 +2,4 @@ ranger/.config/ranger/plugins/__pycache__
 # vim/.config/nvim/lazy-lock.json
 binaries/bin
 /R/.DS_Store
+/ipython/.ipython/profile_default/history.sqlite

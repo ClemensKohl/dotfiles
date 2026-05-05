@@ -10,8 +10,8 @@ if [ -f "$HOME/.zprofile" ]; then
 	source $HOME/.zprofile
 fi
 
-if [ -f "$HOME/.api_keys" ]; then
-	source $HOME/.api_keys
+if [ -f "$HOME/.config/claude/config.sh" ]; then
+	source $HOME/.config/claude/config.sh
 fi
 
 if [ -d "$HOME/.npm-global/bin" ]; then
@@ -284,3 +284,6 @@ unset __conda_setup
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
+
+# opencode
+export PATH=/Users/ckohl/.opencode/bin:$PATH

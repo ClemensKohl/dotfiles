@@ -19,7 +19,7 @@ return {
         vim.keymap.set("i", "<<", "<Plug>RInsertAssign" ),
         -- vim.keymap.set("i", "<M-b>", "<Plug>RmdInsertChunk", { buffer = true })
       },
-      quarto_chunk_hl = {
+      chunk_hl = {
         highlight = false,               -- Highlight code blocks?
         yaml_hl = false,                 -- Highlight YAML comments?
         virtual_title = false,           -- Add language as virtual text?

@@ -52,20 +52,14 @@ return {
             },
           },
         },
-        air = {
-          on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format()
-              end,
-            })
-          end,
-        },
+        air = {},
         r_language_server = {
           on_attach = function(client, _)
             client.server_capabilities.documentFormattingProvider = false
             client.server_capabilities.documentRangeFormattingProvider = false
+            -- Let R.nvim be the sole completion source; keep everything else
+            -- (diagnostics, hover, definitions, references, formatting).
+            client.server_capabilities.completionProvider = nil
           end,
         },
         texlab = {
