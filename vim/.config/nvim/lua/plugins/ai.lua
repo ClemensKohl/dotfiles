@@ -7,34 +7,68 @@
 
 return {
   -- Copilot setup
-  -- TODO: Copilot Chat?
+  -- The toggle is in `keys` so the keymap exists before the plugin loads.
+  -- Pressing <leader>aT lazy-loads copilot.lua, runs setup, and enables it.
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
     print_log_level = vim.log.levels.OFF,
-    config = function()
-      Snacks.toggle({
-        name = "Github Copilot",
-        get = function()
-          if not vim.g.copilot_enabled then -- HACK: since it's disabled by default the below will throw error
-            return false
+    keys = {
+      {
+        "<leader>aT",
+        function()
+          if not _G._copilot_toggle then
+            _G._copilot_toggle = Snacks.toggle({
+              name = "Github Copilot",
+              get = function()
+                if not vim.g.copilot_enabled then
+                  return false
+                end
+                return not require("copilot.client").is_disabled()
+              end,
+              set = function(state)
+                if state then
+                  require("copilot").setup()
+                  require("copilot.command").enable()
+                  vim.g.copilot_enabled = true
+                else
+                  require("copilot.command").disable()
+                  vim.g.copilot_enabled = false
+                end
+              end,
+            })
           end
-          return not require("copilot.client").is_disabled()
+          _G._copilot_toggle:toggle()
         end,
-        set = function(state)
-          if state then
-            require("copilot").setup() -- setting up for the very first time
-            require("copilot.command").enable()
-            vim.g.copilot_enabled = true
-          else
-            require("copilot.command").disable()
-            vim.g.copilot_enabled = false
-          end
-        end,
-      }):map("<leader>at")
-    end,
+        desc = "Toggle Github Copilot",
+      },
+    },
   },
+
+  -- Override sidekick's <tab> (NES) to ]n so our pane-switch <tab> survives.
+  {
+    "folke/sidekick.nvim",
+    optional = true,
+    keys = {
+      { "<tab>", false }, -- disable sidekick's <tab> override
+      { "]n", LazyVim.cmp.map({ "ai_nes" }, "]n"), mode = { "n" }, expr = true, desc = "NES: next edit" },
+    },
+  },
+
+  -- Disable CopilotChat keymaps that conflict with sidekick.
+  -- CopilotChat is accessed via <leader>aC* instead (see keymaps.lua).
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    optional = true,
+    keys = {
+      { "<leader>aa", false },
+      { "<leader>ap", false },
+      { "<leader>aq", false },
+      { "<leader>ax", false },
+    },
+  },
+
   -- {
   --   "CopilotC-Nvim/CopilotChat.nvim",
   --   keys = {

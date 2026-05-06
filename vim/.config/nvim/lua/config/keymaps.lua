@@ -50,19 +50,13 @@ if not vim.g.vscode then
   vim.keymap.set("n", "<leader>zv", "<cmd>lua Toggle_virt()<cr>", { desc = "Toggle virtual text" })
   vim.keymap.set("n", "<leader>zL", "<cmd>lua Toggle_ltex()<cr>", { desc = "Toggle ltex-ls" })
 
-  -- Todo_hl = vim.api.nvim_get_hl_id_by_name("Todo")
-  -- TODO: Doesnt work yet.
-  vim.keymap.set(
-    "n",
-    "<localleader>lh",
-    "<cmd>lua vim.api.nvim_set_hl(0, 'Todo', Todo_hl_settings)<cr>",
-    { desc = "Todo highlights" }
-  )
-
-  ---------------
-  -- Thesaurus --
-  ---------------
-  -- vim.keymap.set("n", "<localleader>k", "<cmd>Telescope thesaurus lookup<CR>")
+  -- TODO: Doesnt work yet. Todo_hl_settings is never defined.
+  -- vim.keymap.set(
+  --   "n",
+  --   "<localleader>lh",
+  --   "<cmd>lua vim.api.nvim_set_hl(0, 'Todo', Todo_hl_settings)<cr>",
+  --   { desc = "Todo highlights" }
+  -- )
 
   -----------
   -- Utils --
@@ -70,10 +64,6 @@ if not vim.g.vscode then
 
   wk.add({
     { "<leader>z", group = "Util", icon = MiniIcons.get("os", "linux") },
-    -- { "<leader>zC", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
-    -- { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
-    -- { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
-    -- { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
     { "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", desc = "Toggle Colors Highlighting" },
   })
 
@@ -154,25 +144,31 @@ if not vim.g.vscode then
   --   desc = "Attach R.nvim to current buffer",
   -- })
 
-  -------------
-  -- Copilot --
-  -------------
-
-  wk.add({
-    { "<leader>aC", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
-    { "<leader>aD", "<cmd>Copilot disable<cr>", desc = "disable Copilot" },
-    { "<leader>aE", "<cmd>Copilot enable<cr>", desc = "enable Copilot" },
-  })
-
   ------------------
   -- Copilot Chat --
   ------------------
-  vim.keymap.set({ "n", "x" }, "<leader>ac", function()
+  -- NOTE: <leader>aT is the Snacks toggle for Copilot (defined in ai.lua).
+  -- CopilotChat commands live under <leader>aC subgroup to avoid
+  -- conflicts with sidekick (<leader>a{a,d,f,p,q,s,t,v,x}).
+  wk.add({
+    { "<leader>aC", group = "CopilotChat" },
+  })
+  vim.keymap.set({ "n", "x" }, "<leader>aCa", function()
     return require("CopilotChat").toggle()
   end, { desc = "Toggle (CopilotChat)" })
-  vim.keymap.set({ "n", "x" }, "<leader>aP", function()
+  vim.keymap.set({ "n", "x" }, "<leader>aCp", function()
     require("CopilotChat").select_prompt()
   end, { desc = "Prompt Actions (CopilotChat)" })
+  vim.keymap.set({ "n", "x" }, "<leader>aCq", function()
+    vim.ui.input({ prompt = "Quick Chat: " }, function(input)
+      if input ~= "" then
+        require("CopilotChat").ask(input)
+      end
+    end)
+  end, { desc = "Quick Chat (CopilotChat)" })
+  vim.keymap.set({ "n", "x" }, "<leader>aCx", function()
+    return require("CopilotChat").reset()
+  end, { desc = "Clear (CopilotChat)" })
 end
 
 -------------

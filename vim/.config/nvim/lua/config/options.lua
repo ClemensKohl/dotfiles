@@ -188,19 +188,8 @@ end
 -------------
 -- Copilot --
 -------------
-
--- Function that toggles Copilot on/off.
-function Toggle_Copilot()
-  local c = require("copilot.client")
-  local copilot_status = c.buf_is_attached()
-  if copilot_status then
-    vim.cmd("Copilot disable")
-    vim.notify("Copilot disabled", vim.log.levels.INFO)
-  else
-    vim.cmd("Copilot enable")
-    vim.notify("Copilot enabled", vim.log.levels.INFO)
-  end
-end
+-- NOTE: Copilot toggle is handled by Snacks toggle in ai.lua (<leader>aT).
+-- The old Toggle_Copilot() function has been removed as it was redundant.
 
 ---
 --- Thesaurus ChatGPT
