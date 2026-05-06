@@ -30,6 +30,11 @@ if [ -d "$HOME/.nix-profile/bin" ]; then
 	export PATH="$PATH:$HOME/.nix-profile/bin"
 fi
 
+if [ -d "$HOME/.bun/bin" ]; then
+	export PATH="$PATH:$HOME/.bun/bin"
+  export BUN_INSTALL="$HOME/.bun"
+fi
+
 
 # If you come from bash you might have to change your $PATH.
 # set PATH so it includes user's private bin if it exists

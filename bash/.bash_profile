@@ -61,3 +61,7 @@ if [ -d "$HOME/.cargo/env" ]; then
 fi
 
 if [ -e /home/kohl/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kohl/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
