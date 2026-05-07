@@ -18,7 +18,16 @@ return {
   {
     "folke/sidekick.nvim",
     optional = true,
-    opts = { nes = { enabled = false } },
+    opts = {
+      nes = { enabled = false },
+      cli = {
+        win = {
+          keys = {
+            files = { "<c-g>", "files", mode = "nt", desc = "open file picker" },
+          },
+        },
+      },
+    },
     keys = {
       { "<tab>", false }, -- disable sidekick's <tab> override
       { "]n", LazyVim.cmp.map({ "ai_nes" }, "]n"), mode = { "n" }, expr = true, desc = "NES: next edit" },
