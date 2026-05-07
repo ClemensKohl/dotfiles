@@ -12,11 +12,20 @@
 -- Terminal Options
 local function set_terminal_keymaps()
   local opts = { buffer = 0 }
-  -- Skip <Esc> mapping for sidekick CLI terminals (opencode, claude, etc.)
-  -- so that these TUIs can use Escape natively.
-  -- if vim.bo.filetype ~= "sidekick_terminal" then
-  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-  -- end
+  -- Double-Esc exits terminal mode. Single Esc passes through to the TUI.
+  -- This works for all terminals including sidekick (opencode, claude, etc.).
+  vim.keymap.set("t", "<esc>", function()
+    if not vim.b.esc_timer then
+      vim.b.esc_timer = vim.uv.new_timer()
+    end
+    if vim.b.esc_timer:is_active() then
+      vim.b.esc_timer:stop()
+      return [[<C-\><C-n>]]
+    else
+      vim.b.esc_timer:start(200, 0, function() end)
+      return "<esc>"
+    end
+  end, { buffer = 0, expr = true, desc = "Double-Esc to exit terminal mode" })
   vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
   vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
   vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)

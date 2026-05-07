@@ -147,28 +147,29 @@ if not vim.g.vscode then
   ------------------
   -- Copilot Chat --
   ------------------
-  -- NOTE: <leader>aT is the Snacks toggle for Copilot (defined in ai.lua).
+  -- NOTE: Disabled — copilot-chat extra removed from lazyvim.json.
+  -- Re-enable the extra and uncomment below to restore.
   -- CopilotChat commands live under <leader>aC subgroup to avoid
   -- conflicts with sidekick (<leader>a{a,d,f,p,q,s,t,v,x}).
-  wk.add({
-    { "<leader>aC", group = "CopilotChat" },
-  })
-  vim.keymap.set({ "n", "x" }, "<leader>aCa", function()
-    return require("CopilotChat").toggle()
-  end, { desc = "Toggle (CopilotChat)" })
-  vim.keymap.set({ "n", "x" }, "<leader>aCp", function()
-    require("CopilotChat").select_prompt()
-  end, { desc = "Prompt Actions (CopilotChat)" })
-  vim.keymap.set({ "n", "x" }, "<leader>aCq", function()
-    vim.ui.input({ prompt = "Quick Chat: " }, function(input)
-      if input ~= "" then
-        require("CopilotChat").ask(input)
-      end
-    end)
-  end, { desc = "Quick Chat (CopilotChat)" })
-  vim.keymap.set({ "n", "x" }, "<leader>aCx", function()
-    return require("CopilotChat").reset()
-  end, { desc = "Clear (CopilotChat)" })
+  -- wk.add({
+  --   { "<leader>aC", group = "CopilotChat" },
+  -- })
+  -- vim.keymap.set({ "n", "x" }, "<leader>aCa", function()
+  --   return require("CopilotChat").toggle()
+  -- end, { desc = "Toggle (CopilotChat)" })
+  -- vim.keymap.set({ "n", "x" }, "<leader>aCp", function()
+  --   require("CopilotChat").select_prompt()
+  -- end, { desc = "Prompt Actions (CopilotChat)" })
+  -- vim.keymap.set({ "n", "x" }, "<leader>aCq", function()
+  --   vim.ui.input({ prompt = "Quick Chat: " }, function(input)
+  --     if input ~= "" then
+  --       require("CopilotChat").ask(input)
+  --     end
+  --   end)
+  -- end, { desc = "Quick Chat (CopilotChat)" })
+  -- vim.keymap.set({ "n", "x" }, "<leader>aCx", function()
+  --   return require("CopilotChat").reset()
+  -- end, { desc = "Clear (CopilotChat)" })
 end
 
 -------------

@@ -29,12 +29,6 @@ vim.opt.shell = "zsh"
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
 
 -------------
--- Copilot --
--------------
--- vim.g.ai_cmp = false
-vim.g.copilot_enabled = false
-
--------------
 -- LazyVim --
 -------------
 -- In case you don't want to use `:LazyExtras`,
@@ -184,12 +178,6 @@ Toggle_virt = function()
     })
   end
 end
-
--------------
--- Copilot --
--------------
--- NOTE: Copilot toggle is handled by Snacks toggle in ai.lua (<leader>aT).
--- The old Toggle_Copilot() function has been removed as it was redundant.
 
 ---
 --- Thesaurus ChatGPT
