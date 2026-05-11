@@ -70,10 +70,6 @@ if not vim.g.vscode then
 
   wk.add({
     { "<leader>z", group = "Util", icon = MiniIcons.get("os", "linux") },
-    -- { "<leader>zC", "<cmd>Copilot disable<cr>", desc = "stop Copilot" },
-    -- { "<leader>zE", "<cmd>Copilot enable<cr>", desc = "start Copilot" },
-    -- { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
-    -- { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
     { "<leader>zh", "<cmd>lua MiniHipatterns.toggle()<cr>", desc = "Toggle Colors Highlighting" },
   })
 
@@ -154,25 +150,15 @@ if not vim.g.vscode then
   --   desc = "Attach R.nvim to current buffer",
   -- })
 
-  -------------
-  -- Copilot --
-  -------------
-
-  wk.add({
-    { "<leader>aC", "<cmd>lua Toggle_Copilot()<cr>", desc = "Toggle (Copilot)" },
-    { "<leader>aD", "<cmd>Copilot disable<cr>", desc = "disable Copilot" },
-    { "<leader>aE", "<cmd>Copilot enable<cr>", desc = "enable Copilot" },
-  })
-
   ------------------
   -- Copilot Chat --
   ------------------
-  vim.keymap.set({ "n", "x" }, "<leader>ac", function()
-    return require("CopilotChat").toggle()
-  end, { desc = "Toggle (CopilotChat)" })
-  vim.keymap.set({ "n", "x" }, "<leader>aP", function()
-    require("CopilotChat").select_prompt()
-  end, { desc = "Prompt Actions (CopilotChat)" })
+  -- vim.keymap.set({ "n", "x" }, "<leader>ac", function()
+  --   return require("CopilotChat").toggle()
+  -- end, { desc = "Toggle (CopilotChat)" })
+  -- vim.keymap.set({ "n", "x" }, "<leader>aP", function()
+  --   require("CopilotChat").select_prompt()
+  -- end, { desc = "Prompt Actions (CopilotChat)" })
 end
 
 -------------

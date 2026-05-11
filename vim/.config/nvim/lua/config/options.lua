@@ -101,6 +101,8 @@ vim.g.Rout_more_colors = 1
 -- NOTE: disable R.nvim for quarto files, as otter is handling them.
 -- vim.g.R_filetypes = { "r", "rmd", "rnoweb", "quarto", "rhelp" }
 -- vim.g.R_filetypes = { "r", "rmd", "rnoweb", "rhelp" }
+vim.g.R_filetypes = { "r", "rmd", "rnoweb", "quarto", "rhelp" }
+
 
 ------------
 -- Vimtex --
@@ -183,23 +185,6 @@ Toggle_virt = function()
     vim.diagnostic.config({
       virtual_text = false,
     })
-  end
-end
-
--------------
--- Copilot --
--------------
-
--- Function that toggles Copilot on/off.
-function Toggle_Copilot()
-  local c = require("copilot.client")
-  local copilot_status = c.buf_is_attached()
-  if copilot_status then
-    vim.cmd("Copilot disable")
-    vim.notify("Copilot disabled", vim.log.levels.INFO)
-  else
-    vim.cmd("Copilot enable")
-    vim.notify("Copilot enabled", vim.log.levels.INFO)
   end
 end
 

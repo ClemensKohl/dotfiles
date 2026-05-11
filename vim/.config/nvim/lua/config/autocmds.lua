@@ -10,9 +10,25 @@
 -- })
 
 -- Terminal Options
+local esc_timers = {} -- keyed by bufnr; vim.b can't store userdata
+
 local function set_terminal_keymaps()
   local opts = { buffer = 0 }
-  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  -- Double-Esc exits terminal mode. Single Esc passes through to the TUI.
+  -- This works for all terminals including sidekick (opencode, claude, etc.).
+  vim.keymap.set("t", "<esc>", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    if not esc_timers[bufnr] then
+      esc_timers[bufnr] = vim.uv.new_timer()
+    end
+    if esc_timers[bufnr]:is_active() then
+      esc_timers[bufnr]:stop()
+      return [[<C-\><C-n>]]
+    else
+      esc_timers[bufnr]:start(200, 0, function() end)
+      return "<esc>"
+    end
+  end, { buffer = 0, expr = true, desc = "Double-Esc to exit terminal mode" })
   vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
   vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
   vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
