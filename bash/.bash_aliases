@@ -42,6 +42,7 @@ alias ssh='ssh -X'
 alias lg="lazygit"
 
 alias yz='yazi'
+alias sqm='squeue --me'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

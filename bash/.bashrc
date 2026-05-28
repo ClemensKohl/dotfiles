@@ -138,6 +138,11 @@ if [ -d "/opt/nvim-linux-x86_64" ]; then
 	export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 fi
 
+if [ -d "$HOME/.bun/bin" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 # Determine .Rprofile file:
 #export R_PROFILE="$HOME/R/Rprofile.site"
 
@@ -158,7 +163,13 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+#######
+# ENV #
+#######
 
+if [ -f "$HOME/.config/claude/config.sh" ]; then
+	source $HOME/.config/claude/config.sh
+fi
 
 ##############
 # OH MY BASH #
@@ -334,3 +345,10 @@ export LC_ALL=en_US.UTF-8
 
 
 eval "$(uv generate-shell-completion bash)"
+
+# opencode
+export PATH=/home/ckohl/.opencode/bin:$PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
