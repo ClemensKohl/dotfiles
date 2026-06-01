@@ -98,7 +98,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Save macro to split lines for md and latex.
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "tex", "latex" },
+  pattern = { "tex", "latex", "typst" },
   callback = function()
     vim.fn.setreg("s", ")hr\r\27@s") -- split paragraph into sentences.
   end,

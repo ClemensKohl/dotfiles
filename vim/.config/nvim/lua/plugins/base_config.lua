@@ -72,7 +72,7 @@ return {
           autostart = true,
           --   -- on_attach = on_attach,
           --   -- capabilities = capabilities,
-          filetypes = { "tex", "md", "typ" },
+          filetypes = { "tex", "md", "typst" },
           settings = {
             ltex = {
               checkFrequency = "save",
