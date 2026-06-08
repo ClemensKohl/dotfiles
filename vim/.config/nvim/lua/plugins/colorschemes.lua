@@ -157,7 +157,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-moon",
+      colorscheme = "evergarden-fall",
+      -- colorscheme = "tokyonight-moon",
       -- colorscheme = "gruvbox-material",
       -- colorscheme = "catppuccin-frappe",
       -- colorscheme = "rose-pine-dawn",
