@@ -11,24 +11,30 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       -- inlay_hints = { enabled = true }, -- not necessary in new lazyvim
+      -- NOTE: vim.diagnostic.config() is now set authoritatively from
+      -- lua/config/options.lua via a VeryLazy autocmd, because LazyVim
+      -- calls vim.diagnostic.config(opts.diagnostics) when the lspconfig
+      -- spec loads, and that was overwriting our `virtual_text = false`
+      -- with a merged table (visible on .tex files via texlab/ltex).
+      -- Keeping this block commented for reference.
       -- options for vim.diagnostic.config()
-      diagnostics = {
-        -- signs = true,
-        underline = true,
-        update_in_insert = false,
-        virtual_text = false,
-        inlay_hints = {
-          enabled = true,
-          exclude = { "tex", "latex" }, -- filetypes for which you don't want to enable inlay hints
-        },
-        float = {
-          show_header = true,
-          source = "if_many",
-          border = "rounded",
-          focusable = false,
-        },
-        severity_sort = true,
-      },
+      -- diagnostics = {
+      --   -- signs = true,
+      --   underline = true,
+      --   update_in_insert = false,
+      --   virtual_text = false,
+      --   inlay_hints = {
+      --     enabled = true,
+      --     exclude = { "tex", "latex" }, -- filetypes for which you don't want to enable inlay hints
+      --   },
+      --   float = {
+      --     show_header = true,
+      --     source = "if_many",
+      --     border = "rounded",
+      --     focusable = false,
+      --   },
+      --   severity_sort = true,
+      -- },
       servers = {
         basedpyright = {
           settings = {
