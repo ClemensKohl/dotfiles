@@ -179,6 +179,39 @@ Toggle_virt = function()
   end
 end
 
+-- Authoritative vim.diagnostic.config().
+-- Moved out of plugins/base_config.lua's `diagnostics = {...}` block because
+-- LazyVim's lspconfig spec calls vim.diagnostic.config(opts.diagnostics) at
+-- plugin load, and that was deep-merging our `virtual_text = false` with
+-- defaults so virtual text reappeared on .tex/.latex buffers (texlab, ltex).
+-- VeryLazy fires after lazy.nvim is done, so this call wins.
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    local icons = LazyVim.config.icons.diagnostics
+    vim.diagnostic.config({
+      underline = true,
+      update_in_insert = false,
+      virtual_text = false,
+      severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = icons.Error,
+          [vim.diagnostic.severity.WARN] = icons.Warn,
+          [vim.diagnostic.severity.HINT] = icons.Hint,
+          [vim.diagnostic.severity.INFO] = icons.Info,
+        },
+      },
+      float = {
+        show_header = true,
+        source = "if_many",
+        border = "rounded",
+        focusable = false,
+      },
+    })
+  end,
+})
+
 ---
 --- Thesaurus ChatGPT
 ---
